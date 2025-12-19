@@ -5,6 +5,10 @@ plugins {
     alias(libs.plugins.androidLibrary)
 }
 
+val schemasDir = layout.projectDirectory.dir("schemas")
+val outDir = layout.buildDirectory.dir("generated/source/analytics/commonMain/kotlin")
+val generatorProject = project(":tools:analytics-generator")
+
 kotlin {
     androidTarget {
         compilerOptions {
@@ -24,11 +28,15 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
-            kotlin.srcDir(layout.buildDirectory.dir("generated/source/analytics/commonMain/kotlin"))
+            kotlin.srcDir(outDir)
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
             }
         }
+    }
+
+    sourceSets.all {
+        languageSettings.optIn("kotlin.experimental.ExperimentalNativeApi")
     }
 }
 
@@ -43,22 +51,6 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }
-
-val schemasDir = layout.projectDirectory.dir("schemas")
-val outDir = layout.buildDirectory.dir("generated/source/analytics/commonMain/kotlin")
-
-kotlin {
-    sourceSets {
-        val commonMain by getting {
-            kotlin.srcDir(outDir)
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-            }
-        }
-    }
-}
-
-val generatorProject = project(":tools:analytics-generator")
 
 val generateAnalyticsEvents = tasks.register<JavaExec>("generateAnalyticsEvents") {
     group = "codegen"
