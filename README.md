@@ -164,7 +164,3 @@ Example:
 -   Add snapshot tests for generated output
 
 ------------------------------------------------------------------------
-
-## License
-
-Add your preferred license here.
