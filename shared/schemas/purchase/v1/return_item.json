@@ -1,0 +1,17 @@
+{
+  "x-eventName": "purchase_return_item",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "orderId",
+    "itemId"
+  ],
+  "properties": {
+    "orderId": {
+      "type": "string"
+    },
+    "itemId": {
+      "type": "string"
+    }
+  }
+}

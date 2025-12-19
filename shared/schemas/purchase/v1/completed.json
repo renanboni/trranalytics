@@ -1,0 +1,52 @@
+{
+  "x-eventName": "purchase_completed",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "orderId",
+    "value",
+    "currency",
+    "items"
+  ],
+  "properties": {
+    "orderId": {
+      "type": "string"
+    },
+    "value": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "enum": [
+        "USD",
+        "EUR",
+        "BRL"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sku",
+          "qty"
+        ],
+        "properties": {
+          "sku": {
+            "type": "string"
+          },
+          "qty": {
+            "type": "integer"
+          },
+          "price": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

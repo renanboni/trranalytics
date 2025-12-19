@@ -1,0 +1,23 @@
+{
+  "x-eventName": "purchase_refund_requested",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "orderId",
+    "amount"
+  ],
+  "properties": {
+    "orderId": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "comment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
