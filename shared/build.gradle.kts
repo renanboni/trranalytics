@@ -23,6 +23,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Shared"
             isStatic = true
+            binaryOption("bundleId", "com.therealreal.analytics.shared")
         }
     }
 
