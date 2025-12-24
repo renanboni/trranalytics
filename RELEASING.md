@@ -39,8 +39,11 @@ When you create a release (via any method), the workflow automatically:
 5. ✅ Creates a GitHub Release with XCFramework
 6. ✅ Updates Package.swift for Swift Package Manager
 7. ✅ Generates changelog from git commits
+8. ✅ Sends Slack notification (if configured)
 
 **No manual version management needed** - the tools handle everything!
+
+> 💬 **Want Slack notifications?** See [Slack Setup Guide](.github/SLACK_SETUP.md) to receive release notifications in your team channel.
 
 ---
 
@@ -332,6 +335,16 @@ Before your first release, update these files with your actual repository URLs:
 YOUR_ORG/TRRAnalytics → your-org/your-repo-name
 therealreal/TRRAnalytics → your-org/your-repo-name
 ```
+
+### Optional: Slack Notifications
+
+Set up Slack notifications to get notified when releases complete:
+
+1. Follow the [Slack Setup Guide](.github/SLACK_SETUP.md)
+2. Add `SLACK_WEBHOOK_URL` secret to your repository
+3. Releases will automatically notify your team channel
+
+If you don't configure Slack, the workflow will still work - notifications are optional.
 
 ---
 

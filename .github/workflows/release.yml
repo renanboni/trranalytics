@@ -134,3 +134,65 @@ jobs:
           git add Package.swift
           git commit -m "Update Package.swift for version $VERSION [skip ci]" || echo "No changes to commit"
           git push origin HEAD:main
+
+      - name: Send Slack notification
+        if: always()
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          payload: |
+            {
+              "text": "${{ job.status == 'success' && '✅' || '❌' }} TRRAnalytics Release ${{ steps.get_version.outputs.tag }}",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "${{ job.status == 'success' && '✅ Release Published' || '❌ Release Failed' }}"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Version:*\n${{ steps.get_version.outputs.tag }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Status:*\n${{ job.status }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Triggered by:*\n${{ github.actor }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Workflow:*\n${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Tag Push' }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "${{ job.status == 'success' && '🎉 *Release artifacts published successfully!*\n\n*Available on:*\n• GitHub Packages (Android)\n• GitHub Releases (iOS XCFramework)\n• Swift Package Manager' || '⚠️ *Release workflow encountered an error.*\n\nPlease check the workflow logs for details.' }}"
+                  }
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "${{ job.status == 'success' && '📦 View Release' || '🔍 View Logs' }}"
+                      },
+                      "url": "${{ job.status == 'success' && format('https://github.com/{0}/releases/tag/{1}', github.repository, steps.get_version.outputs.tag) || format('https://github.com/{0}/actions/runs/{1}', github.repository, github.run_id) }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
