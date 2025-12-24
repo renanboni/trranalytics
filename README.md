@@ -84,6 +84,46 @@ let payload = event.payload()
 
 ------------------------------------------------------------------------
 
+## Installation
+
+### Android (Gradle)
+
+Add GitHub Packages repository and dependency:
+
+```kotlin
+// settings.gradle.kts
+dependencyResolutionManagement {
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/therealreal/TRRAnalytics")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.token") as String? ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+// build.gradle.kts
+dependencies {
+    implementation("com.therealreal.analytics:shared:1.0.0")
+}
+```
+
+### iOS (Swift Package Manager)
+
+Add package dependency in Xcode or Package.swift:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/therealreal/TRRAnalytics", from: "1.0.0")
+]
+```
+
+See [RELEASING.md](RELEASING.md) for more details.
+
+------------------------------------------------------------------------
+
 ## Schema layout convention
 
 Schemas must be stored as:

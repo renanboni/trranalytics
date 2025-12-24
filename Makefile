@@ -1,0 +1,31 @@
+.PHONY: help release build clean test
+
+help: ## Show this help message
+	@echo 'Usage: make [target]'
+	@echo ''
+	@echo 'Available targets:'
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-15s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+
+release: ## Create a new release (interactive)
+	@./scripts/release.sh
+
+build: ## Build the library
+	@./gradlew :shared:assemble
+
+build-ios: ## Build iOS XCFramework
+	@./gradlew :shared:assembleXCFramework
+
+build-all: ## Build all artifacts (Android + iOS)
+	@./gradlew :shared:assemble :shared:assembleXCFramework
+
+generate: ## Generate analytics events from schemas
+	@./gradlew :shared:generateAnalyticsEvents
+
+clean: ## Clean build artifacts
+	@./gradlew clean
+
+test: ## Run tests
+	@./gradlew test
+
+publish-local: ## Publish to local Maven repository for testing
+	@./gradlew :shared:publishToMavenLocal
