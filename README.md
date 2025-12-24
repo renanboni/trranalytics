@@ -1,8 +1,8 @@
 # Analytics Event Kotlin Generator
 
-This project generates Kotlin source files from JSON Schema files laid
+This project generates Kotlin Multiplatform source files from JSON Schema files laid
 out in a simple directory structure. The output is a strongly-typed
-builder-style API for analytics events, producing `JsonObject` payloads
+API for analytics events, producing `JsonObject` payloads
 via `kotlinx.serialization.json`.
 
 The generator is intentionally strict and focused on a small JSON Schema
@@ -33,14 +33,53 @@ Events implement:
 -   `payload(): JsonObject` (includes `event`, `schemaVersion`,
     `properties`)
 
-Optional properties use a builder pattern:
+------------------------------------------------------------------------
+
+## Usage Examples
+
+### Kotlin (Android)
+
+All properties (required and optional) are passed as constructor parameters. Optional properties default to `null`:
 
 ``` kotlin
-val e = Purchase.V1.ReturnItem(orderId = "123")
-  .reason("damaged")
-  .refundAmount(12.34)
+import analytics.events.Purchase
+import com.therealreal.analytics.events.propertiesMap
 
-val payload = e.payload()
+// Create an event with required and optional properties
+val event = Purchase.V1.RefundRequested(
+    amount = 100.0,
+    orderId = "ORDER-123",
+    reason = "damaged"  // optional
+)
+
+// Get properties as Map<String, Any> for tracking
+val properties: Map<String, Any?> = event.propertiesMap()
+trackEvent(event.eventName, properties)
+
+// Or use the JsonObject directly
+val payload = event.payload()
+```
+
+### Swift (iOS)
+
+The same events work seamlessly in Swift:
+
+``` swift
+import Shared
+
+// Create an event
+let event = PurchaseV1.RefundRequested(
+    amount: 100.0,
+    orderId: "ORDER-123",
+    reason: "damaged"  // optional
+)
+
+// Get properties as [String: AnyHashable] for tracking
+let properties = event.propertiesMap()
+Analytics.track(event.eventName, properties: properties)
+
+// Or use the JsonObject if needed
+let payload = event.payload()
 ```
 
 ------------------------------------------------------------------------
@@ -136,11 +175,11 @@ nested enums and objects - JSON builders
 
 ## Optional fields and nullability
 
-Optional (non-required) fields are represented internally as nullable
-backing vars, even if the schema type itself is non-null. This allows
-the builder pattern to represent "not set".
+Optional (non-required) fields are represented as nullable constructor parameters
+with default values of `null`. Even if the schema type itself is non-null,
+optional fields become nullable in the generated Kotlin code.
 
-Fields are only emitted into JSON if set.
+Fields are only emitted into JSON if they are not `null`.
 
 ------------------------------------------------------------------------
 
@@ -156,11 +195,3 @@ Example:
 
 ------------------------------------------------------------------------
 
-## Extending the generator
-
--   Add `$ref` support in `TypeParser`
--   Map schema formats to Kotlin types in `KotlinTypeRenderer`
--   Add org-specific validation passes
--   Add snapshot tests for generated output
-
-------------------------------------------------------------------------
