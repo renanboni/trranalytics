@@ -1,103 +1,173 @@
-# Release Process
+# Release Guide
 
-This document describes how to create a new release of TRRAnalytics.
+Complete guide for releasing TRRAnalytics with automated versioning and distribution.
 
-## Automated Release Strategy
+## Quick Start
 
-The project uses **Git tags** to trigger automated releases via GitHub Actions. When you push a version tag, the workflow automatically:
-
-1. ✅ Builds Android artifacts (AAR)
-2. ✅ Builds iOS XCFramework
-3. ✅ Publishes to GitHub Packages (Maven)
-4. ✅ Creates a GitHub Release with the XCFramework
-5. ✅ Updates Package.swift for Swift Package Manager
-6. ✅ Generates a changelog from git commits
-
-## How to Release
-
-There are **three ways** to create a release:
-
-### Option 1: Make Command (Easiest)
-
-Use the Makefile for the simplest experience:
+To create a new release, simply run:
 
 ```bash
 make release
 ```
 
-Or use the script directly:
+That's it! The interactive script will guide you through the rest.
+
+---
+
+## Table of Contents
+
+- [How Releases Work](#how-releases-work)
+- [Release Methods](#release-methods)
+- [Quick Commands](#quick-commands)
+- [What Gets Published](#what-gets-published)
+- [Installation Guide](#installation-guide)
+- [Versioning Guidelines](#versioning-guidelines)
+- [Troubleshooting](#troubleshooting)
+
+---
+
+## How Releases Work
+
+The project uses **Git tags** to trigger automated releases via GitHub Actions.
+
+When you create a release (via any method), the workflow automatically:
+
+1. ✅ Generates analytics events from schemas
+2. ✅ Builds Android artifacts (AAR)
+3. ✅ Builds iOS XCFramework
+4. ✅ Publishes to GitHub Packages (Maven)
+5. ✅ Creates a GitHub Release with XCFramework
+6. ✅ Updates Package.swift for Swift Package Manager
+7. ✅ Generates changelog from git commits
+
+**No manual version management needed** - the tools handle everything!
+
+---
+
+## Release Methods
+
+Choose whichever method works best for you:
+
+### Method 1: Interactive Script (Recommended)
+
+The easiest way - use the automated release script:
 
 ```bash
-./scripts/release.sh
+make release
+```
+
+**What happens:**
+```
+Current version: 1.2.3
+
+How do you want to bump the version?
+  1) Patch (bug fixes)          → 1.2.4
+  2) Minor (new features)       → 1.3.0
+  3) Major (breaking changes)   → 2.0.0
+  4) Custom version
+
+Select option (1-4): _
 ```
 
 The script will:
-- ✅ Show current version
-- ✅ Prompt for version bump type (patch/minor/major) or custom version
-- ✅ Create and push the tag automatically
-- ✅ Trigger the GitHub Actions workflow
+- Show your current version
+- Prompt for version bump type
+- Validate the version
+- Create and push the tag
+- Trigger the release workflow
 
-### Option 2: Manual Tag
+### Method 2: GitHub UI
 
-Create and push a version tag manually:
+Release directly from GitHub without terminal access:
+
+1. Go to your repository's **Actions** tab
+2. Select **Release** workflow in the sidebar
+3. Click **Run workflow** button
+4. Enter version number (e.g., `1.0.0`)
+5. Click green **Run workflow** button
+
+GitHub Actions will create the tag and build everything automatically.
+
+### Method 3: Manual Git Tag
+
+For advanced users who prefer manual control:
 
 ```bash
-# Ensure changes are committed
+# Ensure all changes are committed
 git add .
-git commit -m "Your changes"
+git commit -m "Prepare for release"
 git push origin main
 
-# Create version tag (use semantic versioning)
-git tag v1.1.0
-git push origin v1.1.0
+# Create and push version tag (must start with 'v')
+git tag v1.2.4
+git push origin v1.2.4
 ```
 
-### Option 3: GitHub UI (Manual Workflow)
+The `v` prefix is required (e.g., `v1.0.0`, not `1.0.0`).
 
-Trigger a release directly from GitHub:
+---
 
-1. Go to **Actions** tab in your repository
-2. Click **Release** workflow
-3. Click **Run workflow**
-4. Enter the version number (e.g., `1.0.0`)
-5. Click **Run workflow**
+## Quick Commands
 
-This will create the tag and release automatically.
+The project includes a **Makefile** with convenient shortcuts:
 
-### Monitor the GitHub Action
+| Command | Description |
+|---------|-------------|
+| `make release` | 🚀 Create a new release (interactive) |
+| `make build` | Build Android artifacts |
+| `make build-ios` | Build iOS XCFramework |
+| `make build-all` | Build all artifacts (Android + iOS) |
+| `make generate` | Generate analytics events from schemas |
+| `make clean` | Clean build artifacts |
+| `make test` | Run tests |
+| `make help` | Show all available commands |
 
-The release workflow will automatically trigger. You can monitor it at:
-`https://github.com/YOUR_ORG/TRRAnalytics/actions`
+---
 
-### Verify the Release
+## What Gets Published
 
-After the workflow completes, verify:
+After a successful release, the following artifacts are available:
 
-- ✅ GitHub Release created with XCFramework zip
-- ✅ Artifacts published to GitHub Packages
-- ✅ Package.swift updated with new version and checksum
+### Android (GitHub Packages)
+- **Maven coordinates**: `com.therealreal.analytics:shared:VERSION`
+- **Repository**: `https://maven.pkg.github.com/YOUR_ORG/TRRAnalytics`
+- **Format**: AAR with sources
 
-## Consuming the Library
+### iOS (GitHub Releases + SPM)
+- **XCFramework**: Available as release asset (`.zip`)
+- **Swift Package Manager**: Automatically updated via `Package.swift`
+- **Architectures**: `iosArm64` (device) + `iosSimulatorArm64` (simulator)
+
+### Release Notes
+- Changelog automatically generated from git commits since last release
+
+---
+
+## Installation Guide
+
+How consumers integrate the library into their projects:
 
 ### Android (Gradle)
 
-Add GitHub Packages repository to your `settings.gradle.kts`:
+Add GitHub Packages repository to `settings.gradle.kts`:
 
 ```kotlin
 dependencyResolutionManagement {
     repositories {
         maven {
-            url = uri("https://maven.pkg.github.com/therealreal/TRRAnalytics")
+            url = uri("https://maven.pkg.github.com/YOUR_ORG/TRRAnalytics")
             credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
-                password = project.findProperty("gpr.token") as String? ?: System.getenv("GITHUB_TOKEN")
+                username = project.findProperty("gpr.user") as String?
+                    ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.token") as String?
+                    ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
 }
 ```
 
-Then add the dependency:
+Add dependency to `build.gradle.kts`:
 
 ```kotlin
 dependencies {
@@ -105,65 +175,171 @@ dependencies {
 }
 ```
 
+**Note**: GitHub Packages requires authentication. Users need a GitHub token with `read:packages` permission.
+
 ### iOS (Swift Package Manager)
 
-In Xcode:
+**Option A: Xcode UI**
 1. File → Add Package Dependencies
-2. Enter repository URL: `https://github.com/therealreal/TRRAnalytics`
-3. Select the version you want
+2. Enter URL: `https://github.com/YOUR_ORG/TRRAnalytics`
+3. Select version or branch
+4. Click Add Package
 
-Or in `Package.swift`:
+**Option B: Package.swift**
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/therealreal/TRRAnalytics", from: "1.0.0")
+    .package(url: "https://github.com/YOUR_ORG/TRRAnalytics", from: "1.0.0")
 ]
 ```
 
-### iOS (Direct XCFramework)
+**Option C: Direct XCFramework**
 
-Download the XCFramework from the GitHub Release:
-`https://github.com/therealreal/TRRAnalytics/releases/latest`
-
-Then drag `Shared.xcframework` into your Xcode project.
-
-## Version Guidelines
-
-Follow [Semantic Versioning](https://semver.org/):
-
-- **MAJOR** (1.0.0 → 2.0.0): Breaking changes to the API
-- **MINOR** (1.0.0 → 1.1.0): New features, backward compatible
-- **PATCH** (1.0.0 → 1.0.1): Bug fixes, backward compatible
-
-## Quick Commands
-
-The project includes a **Makefile** with helpful shortcuts:
-
-```bash
-make release      # Create a new release (interactive)
-make build        # Build Android artifacts
-make build-ios    # Build iOS XCFramework
-make build-all    # Build everything
-make generate     # Generate analytics events
-make clean        # Clean build artifacts
-make help         # Show all available commands
+Download from releases and drag into Xcode:
 ```
+https://github.com/YOUR_ORG/TRRAnalytics/releases/latest
+```
+
+---
+
+## Versioning Guidelines
+
+This project follows [Semantic Versioning](https://semver.org/) (SemVer):
+
+```
+MAJOR.MINOR.PATCH
+```
+
+### When to bump each component:
+
+| Type | When to Use | Example |
+|------|-------------|---------|
+| **PATCH** | Bug fixes, no API changes | `1.0.0` → `1.0.1` |
+| **MINOR** | New features, backward compatible | `1.0.1` → `1.1.0` |
+| **MAJOR** | Breaking changes, incompatible API | `1.1.0` → `2.0.0` |
+
+### Examples:
+
+- ✅ **Patch (1.0.0 → 1.0.1)**: Fix null pointer in event serialization
+- ✅ **Minor (1.0.0 → 1.1.0)**: Add new event type `UserLogin`
+- ✅ **Major (1.0.0 → 2.0.0)**: Rename `properties()` to `getProperties()`
+
+---
+
+## Monitoring Releases
+
+### GitHub Actions
+
+Monitor release progress:
+```
+https://github.com/YOUR_ORG/TRRAnalytics/actions
+```
+
+The workflow typically takes **3-5 minutes** to complete.
+
+### Verify Release Success
+
+After workflow completes, check:
+
+1. ✅ **GitHub Release** created with release notes
+2. ✅ **XCFramework zip** attached to release
+3. ✅ **Maven artifacts** published to GitHub Packages
+4. ✅ **Package.swift** updated with new version + checksum
+
+---
 
 ## Troubleshooting
 
 ### Release workflow failed
 
-- Check the GitHub Actions logs for errors
-- Ensure you have permissions to create releases and publish packages
-- Verify the tag follows the `v*` format (e.g., `v1.0.0`)
+**Check:**
+- GitHub Actions logs for specific error
+- Repository permissions (Settings → Actions → General)
+- Tag follows correct format (`v1.0.0`, not `1.0.0`)
+
+**Common causes:**
+- Missing `GITHUB_TOKEN` permissions
+- Gradle build failures
+- Network issues during publish
+
+### Tag already exists
+
+If you see `tag already exists` error:
+
+```bash
+# Delete local tag
+git tag -d v1.0.0
+
+# Delete remote tag
+git push origin :refs/tags/v1.0.0
+
+# Try release again
+make release
+```
 
 ### Package.swift not updated
 
-The workflow updates Package.swift automatically. If it fails:
-- Check if there are merge conflicts on the main branch
-- Manually update Package.swift and push the changes
+The workflow auto-updates `Package.swift`. If it fails:
+
+1. Check for merge conflicts on main branch
+2. Manually update version and checksum in `Package.swift`
+3. Commit and push changes
 
 ### XCFramework build failed
 
-- Ensure you have Xcode installed (workflow runs on macOS)
-- Check that iOS targets are properly configured in build.gradle.kts
+**Requirements:**
+- Workflow runs on macOS (GitHub-hosted runner)
+- Xcode installed (automatically available)
+- iOS targets configured in `build.gradle.kts`
+
+**Check:**
+- iOS framework configuration in `shared/build.gradle.kts`
+- Valid framework name and bundle ID
+- Gradle iOS plugin version
+
+### Authentication issues (Android)
+
+GitHub Packages requires authentication:
+
+```bash
+# Generate token at: https://github.com/settings/tokens
+# Requires: read:packages, write:packages (for publishing)
+
+export GITHUB_ACTOR="your-username"
+export GITHUB_TOKEN="ghp_your_token_here"
+```
+
+Or add to `~/.gradle/gradle.properties`:
+```properties
+gpr.user=your-username
+gpr.token=ghp_your_token_here
+```
+
+---
+
+## First-Time Setup
+
+Before your first release, update these files with your actual repository URLs:
+
+**Files to update:**
+- `shared/build.gradle.kts` - Maven repository URLs
+- `Package.swift` - XCFramework download URL
+- `RELEASING.md` - Documentation URLs (this file)
+- `README.md` - Installation instructions
+
+**Find and replace:**
+```
+YOUR_ORG/TRRAnalytics → your-org/your-repo-name
+therealreal/TRRAnalytics → your-org/your-repo-name
+```
+
+---
+
+## Questions?
+
+- **Workflow logs**: Check GitHub Actions for detailed error messages
+- **Version conflicts**: Ensure tag doesn't already exist
+- **Authentication**: Verify GitHub token has correct permissions
+- **Build issues**: Run `make build-all` locally first to test
+
+For more help, see the [README.md](README.md) or open an issue.
