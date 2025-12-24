@@ -22,22 +22,21 @@ class EventEmitter(
         val requiredFields = root.fields.filter { it.required }
         val optionalFields = root.fields.filterNot { it.required }
 
-        val ctorArgs = requiredFields.joinToString(",\n    ") { f ->
-            "val ${f.name}: ${typeRenderer.kotlinType(f.type)}"
+        val allCtorArgs = mutableListOf<String>()
+
+        requiredFields.forEach { f ->
+            allCtorArgs += "val ${f.name}: ${typeRenderer.kotlinType(f.type)}"
         }
 
-        // Optional fields are stored as nullable even if schema says non-null,
-        // because "absence" is represented by null in the builder pattern.
-        val optionalBacking = optionalFields.joinToString("\n") { f ->
-            "    private var ${f.name}: ${typeRenderer.kotlinType(f.type, forceNullable = true)} = null"
-        }.let { if (it.isBlank()) "" else "$it\n" }
-
-        val optionalSetters = optionalFields.joinToString("\n\n") { f ->
-            val setterParamType = typeRenderer.kotlinType(f.type) // respects schema nullability
-            """
-            fun ${f.name}(value: $setterParamType) = apply { this.${f.name} = value }
-            """.trimIndent()
+        optionalFields.forEach { f ->
+            val type = typeRenderer.kotlinType(f.type, forceNullable = true)
+            allCtorArgs += "val ${f.name}: $type = null"
         }
+
+        val ctorArgs = allCtorArgs.joinToString(",\n    ")
+
+        val optionalBacking = ""
+        val optionalSetters = ""
 
         val enumsBlock = collected.enums.joinToString("\n\n") { emitEnum(it) }
         val nestedObjectsBlock = collected.objects.joinToString("\n\n") { emitNestedObjectClass(it) }
@@ -83,20 +82,18 @@ class EventEmitter(
         val requiredFields = o.fields.filter { it.required }
         val optionalFields = o.fields.filterNot { it.required }
 
-        val ctorArgs = requiredFields.joinToString(",\n        ") { f ->
-            "val ${f.name}: ${typeRenderer.kotlinType(f.type)}"
+        val allCtorArgs = mutableListOf<String>()
+
+        requiredFields.forEach { f ->
+            allCtorArgs += "val ${f.name}: ${typeRenderer.kotlinType(f.type)}"
         }
 
-        val optionalBacking = optionalFields.joinToString("\n") { f ->
-            "        private var ${f.name}: ${typeRenderer.kotlinType(f.type, forceNullable = true)} = null"
-        }.let { if (it.isBlank()) "" else "$it\n" }
-
-        val optionalSetters = optionalFields.joinToString("\n\n") { f ->
-            val setterParamType = typeRenderer.kotlinType(f.type)
-            """
-            fun ${f.name}(value: $setterParamType) = apply { this.${f.name} = value }
-            """.trimIndent()
+        optionalFields.forEach { f ->
+            val type = typeRenderer.kotlinType(f.type, forceNullable = true)
+            allCtorArgs += "val ${f.name}: $type = null"
         }
+
+        val ctorArgs = allCtorArgs.joinToString(",\n        ")
 
         val toJson = buildJsonObjectEmitter(o, receiverIndent = "        ")
 
@@ -104,9 +101,6 @@ class EventEmitter(
             class ${o.name}(
                 $ctorArgs
             ) {
-            $optionalBacking
-            ${indent(optionalSetters, 8).trimEnd()}
-
                 internal fun toJson(): JsonObject = $toJson
             }
         """.trimIndent()
