@@ -32,7 +32,6 @@ dependencyResolutionManagement {
     }
 }
 
-include(":composeApp")
 include(":shared")
 include(":tools")
 include(":tools:analytics-generator")
