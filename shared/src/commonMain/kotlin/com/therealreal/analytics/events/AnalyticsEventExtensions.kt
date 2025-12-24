@@ -3,14 +3,16 @@ package com.therealreal.analytics.events
 import kotlinx.serialization.json.*
 
 /**
- * Converts JsonObject to a native Android-friendly Map<String, Any>.
+ * Converts JsonObject to a Map<String, Any?>.
+ * On iOS: exposed as [String: AnyHashable] in Swift
+ * On Android: used as Map<String, Any>
  */
 fun JsonObject.toMap(): Map<String, Any?> {
     return mapValues { (_, value) -> value.toNativeValue() }
 }
 
 /**
- * Converts JsonElement to native types for Android.
+ * Converts JsonElement to native types.
  */
 private fun JsonElement.toNativeValue(): Any? {
     return when (this) {
@@ -33,15 +35,15 @@ private fun JsonElement.toNativeValue(): Any? {
 }
 
 /**
- * Extension function for AnalyticsEvent to get properties as native Android Map.
- * Returns Map<String, Any> suitable for trackEvent calls.
+ * Extension function for AnalyticsEvent to get properties as a native Map.
+ * Returns Map<String, Any?> suitable for platform-specific analytics calls.
  */
 fun AnalyticsEvent.propertiesMap(): Map<String, Any?> {
     return properties().toMap()
 }
 
 /**
- * Extension function for AnalyticsEvent to get full payload as native Android Map.
+ * Extension function for AnalyticsEvent to get full payload as a native Map.
  */
 fun AnalyticsEvent.payloadMap(): Map<String, Any?> {
     return payload().toMap()
