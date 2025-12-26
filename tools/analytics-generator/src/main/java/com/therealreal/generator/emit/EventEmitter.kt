@@ -3,6 +3,7 @@ package com.therealreal.generator.emit
 import com.therealreal.generator.model.Type
 import com.therealreal.generator.util.escapeKotlin
 import com.therealreal.generator.util.indent
+import com.therealreal.generator.util.toCamelCase
 import com.therealreal.generator.util.toEnumConstant
 
 class EventEmitter(
@@ -25,12 +26,12 @@ class EventEmitter(
         val allCtorArgs = mutableListOf<String>()
 
         requiredFields.forEach { f ->
-            allCtorArgs += "val ${f.name}: ${typeRenderer.kotlinType(f.type)}"
+            allCtorArgs += "val ${f.name.toCamelCase()}: ${typeRenderer.kotlinType(f.type)}"
         }
 
         optionalFields.forEach { f ->
             val type = typeRenderer.kotlinType(f.type, forceNullable = true)
-            allCtorArgs += "val ${f.name}: $type = null"
+            allCtorArgs += "val ${f.name.toCamelCase()}: $type = null"
         }
 
         val ctorArgs = allCtorArgs.joinToString(",\n    ")
@@ -85,12 +86,12 @@ class EventEmitter(
         val allCtorArgs = mutableListOf<String>()
 
         requiredFields.forEach { f ->
-            allCtorArgs += "val ${f.name}: ${typeRenderer.kotlinType(f.type)}"
+            allCtorArgs += "val ${f.name.toCamelCase()}: ${typeRenderer.kotlinType(f.type)}"
         }
 
         optionalFields.forEach { f ->
             val type = typeRenderer.kotlinType(f.type, forceNullable = true)
-            allCtorArgs += "val ${f.name}: $type = null"
+            allCtorArgs += "val ${f.name.toCamelCase()}: $type = null"
         }
 
         val ctorArgs = allCtorArgs.joinToString(",\n        ")
@@ -111,7 +112,7 @@ class EventEmitter(
 
         o.fields.forEach { f ->
             val name = f.name
-            val access = name
+            val access = f.name.toCamelCase()
 
             if (f.required) {
                 lines += emitPutLine(name, access, f.type, receiverIndent)

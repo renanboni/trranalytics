@@ -7,6 +7,19 @@ fun String.toPascalCase(): String =
             part.replaceFirstChar { c -> c.uppercase() }
         }
 
+fun String.toCamelCase(): String {
+    if (contains(Regex("[_-]"))) {
+        return split(Regex("[^A-Za-z0-9]+"))
+            .filter { it.isNotBlank() }
+            .mapIndexed { index, part ->
+                if (index == 0) part.lowercase()
+                else part.replaceFirstChar { c -> c.uppercase() }
+            }
+            .joinToString("")
+    }
+    return this
+}
+
 fun String.toEnumConstant(): String =
     uppercase()
         .replace(Regex("[^A-Z0-9]+"), "_")
