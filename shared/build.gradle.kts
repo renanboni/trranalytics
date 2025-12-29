@@ -1,4 +1,13 @@
+import org.gradle.api.DefaultTask
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputDirectory
+import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.TaskAction
+import org.gradle.process.ExecOperations
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import javax.inject.Inject
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -90,38 +99,51 @@ tasks.matching { it.name == "compileKotlinMetadata" }.configureEach {
 }
 
 // XCFramework build task for iOS distribution
-val xcframeworkDir = layout.buildDirectory.dir("xcframework")
+abstract class AssembleXCFrameworkTask : DefaultTask() {
+    @get:Input
+    abstract val frameworkName: Property<String>
 
-val assembleXCFramework by tasks.registering {
-    group = "build"
-    description = "Assembles XCFramework for iOS distribution"
+    @get:InputDirectory
+    abstract val arm64FrameworkDir: DirectoryProperty
 
-    val frameworkName = "Shared"
-    val xcframeworkPath = xcframeworkDir.get().file("$frameworkName.xcframework")
+    @get:InputDirectory
+    abstract val simulatorFrameworkDir: DirectoryProperty
 
-    dependsOn("linkDebugFrameworkIosArm64")
-    dependsOn("linkDebugFrameworkIosSimulatorArm64")
+    @get:OutputDirectory
+    abstract val xcframeworkDir: DirectoryProperty
 
-    doLast {
-        val arm64Framework = layout.buildDirectory.file(
-            "bin/iosArm64/debugFramework/$frameworkName.framework"
-        ).get().asFile
+    @get:Inject
+    abstract val execOperations: ExecOperations
 
-        val simulatorFramework = layout.buildDirectory.file(
-            "bin/iosSimulatorArm64/debugFramework/$frameworkName.framework"
-        ).get().asFile
+    @TaskAction
+    fun assemble() {
+        val name = frameworkName.get()
+        val xcframeworkPath = xcframeworkDir.file("$name.xcframework").get().asFile
 
-        exec {
+        execOperations.exec {
             commandLine(
                 "xcodebuild", "-create-xcframework",
-                "-framework", arm64Framework.absolutePath,
-                "-framework", simulatorFramework.absolutePath,
-                "-output", xcframeworkPath.asFile.absolutePath
+                "-framework", arm64FrameworkDir.file("$name.framework").get().asFile.absolutePath,
+                "-framework", simulatorFrameworkDir.file("$name.framework").get().asFile.absolutePath,
+                "-output", xcframeworkPath.absolutePath
             )
         }
 
-        println("✓ XCFramework created at: ${xcframeworkPath.asFile.absolutePath}")
+        println("✓ XCFramework created at: ${xcframeworkPath.absolutePath}")
     }
+}
+
+val assembleXCFramework by tasks.registering(AssembleXCFrameworkTask::class) {
+    group = "build"
+    description = "Assembles XCFramework for iOS distribution"
+
+    frameworkName.set("Shared")
+    arm64FrameworkDir.set(layout.buildDirectory.dir("bin/iosArm64/debugFramework"))
+    simulatorFrameworkDir.set(layout.buildDirectory.dir("bin/iosSimulatorArm64/debugFramework"))
+    xcframeworkDir.set(layout.buildDirectory.dir("xcframework"))
+
+    dependsOn("linkDebugFrameworkIosArm64")
+    dependsOn("linkDebugFrameworkIosSimulatorArm64")
 }
 
 // Maven publishing configuration
