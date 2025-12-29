@@ -130,7 +130,7 @@ publishing {
             pom {
                 name.set("TRR Analytics")
                 description.set("Kotlin Multiplatform analytics events library with type-safe event builders")
-                url.set("https://github.com/therealreal/TRRAnalytics")
+                url.set("https://github.com/therealreal/trr-analytics")
 
                 licenses {
                     license {
@@ -149,9 +149,9 @@ publishing {
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/therealreal/TRRAnalytics.git")
-                    developerConnection.set("scm:git:ssh://github.com/therealreal/TRRAnalytics.git")
-                    url.set("https://github.com/therealreal/TRRAnalytics")
+                    connection.set("scm:git:git://github.com/therealreal/trr-analytics.git")
+                    developerConnection.set("scm:git:ssh://github.com/therealreal/trr-analytics.git")
+                    url.set("https://github.com/therealreal/trr-analytics")
                 }
             }
         }
@@ -160,7 +160,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/therealreal/TRRAnalytics")
+            url = uri("https://maven.pkg.github.com/therealreal/trr-analytics")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
