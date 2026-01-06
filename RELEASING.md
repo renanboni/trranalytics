@@ -41,10 +41,6 @@ When you create a release (via any method), the workflow automatically:
 7. ✅ Generates changelog from git commits
 8. ✅ Sends Slack notification (if configured)
 
-**No manual version management needed** - the tools handle everything!
-
-> 💬 **Want Slack notifications?** See [Slack Setup Guide](.github/SLACK_SETUP.md) to receive release notifications in your team channel.
-
 ---
 
 ## Release Methods
@@ -158,7 +154,7 @@ Add GitHub Packages repository to `settings.gradle.kts`:
 dependencyResolutionManagement {
     repositories {
         maven {
-            url = uri("https://maven.pkg.github.com/YOUR_ORG/TRRAnalytics")
+            url = uri("https://maven.pkg.github.com/TheRealReal/trr-analytics")
             credentials {
                 username = project.findProperty("gpr.user") as String?
                     ?: System.getenv("GITHUB_ACTOR")
@@ -184,7 +180,7 @@ dependencies {
 
 **Option A: Xcode UI**
 1. File → Add Package Dependencies
-2. Enter URL: `https://github.com/YOUR_ORG/TRRAnalytics`
+2. Enter URL: `https://github.com/TheRealReal/trr-analytics`
 3. Select version or branch
 4. Click Add Package
 
@@ -192,7 +188,7 @@ dependencies {
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/YOUR_ORG/TRRAnalytics", from: "1.0.0")
+    .package(url: "https://github.com/TheRealReal/trr-analytics", from: "1.0.0")
 ]
 ```
 
@@ -200,7 +196,7 @@ dependencies: [
 
 Download from releases and drag into Xcode:
 ```
-https://github.com/YOUR_ORG/TRRAnalytics/releases/latest
+https://github.com/TheRealReal/trr-analytics/releases/latest
 ```
 
 ---
