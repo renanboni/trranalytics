@@ -39,15 +39,6 @@ kotlin {
         }
     }
 
-    js(IR) {
-        browser {
-            webpackTask {
-                mainOutputFileName = "trr-analytics.js"
-            }
-        }
-        binaries.library()
-    }
-
     sourceSets {
         val commonMain by getting {
             kotlin.srcDir(kotlinOutDir)
