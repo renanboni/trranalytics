@@ -58,7 +58,6 @@ jobs:
         run: ./gradlew :shared:assemble
 
       - name: Build XCFramework
-        id: xcframework
         run: |
           ./gradlew :shared:linkReleaseFrameworkIosArm64 :shared:linkReleaseFrameworkIosSimulatorArm64
           rm -rf Shared.xcframework
@@ -67,12 +66,6 @@ jobs:
             -framework shared/build/bin/iosSimulatorArm64/releaseFramework/Shared.framework \
             -output Shared.xcframework
 
-          # Zip for release and compute checksum
-          zip -r Shared.xcframework.zip Shared.xcframework
-          CHECKSUM=$(swift package compute-checksum Shared.xcframework.zip)
-          echo "checksum=$CHECKSUM" >> $GITHUB_OUTPUT
-          echo "Checksum: $CHECKSUM"
-
       - name: Publish to GitHub Packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -80,19 +73,16 @@ jobs:
           RELEASE_VERSION: ${{ steps.get_version.outputs.version }}
         run: ./gradlew :shared:publish
 
-      - name: Update Package.swift, TypeScript types, and create tag
-        id: update_and_tag
+      - name: Commit XCFramework, TypeScript types, and create tag
         run: |
           VERSION=${{ steps.get_version.outputs.version }}
           TAG=${{ steps.get_version.outputs.tag }}
-          CHECKSUM=${{ steps.xcframework.outputs.checksum }}
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # For tag-push triggers, we need to work on main
+          # For tag-push triggers, delete the tag temporarily (we'll recreate it on the updated commit)
           if [ "${{ github.event_name }}" == "push" ]; then
-            # Delete the tag temporarily (we'll recreate it on the updated commit)
             git push origin :refs/tags/$TAG || true
             git tag -d $TAG || true
           fi
@@ -102,9 +92,12 @@ jobs:
           git checkout main
           git pull origin main
 
-          # Update Package.swift with new version and checksum
-          sed -i '' "s|let version = \".*\"|let version = \"$VERSION\"|g" Package.swift
-          sed -i '' "s|let checksum = \".*\"|let checksum = \"$CHECKSUM\"|g" Package.swift
+          # Copy built XCFramework to repo
+          rm -rf Shared.xcframework
+          cp -R ../Shared.xcframework . 2>/dev/null || xcodebuild -create-xcframework \
+            -framework shared/build/bin/iosArm64/releaseFramework/Shared.framework \
+            -framework shared/build/bin/iosSimulatorArm64/releaseFramework/Shared.framework \
+            -output Shared.xcframework
 
           # Update TypeScript types
           cp shared/build/generated/source/analytics/typescript/*.ts types/
@@ -113,8 +106,8 @@ jobs:
           sed -i '' "s|\"version\": \".*\"|\"version\": \"$VERSION\"|g" types/package.json
 
           # Commit changes
-          git add Package.swift types/
-          git commit -m "Release $VERSION - Update Package.swift and TypeScript types [skip ci]" || echo "No changes to commit"
+          git add Shared.xcframework types/
+          git commit -m "Release $VERSION - Update XCFramework and TypeScript types [skip ci]" || echo "No changes to commit"
 
           # Create tag on this commit
           git tag -a "$TAG" -m "Release $VERSION"
@@ -147,7 +140,6 @@ jobs:
           tag_name: ${{ steps.get_version.outputs.tag }}
           name: Release ${{ steps.get_version.outputs.tag }}
           body_path: changelog.txt
-          files: Shared.xcframework.zip
           draft: false
           prerelease: false
         env:
