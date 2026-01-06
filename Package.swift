@@ -1,8 +1,8 @@
 // swift-tools-version:5.9
 import PackageDescription
 
-let version = "1.0.6"
-let checksum = "bd545a7c9aaeb4b97c5e8ee6703a5d41cb51ada0dc34d51588b955aa943243f5"
+let version = "1.0.9"
+let checksum = "2d3167d6b4aa0c9584f1b8bb98023ca4db5bfe516f231b7596e107fa50c69686"
 
 let package = Package(
     name: "TRRAnalytics",
