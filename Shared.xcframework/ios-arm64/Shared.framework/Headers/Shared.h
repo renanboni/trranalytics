@@ -173,7 +173,7 @@ __attribute__((swift_name("SellerV1")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
  * event="Consignment Home", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -183,13 +183,13 @@ __attribute__((swift_name("SellerV1.ConsignmentHome")))
 - (SharedSellerV1ConsignmentHome *)doCopyLoggedIn:(BOOL)loggedIn repeatConsignor:(BOOL)repeatConsignor __attribute__((swift_name("doCopy(loggedIn:repeatConsignor:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
  * event="Consignment Home", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
  * event="Consignment Home", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -197,7 +197,7 @@ __attribute__((swift_name("SellerV1.ConsignmentHome")))
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
  * event="Consignment Home", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
