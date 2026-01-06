@@ -132,7 +132,7 @@ jobs:
 
           # Update Package.swift with new version and checksum
           sed -i '' "s|let version = \".*\"|let version = \"$VERSION\"|g" Package.swift
-          sed -i '' "s|checksum: \".*\"|checksum: \"$CHECKSUM\"|g" Package.swift
+          sed -i '' "s|let checksum = \".*\"|let checksum = \"$CHECKSUM\"|g" Package.swift
 
           # Update TypeScript types
           cp shared/build/generated/source/analytics/typescript/*.ts types/
