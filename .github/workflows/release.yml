@@ -66,9 +66,13 @@ jobs:
         run: ./gradlew :shared:assemble
 
       - name: Build XCFramework
-        env:
-          RELEASE_VERSION: ${{ steps.get_version.outputs.version }}
-        run: ./gradlew :shared:assembleXCFramework
+        run: |
+          ./gradlew :shared:linkReleaseFrameworkIosArm64 :shared:linkReleaseFrameworkIosSimulatorArm64
+          rm -rf Shared.xcframework
+          xcodebuild -create-xcframework \
+            -framework shared/build/bin/iosArm64/releaseFramework/Shared.framework \
+            -framework shared/build/bin/iosSimulatorArm64/releaseFramework/Shared.framework \
+            -output Shared.xcframework
 
       - name: Publish to GitHub Packages
         env:
@@ -76,12 +80,6 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           RELEASE_VERSION: ${{ steps.get_version.outputs.version }}
         run: ./gradlew :shared:publish
-
-      - name: Create XCFramework zip
-        run: |
-          cd shared/build/xcframework
-          zip -r Shared.xcframework.zip Shared.xcframework
-          cd ../../..
 
       - name: Generate changelog
         id: changelog
@@ -106,33 +104,26 @@ jobs:
           tag_name: ${{ steps.get_version.outputs.tag }}
           name: Release ${{ steps.get_version.outputs.tag }}
           body_path: changelog.txt
-          files: |
-            shared/build/xcframework/Shared.xcframework.zip
           draft: false
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update Package.swift checksum
-        id: checksum
-        run: |
-          CHECKSUM=$(swift package compute-checksum shared/build/xcframework/Shared.xcframework.zip)
-          echo "checksum=$CHECKSUM" >> $GITHUB_OUTPUT
-          echo "XCFramework checksum: $CHECKSUM"
-
-      - name: Update Package.swift and TypeScript types
+      - name: Commit XCFramework and TypeScript types
         run: |
           VERSION=${{ steps.get_version.outputs.version }}
-          CHECKSUM=${{ steps.checksum.outputs.checksum }}
 
           # Checkout main branch and pull latest
           git fetch origin main
           git checkout main
           git pull origin main
 
-          # Update Package.swift with new version and checksum
-          sed -i '' "s|let version = \".*\"|let version = \"$VERSION\"|g" Package.swift
-          sed -i '' "s|let checksum = \".*\"|let checksum = \"$CHECKSUM\"|g" Package.swift
+          # Copy XCFramework (built in detached HEAD, need to rebuild or copy from build dir)
+          rm -rf Shared.xcframework
+          xcodebuild -create-xcframework \
+            -framework shared/build/bin/iosArm64/releaseFramework/Shared.framework \
+            -framework shared/build/bin/iosSimulatorArm64/releaseFramework/Shared.framework \
+            -output Shared.xcframework
 
           # Update TypeScript types
           cp shared/build/generated/source/analytics/typescript/*.ts types/
@@ -143,8 +134,8 @@ jobs:
           # Commit and push updates
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Package.swift types/
-          git commit -m "Update Package.swift and TypeScript types for version $VERSION [skip ci]" || echo "No changes to commit"
+          git add Shared.xcframework types/
+          git commit -m "Update XCFramework and TypeScript types for version $VERSION [skip ci]" || echo "No changes to commit"
           git push origin main
 
       - name: Send Slack notification
@@ -187,7 +178,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "${{ job.status == 'success' && '🎉 *Release artifacts published successfully!*\n\n*Available on:*\n• GitHub Packages (Android)\n• GitHub Releases (iOS XCFramework)\n• Swift Package Manager' || '⚠️ *Release workflow encountered an error.*\n\nPlease check the workflow logs for details.' }}"
+                    "text": "${{ job.status == 'success' && '🎉 *Release artifacts published successfully!*\n\n*Available on:*\n• GitHub Packages (Android)\n• Swift Package Manager (iOS)\n• TypeScript types in types/ folder' || '⚠️ *Release workflow encountered an error.*\n\nPlease check the workflow logs for details.' }}"
                   }
                 },
                 {
