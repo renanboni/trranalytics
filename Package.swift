@@ -18,7 +18,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "Shared",
-            url: "https://github.com/TheRealReal/trr-analytics/releases/download/v\(version)/Shared.xcframework.zip",
+            url: "git@github.com:TheRealReal/trr-analytics/releases/download/v\(version)/Shared.xcframework.zip",
             checksum: checksum
         )
     ]
