@@ -15,7 +15,8 @@ group = "com.therealreal.analytics"
 version = libraryVersion
 
 val schemasDir = layout.projectDirectory.dir("schemas")
-val outDir = layout.buildDirectory.dir("generated/source/analytics/commonMain/kotlin")
+val kotlinOutDir = layout.buildDirectory.dir("generated/source/analytics/commonMain/kotlin")
+val typeScriptOutDir = layout.buildDirectory.dir("generated/source/analytics/typescript")
 val generatorProject = project(":tools:analytics-generator")
 
 kotlin {
@@ -40,7 +41,7 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
-            kotlin.srcDir(outDir)
+            kotlin.srcDir(kotlinOutDir)
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
             }
@@ -66,7 +67,7 @@ android {
 
 val generateAnalyticsEvents = tasks.register<JavaExec>("generateAnalyticsEvents") {
     group = "codegen"
-    description = "Generate analytics event builders from JSON schemas"
+    description = "Generate analytics event builders from JSON schemas (Kotlin + TypeScript)"
 
     dependsOn(generatorProject.tasks.named("classes"))
 
@@ -76,11 +77,13 @@ val generateAnalyticsEvents = tasks.register<JavaExec>("generateAnalyticsEvents"
     mainClass.set("com.therealreal.generator.GeneratorKt")
 
     inputs.dir(schemasDir)
-    outputs.dir(outDir)
+    outputs.dir(kotlinOutDir)
+    outputs.dir(typeScriptOutDir)
 
     args(
         schemasDir.asFile.absolutePath,
-        outDir.get().asFile.absolutePath,
+        kotlinOutDir.get().asFile.absolutePath,
+        typeScriptOutDir.get().asFile.absolutePath,
         "analytics.events"
     )
 }

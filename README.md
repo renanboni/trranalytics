@@ -1,6 +1,6 @@
 # Analytics Event Kotlin Generator
 
-This project generates Kotlin Multiplatform source files from JSON Schema files laid
+This project generates Kotlin Multiplatform source files and TypeScript types from JSON Schema files laid
 out in a simple directory structure. The output is a strongly-typed
 API for analytics events, producing `JsonObject` payloads
 via `kotlinx.serialization.json`.
@@ -10,7 +10,17 @@ subset that matches typical analytics event schemas.
 
 ------------------------------------------------------------------------
 
+## Supported Platforms
+
+- **Android** - Kotlin/JVM via Gradle
+- **iOS** - Kotlin/Native via XCFramework and Swift Package Manager
+- **Web** - Generated TypeScript type definitions
+
+------------------------------------------------------------------------
+
 ## What it generates
+
+### Kotlin (for Android and iOS)
 
 For each **family**, the generator outputs a single Kotlin file:
 
@@ -82,6 +92,25 @@ Analytics.track(event.eventName, properties: properties)
 let payload = event.payload()
 ```
 
+### TypeScript (Web)
+
+The generated TypeScript types provide compile-time type safety without runtime overhead:
+
+``` typescript
+import { Seller } from './generated/analytics';
+
+// Type-safe event creation
+const event: Seller.V1.ConsignmentHome = {
+  eventName: "consignment_home",
+  schemaVersion: 1,
+  loggedIn: true,
+  repeatConsignor: false
+};
+
+// Track with your analytics provider
+analytics.track(event.eventName, event);
+```
+
 ------------------------------------------------------------------------
 
 ## Installation
@@ -118,6 +147,22 @@ Add package dependency in Xcode or Package.swift:
 dependencies: [
     .package(url: "https://github.com/therealreal/TRRAnalytics", from: "1.0.0")
 ]
+```
+
+### Web (TypeScript)
+
+Copy the generated TypeScript files from `shared/build/generated/source/analytics/typescript/`
+to your web project:
+
+```bash
+# After running the generator
+cp -r shared/build/generated/source/analytics/typescript/ your-web-app/src/analytics/
+```
+
+Then import and use the types:
+
+```typescript
+import { Seller, AnalyticsEvent } from './analytics';
 ```
 
 See [RELEASING.md](RELEASING.md) for more details.
@@ -225,13 +270,29 @@ Fields are only emitted into JSON if they are not `null`.
 
 ## Running the generator
 
-    <schemasDir> <outDir> [outputPackage]
+CLI arguments:
 
-Example:
+    <schemasDir> <kotlinOutDir> [typeScriptOutDir] [outputPackage]
+
+Examples:
 
 ``` bash
-./gradlew run --args "schemas/ build/generated-src analytics.events"
+# Generate Kotlin only
+./gradlew run --args "schemas/ build/generated-src"
+
+# Generate both Kotlin and TypeScript
+./gradlew run --args "schemas/ build/generated-kotlin build/generated-typescript analytics.events"
+
+# Using Make
+make generate
 ```
+
+### Generated output locations
+
+After running `make generate`:
+
+- **Kotlin**: `shared/build/generated/source/analytics/commonMain/kotlin/`
+- **TypeScript**: `shared/build/generated/source/analytics/typescript/`
 
 ------------------------------------------------------------------------
 

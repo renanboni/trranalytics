@@ -9,16 +9,16 @@ help: ## Show this help message
 release: ## Create a new release (interactive)
 	@./scripts/release.sh
 
-build: ## Build the library
+build: ## Build the library (Android + iOS)
 	@./gradlew :shared:assemble
 
 build-ios: ## Build iOS XCFramework
 	@./gradlew :shared:assembleXCFramework
 
 build-all: ## Build all artifacts (Android + iOS)
-	@./gradlew :shared:assemble :shared:assembleXCFramework
+	@./gradlew :shared:build
 
-generate: ## Generate analytics events from schemas
+generate: ## Generate analytics events from schemas (Kotlin + TypeScript)
 	@./gradlew :shared:generateAnalyticsEvents
 
 clean: ## Clean build artifacts

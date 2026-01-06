@@ -2,7 +2,9 @@ package com.therealreal.generator.cli
 
 import com.therealreal.generator.config.GeneratorConfig
 import com.therealreal.generator.emit.FamilyEmitter
+import com.therealreal.generator.emit.TypeScriptFamilyEmitter
 import com.therealreal.generator.io.KotlinFileWriter
+import com.therealreal.generator.io.TypeScriptFileWriter
 import com.therealreal.generator.io.SchemaLocator
 import com.therealreal.generator.schema.SchemaParseException
 import com.therealreal.generator.schema.SchemaParser
@@ -32,33 +34,62 @@ object GeneratorCli {
             exitProcess(2)
         }
 
-        val writer = KotlinFileWriter(config.outDir)
+        val eventsByFamily = events.groupBy { it.familyName }.toSortedMap()
 
-        events
-            .groupBy { it.familyName }
-            .toSortedMap()
-            .forEach { (familyName, familyEvents) ->
-                val code = FamilyEmitter(
-                    pkg = config.outputPackage,
+        // Generate Kotlin
+        val kotlinWriter = KotlinFileWriter(config.kotlinOutDir)
+        eventsByFamily.forEach { (familyName, familyEvents) ->
+            val code = FamilyEmitter(
+                pkg = config.outputPackage,
+                familyName = familyName,
+                familyEvents = familyEvents
+            ).emitFamily()
+
+            kotlinWriter.write("$familyName.kt", code)
+            println("Generated ${config.kotlinOutDir.resolve("$familyName.kt")}")
+        }
+
+        // Generate TypeScript (if output directory specified)
+        config.typeScriptOutDir?.let { tsOutDir ->
+            val tsWriter = TypeScriptFileWriter(tsOutDir)
+
+            // Write base interface
+            tsWriter.write("AnalyticsEvent.ts", TypeScriptFamilyEmitter.emitBaseInterface())
+            println("Generated ${tsOutDir.resolve("AnalyticsEvent.ts")}")
+
+            // Write family files
+            eventsByFamily.forEach { (familyName, familyEvents) ->
+                val code = TypeScriptFamilyEmitter(
                     familyName = familyName,
                     familyEvents = familyEvents
                 ).emitFamily()
 
-                writer.write("$familyName.kt", code)
-                println("Generated ${config.outDir.resolve("$familyName.kt")}")
+                tsWriter.write("$familyName.ts", code)
+                println("Generated ${tsOutDir.resolve("$familyName.ts")}")
             }
+
+            // Write index file
+            tsWriter.write("index.ts", TypeScriptFamilyEmitter.emitIndex(eventsByFamily.keys.toList()))
+            println("Generated ${tsOutDir.resolve("index.ts")}")
+        }
     }
 
     private fun parseArgs(args: Array<String>): GeneratorConfig {
         val schemasDir = Paths.get(args.getOrNull(0) ?: usage("Missing <schemasDir>"))
-        val outDir = Paths.get(args.getOrNull(1) ?: usage("Missing <outDir>"))
-        val pkg = args.getOrNull(2) ?: "analytics.events"
-        return GeneratorConfig(schemasDir = schemasDir, outDir = outDir, outputPackage = pkg)
+        val kotlinOutDir = Paths.get(args.getOrNull(1) ?: usage("Missing <kotlinOutDir>"))
+        val typeScriptOutDir = args.getOrNull(2)?.let { Paths.get(it) }
+        val pkg = args.getOrNull(3) ?: "analytics.events"
+        return GeneratorConfig(
+            schemasDir = schemasDir,
+            kotlinOutDir = kotlinOutDir,
+            typeScriptOutDir = typeScriptOutDir,
+            outputPackage = pkg
+        )
     }
 
     private fun usage(msg: String): Nothing {
         System.err.println(msg)
-        System.err.println("Usage: <schemasDir> <outDir> [outputPackage]")
+        System.err.println("Usage: <schemasDir> <kotlinOutDir> [typeScriptOutDir] [outputPackage]")
         exitProcess(1)
     }
 }
