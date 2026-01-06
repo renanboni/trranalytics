@@ -66,6 +66,7 @@ jobs:
         run: ./gradlew :shared:assemble
 
       - name: Build XCFramework
+        id: xcframework
         run: |
           ./gradlew :shared:linkReleaseFrameworkIosArm64 :shared:linkReleaseFrameworkIosSimulatorArm64
           rm -rf Shared.xcframework
@@ -73,6 +74,12 @@ jobs:
             -framework shared/build/bin/iosArm64/releaseFramework/Shared.framework \
             -framework shared/build/bin/iosSimulatorArm64/releaseFramework/Shared.framework \
             -output Shared.xcframework
+
+          # Zip for release and compute checksum
+          zip -r Shared.xcframework.zip Shared.xcframework
+          CHECKSUM=$(swift package compute-checksum Shared.xcframework.zip)
+          echo "checksum=$CHECKSUM" >> $GITHUB_OUTPUT
+          echo "Checksum: $CHECKSUM"
 
       - name: Publish to GitHub Packages
         env:
@@ -104,26 +111,25 @@ jobs:
           tag_name: ${{ steps.get_version.outputs.tag }}
           name: Release ${{ steps.get_version.outputs.tag }}
           body_path: changelog.txt
+          files: Shared.xcframework.zip
           draft: false
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit XCFramework and TypeScript types
+      - name: Update Package.swift and TypeScript types
         run: |
           VERSION=${{ steps.get_version.outputs.version }}
+          CHECKSUM=${{ steps.xcframework.outputs.checksum }}
 
           # Checkout main branch and pull latest
           git fetch origin main
           git checkout main
           git pull origin main
 
-          # Copy XCFramework (built in detached HEAD, need to rebuild or copy from build dir)
-          rm -rf Shared.xcframework
-          xcodebuild -create-xcframework \
-            -framework shared/build/bin/iosArm64/releaseFramework/Shared.framework \
-            -framework shared/build/bin/iosSimulatorArm64/releaseFramework/Shared.framework \
-            -output Shared.xcframework
+          # Update Package.swift with new version and checksum
+          sed -i '' "s|let version = \".*\"|let version = \"$VERSION\"|g" Package.swift
+          sed -i '' "s|let checksum = \".*\"|let checksum = \"$CHECKSUM\"|g" Package.swift
 
           # Update TypeScript types
           cp shared/build/generated/source/analytics/typescript/*.ts types/
@@ -134,8 +140,8 @@ jobs:
           # Commit and push updates
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Shared.xcframework types/
-          git commit -m "Update XCFramework and TypeScript types for version $VERSION [skip ci]" || echo "No changes to commit"
+          git add Package.swift types/
+          git commit -m "Update Package.swift and TypeScript types for version $VERSION [skip ci]" || echo "No changes to commit"
           git push origin main
 
       - name: Send Slack notification
