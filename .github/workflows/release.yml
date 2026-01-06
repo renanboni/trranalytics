@@ -120,7 +120,7 @@ jobs:
           echo "checksum=$CHECKSUM" >> $GITHUB_OUTPUT
           echo "XCFramework checksum: $CHECKSUM"
 
-      - name: Update Package.swift
+      - name: Update Package.swift and TypeScript types
         run: |
           VERSION=${{ steps.get_version.outputs.version }}
           CHECKSUM=${{ steps.checksum.outputs.checksum }}
@@ -129,11 +129,17 @@ jobs:
           sed -i '' "s|let version = \".*\"|let version = \"$VERSION\"|g" Package.swift
           sed -i '' "s|checksum: \".*\"|checksum: \"$CHECKSUM\"|g" Package.swift
 
-          # Commit and push Package.swift update
+          # Update TypeScript types
+          cp shared/build/generated/source/analytics/typescript/*.ts types/
+
+          # Update types/package.json version
+          sed -i '' "s|\"version\": \".*\"|\"version\": \"$VERSION\"|g" types/package.json
+
+          # Commit and push updates
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Package.swift
-          git commit -m "Update Package.swift for version $VERSION [skip ci]" || echo "No changes to commit"
+          git add Package.swift types/
+          git commit -m "Update Package.swift and TypeScript types for version $VERSION [skip ci]" || echo "No changes to commit"
           git push origin HEAD:main
 
       - name: Send Slack notification

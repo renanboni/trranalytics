@@ -32,14 +32,15 @@ The project uses **Git tags** to trigger automated releases via GitHub Actions.
 
 When you create a release (via any method), the workflow automatically:
 
-1. ✅ Generates analytics events from schemas
+1. ✅ Generates analytics events from schemas (Kotlin + TypeScript)
 2. ✅ Builds Android artifacts (AAR)
 3. ✅ Builds iOS XCFramework
 4. ✅ Publishes to GitHub Packages (Maven)
 5. ✅ Creates a GitHub Release with XCFramework
 6. ✅ Updates Package.swift for Swift Package Manager
-7. ✅ Generates changelog from git commits
-8. ✅ Sends Slack notification (if configured)
+7. ✅ Updates TypeScript types in `types/` folder
+8. ✅ Generates changelog from git commits
+9. ✅ Sends Slack notification (if configured)
 
 ---
 
@@ -137,6 +138,11 @@ After a successful release, the following artifacts are available:
 - **Swift Package Manager**: Automatically updated via `Package.swift`
 - **Architectures**: `iosArm64` (device) + `iosSimulatorArm64` (simulator)
 
+### Web (TypeScript)
+- **TypeScript types**: Committed to `types/` folder in the repository
+- **Package name**: `@therealreal/analytics-types`
+- **Installation**: Git dependency via npm/yarn
+
 ### Release Notes
 - Changelog automatically generated from git commits since last release
 
@@ -197,6 +203,39 @@ dependencies: [
 Download from releases and drag into Xcode:
 ```
 https://github.com/TheRealReal/trr-analytics/releases/latest
+```
+
+### Web (TypeScript)
+
+Add the package as a git dependency in your `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@therealreal/analytics-types": "github:therealreal/TRRAnalytics#main&path=types"
+  }
+}
+```
+
+Then install:
+
+```bash
+yarn install
+# or
+npm install
+```
+
+Usage:
+
+```typescript
+import { Seller, AnalyticsEvent } from '@therealreal/analytics-types';
+
+const event: Seller.V1.ConsignmentHome = {
+  eventName: "consignment_home",
+  schemaVersion: 1,
+  loggedIn: true,
+  repeatConsignor: false
+};
 ```
 
 ---

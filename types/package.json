@@ -1,0 +1,16 @@
+{
+  "name": "@therealreal/analytics-types",
+  "version": "0.0.1",
+  "description": "TypeScript type definitions for TRRAnalytics events",
+  "main": "index.ts",
+  "types": "index.ts",
+  "files": [
+    "*.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/therealreal/TRRAnalytics.git",
+    "directory": "types"
+  },
+  "license": "MIT"
+}

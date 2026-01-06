@@ -151,18 +151,28 @@ dependencies: [
 
 ### Web (TypeScript)
 
-Copy the generated TypeScript files from `shared/build/generated/source/analytics/typescript/`
-to your web project:
+Add the package as a git dependency in your `package.json`:
 
-```bash
-# After running the generator
-cp -r shared/build/generated/source/analytics/typescript/ your-web-app/src/analytics/
+```json
+{
+  "dependencies": {
+    "@therealreal/analytics-types": "github:therealreal/TRRAnalytics#main&path=types"
+  }
+}
 ```
 
-Then import and use the types:
+Then run:
+
+```bash
+yarn install
+# or
+npm install
+```
+
+Import and use the types:
 
 ```typescript
-import { Seller, AnalyticsEvent } from './analytics';
+import { Seller, AnalyticsEvent } from '@therealreal/analytics-types';
 ```
 
 See [RELEASING.md](RELEASING.md) for more details.
