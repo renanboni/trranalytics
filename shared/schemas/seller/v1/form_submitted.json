@@ -1,0 +1,39 @@
+{
+  "x-eventName": "form_submitted",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "page",
+    "category",
+    "first_name",
+    "last_name",
+    "email",
+    "phone",
+    "postal_code"
+  ],
+  "properties": {
+    "page": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "postal_code": {
+      "type": "string"
+    }
+  }
+}
+
+

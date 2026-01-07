@@ -1,0 +1,19 @@
+{
+  "x-eventName": "edit_item_details_selected",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "page",
+    "category"
+  ],
+  "properties": {
+    "page": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    }
+  }
+}
+
+

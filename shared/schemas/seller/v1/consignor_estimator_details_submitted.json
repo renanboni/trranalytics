@@ -1,0 +1,45 @@
+{
+  "x-eventName": "consignor_estimator_details_submitted",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "page",
+    "category",
+    "selected_category",
+    "selected_designer",
+    "selected_subcategory",
+    "selected_item_type",
+    "selected_condition"
+  ],
+  "properties": {
+    "page": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "selected_category": {
+      "type": "string"
+    },
+    "selected_designer": {
+      "type": "string"
+    },
+    "selected_subcategory": {
+      "type": "string"
+    },
+    "selected_item_type": {
+      "type": "string"
+    },
+    "selected_condition": {
+      "type": "string"
+    },
+    "selected_optional_color": {
+      "type": "string"
+    },
+    "selected_optional_material": {
+      "type": "string"
+    }
+  }
+}
+
+
