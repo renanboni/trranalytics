@@ -5,6 +5,7 @@
   "required": [
     "page",
     "category",
+    "type",
     "first_name",
     "last_name",
     "email",
@@ -16,6 +17,9 @@
       "type": "string"
     },
     "category": {
+      "type": "string"
+    },
+    "type": {
       "type": "string"
     },
     "first_name": {

@@ -4,13 +4,17 @@
   "additionalProperties": false,
   "required": [
     "page",
-    "category"
+    "category",
+    "type"
   ],
   "properties": {
     "page": {
       "type": "string"
     },
     "category": {
+      "type": "string"
+    },
+    "type": {
       "type": "string"
     }
   }
