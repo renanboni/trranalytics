@@ -81,8 +81,8 @@ export namespace Seller {
       readonly eventName: "Consignor Estimator Results";
       readonly schemaVersion: 1;
       category: string;
-      estimateResultFrom: number;
-      estimateResultTo: number;
+      estimateResultFrom: string;
+      estimateResultTo: string;
       selectedCategory: string;
       selectedCondition: string;
       selectedDesigner: string;
