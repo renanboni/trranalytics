@@ -8,6 +8,7 @@ import com.therealreal.generator.io.TypeScriptFileWriter
 import com.therealreal.generator.io.SchemaLocator
 import com.therealreal.generator.schema.SchemaParseException
 import com.therealreal.generator.schema.SchemaParser
+import com.therealreal.generator.validation.SchemaValidator
 import kotlinx.serialization.json.Json
 import java.nio.file.Paths
 import kotlin.system.exitProcess
@@ -15,6 +16,12 @@ import kotlin.system.exitProcess
 object GeneratorCli {
 
     fun run(args: Array<String>) {
+        // Check for validate command
+        if (args.firstOrNull() == "validate") {
+            runValidate(args.drop(1).toTypedArray())
+            return
+        }
+
         val config = parseArgs(args)
 
         val json = Json { ignoreUnknownKeys = true }
@@ -87,9 +94,38 @@ object GeneratorCli {
         )
     }
 
+    private fun runValidate(args: Array<String>) {
+        val schemasDir = Paths.get(args.getOrNull(0) ?: run {
+            System.err.println("Usage: validate <schemasDir>")
+            exitProcess(1)
+        })
+
+        val locator = SchemaLocator()
+        val validator = SchemaValidator()
+
+        val schemaFiles = locator.findSchemas(schemasDir)
+        if (schemaFiles.isEmpty()) {
+            System.err.println("No .json schemas found under: $schemasDir")
+            exitProcess(1)
+        }
+
+        println("Validating ${schemaFiles.size} schema(s)...\n")
+
+        val result = validator.validateAll(schemaFiles)
+        result.printReport()
+
+        if (result.hasErrors) {
+            exitProcess(2)
+        }
+    }
+
     private fun usage(msg: String): Nothing {
         System.err.println(msg)
-        System.err.println("Usage: <schemasDir> <kotlinOutDir> [typeScriptOutDir] [outputPackage]")
+        System.err.println("""
+            Usage:
+              generate: <schemasDir> <kotlinOutDir> [typeScriptOutDir] [outputPackage]
+              validate: validate <schemasDir>
+        """.trimIndent())
         exitProcess(1)
     }
 }

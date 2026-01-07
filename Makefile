@@ -1,4 +1,4 @@
-.PHONY: help release build clean test
+.PHONY: help release build clean test validate
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'
@@ -20,6 +20,9 @@ build-all: ## Build all artifacts (Android + iOS)
 
 generate: ## Generate analytics events from schemas (Kotlin + TypeScript)
 	@./gradlew :shared:generateAnalyticsEvents
+
+validate: ## Validate JSON schemas for errors
+	@./gradlew :shared:validateSchemas
 
 clean: ## Clean build artifacts
 	@./gradlew clean

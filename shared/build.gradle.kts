@@ -65,11 +65,28 @@ android {
     }
 }
 
+val validateSchemas = tasks.register<JavaExec>("validateSchemas") {
+    group = "verification"
+    description = "Validate JSON schemas for analytics events"
+
+    dependsOn(generatorProject.tasks.named("classes"))
+
+    classpath = generatorProject.the<JavaPluginExtension>()
+        .sourceSets.getByName("main").runtimeClasspath
+
+    mainClass.set("com.therealreal.generator.GeneratorKt")
+
+    inputs.dir(schemasDir)
+
+    args("validate", schemasDir.asFile.absolutePath)
+}
+
 val generateAnalyticsEvents = tasks.register<JavaExec>("generateAnalyticsEvents") {
     group = "codegen"
     description = "Generate analytics event builders from JSON schemas (Kotlin + TypeScript)"
 
     dependsOn(generatorProject.tasks.named("classes"))
+    dependsOn(validateSchemas)
 
     classpath = generatorProject.the<JavaPluginExtension>()
         .sourceSets.getByName("main").runtimeClasspath
