@@ -1,0 +1,15 @@
+{
+  "x-eventName": "consignor_estimator_item_details",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "category"
+  ],
+  "properties": {
+    "category": {
+      "type": "string"
+    }
+  }
+}
+
+

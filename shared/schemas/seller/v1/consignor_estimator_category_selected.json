@@ -1,0 +1,23 @@
+{
+  "x-eventName": "consignor_estimator_category_selected",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "page",
+    "category",
+    "selected_category"
+  ],
+  "properties": {
+    "page": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "selected_category": {
+      "type": "string"
+    }
+  }
+}
+
+

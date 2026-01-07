@@ -1,0 +1,49 @@
+{
+  "x-eventName": "consignor_estimator_results",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "category",
+    "estimate_result_from",
+    "estimate_result_to",
+    "selected_category",
+    "selected_designer",
+    "selected_subcategory",
+    "selected_item_type",
+    "selected_condition"
+  ],
+  "properties": {
+    "category": {
+      "type": "string"
+    },
+    "estimate_result_from": {
+      "type": "number"
+    },
+    "estimate_result_to": {
+      "type": "number"
+    },
+    "selected_category": {
+      "type": "string"
+    },
+    "selected_designer": {
+      "type": "string"
+    },
+    "selected_subcategory": {
+      "type": "string"
+    },
+    "selected_item_type": {
+      "type": "string"
+    },
+    "selected_condition": {
+      "type": "string"
+    },
+    "selected_optional_color": {
+      "type": "string"
+    },
+    "selected_optional_material": {
+      "type": "string"
+    }
+  }
+}
+
+
