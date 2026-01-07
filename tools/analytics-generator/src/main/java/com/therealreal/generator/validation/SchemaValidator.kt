@@ -10,6 +10,7 @@ class SchemaValidator {
 
     private val supportedTypes = setOf("string", "number", "integer", "boolean", "object", "array", "null")
     private val unsupportedKeywords = setOf("\$ref", "oneOf", "anyOf", "allOf", "\$id", "\$schema", "definitions", "\$defs")
+    private val snakeCaseRegex = Regex("^[a-z][a-z0-9]*(_[a-z0-9]+)*$")
 
     fun validate(schemaFile: Path): ValidationResult {
         val issues = mutableListOf<ValidationIssue>()
@@ -30,6 +31,16 @@ class SchemaValidator {
         } catch (e: Exception) {
             issues.add(ValidationIssue(schemaFile, "root", "Invalid JSON: ${e.message}", ERROR))
             return ValidationResult(issues)
+        }
+
+        // Validate x-eventName if present
+        val eventName = (rootObj["x-eventName"] as? JsonPrimitive)?.contentOrNull
+        if (eventName != null && !snakeCaseRegex.matches(eventName)) {
+            issues.add(ValidationIssue(
+                schemaFile, "x-eventName",
+                "Event name '$eventName' must be snake_case (e.g., 'lead_form_viewed')",
+                ERROR
+            ))
         }
 
         // Validate schema content
@@ -222,9 +233,13 @@ class SchemaValidator {
         for ((propName, propValue) in propsObj) {
             val propPath = "$path.properties.$propName"
 
-            // Validate property name
-            if (propName.contains(" ")) {
-                issues.add(ValidationIssue(file, propPath, "Property name should not contain spaces", ERROR))
+            // Validate property name is snake_case
+            if (!snakeCaseRegex.matches(propName)) {
+                issues.add(ValidationIssue(
+                    file, propPath,
+                    "Property name '$propName' must be snake_case (e.g., 'user_id', 'first_name')",
+                    ERROR
+                ))
             }
 
             val propObj = try {

@@ -1,5 +1,5 @@
 {
-  "x-eventName": "Consignment Home",
+  "x-eventName": "consignment_home",
   "type": "object",
   "additionalProperties": false,
   "required": [
