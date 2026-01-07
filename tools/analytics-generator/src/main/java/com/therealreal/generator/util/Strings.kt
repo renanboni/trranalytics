@@ -31,3 +31,10 @@ fun String.escapeKotlin(): String =
 
 fun String.singularize(): String =
     if (endsWith("s") && length > 1) dropLast(1) else this
+
+fun String.toTitleCase(): String =
+    split(Regex("[_-]+"))
+        .filter { it.isNotBlank() }
+        .joinToString(" ") { part ->
+            part.replaceFirstChar { c -> c.uppercase() }
+        }

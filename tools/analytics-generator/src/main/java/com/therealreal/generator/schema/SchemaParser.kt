@@ -4,6 +4,7 @@ import com.therealreal.generator.model.EventDef
 import com.therealreal.generator.model.ParsePath
 import com.therealreal.generator.model.Type
 import com.therealreal.generator.util.toPascalCase
+import com.therealreal.generator.util.toTitleCase
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import java.nio.file.Path
@@ -49,10 +50,11 @@ class SchemaParser(private val json: Json) {
 
         val rootObj = json.parseToJsonElement(schemaFile.readText()).jsonObject
 
-        val analyticsEventName =
+        val analyticsEventName = (
             rootObj.stringOrNull("x-eventName")
                 ?: rootObj.stringOrNull("title")
-                ?: "${familyRaw}_${schemaFile.fileName.toString().removeSuffix(".json")}"
+                ?: schemaFile.fileName.toString().removeSuffix(".json")
+        ).toTitleCase()
 
         val additionalProps = rootObj.booleanOrNull("additionalProperties")
         if (additionalProps != false) {
