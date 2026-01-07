@@ -17,10 +17,10 @@
       "type": "string"
     },
     "estimate_result_from": {
-      "type": "number"
+      "type": "string"
     },
     "estimate_result_to": {
-      "type": "number"
+      "type": "string"
     },
     "selected_category": {
       "type": "string"
