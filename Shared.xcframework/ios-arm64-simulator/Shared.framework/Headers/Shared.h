@@ -445,8 +445,8 @@ __attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.FormStarted")))
 @interface SharedSellerV1FormStarted : SharedBase <SharedSeller>
-- (instancetype)initWithCategory:(NSString *)category page:(NSString *)page __attribute__((swift_name("init(category:page:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1FormStarted *)doCopyCategory:(NSString *)category page:(NSString *)page __attribute__((swift_name("doCopy(category:page:)")));
+- (instancetype)initWithCategory:(NSString *)category page:(NSString *)page type:(NSString *)type __attribute__((swift_name("init(category:page:type:)"))) __attribute__((objc_designated_initializer));
+- (SharedSellerV1FormStarted *)doCopyCategory:(NSString *)category page:(NSString *)page type:(NSString *)type __attribute__((swift_name("doCopy(category:page:type:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
@@ -471,6 +471,7 @@ __attribute__((swift_name("SellerV1.FormStarted")))
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
 @property (readonly) NSString *page __attribute__((swift_name("page")));
 @property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
+@property (readonly) NSString *type __attribute__((swift_name("type")));
 @end
 
 
@@ -481,8 +482,8 @@ __attribute__((swift_name("SellerV1.FormStarted")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.FormSubmitted")))
 @interface SharedSellerV1FormSubmitted : SharedBase <SharedSeller>
-- (instancetype)initWithCategory:(NSString *)category email:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName page:(NSString *)page phone:(NSString *)phone postalCode:(NSString *)postalCode __attribute__((swift_name("init(category:email:firstName:lastName:page:phone:postalCode:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1FormSubmitted *)doCopyCategory:(NSString *)category email:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName page:(NSString *)page phone:(NSString *)phone postalCode:(NSString *)postalCode __attribute__((swift_name("doCopy(category:email:firstName:lastName:page:phone:postalCode:)")));
+- (instancetype)initWithCategory:(NSString *)category email:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName page:(NSString *)page phone:(NSString *)phone postalCode:(NSString *)postalCode type:(NSString *)type __attribute__((swift_name("init(category:email:firstName:lastName:page:phone:postalCode:type:)"))) __attribute__((objc_designated_initializer));
+- (SharedSellerV1FormSubmitted *)doCopyCategory:(NSString *)category email:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName page:(NSString *)page phone:(NSString *)phone postalCode:(NSString *)postalCode type:(NSString *)type __attribute__((swift_name("doCopy(category:email:firstName:lastName:page:phone:postalCode:type:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
@@ -512,6 +513,7 @@ __attribute__((swift_name("SellerV1.FormSubmitted")))
 @property (readonly) NSString *phone __attribute__((swift_name("phone")));
 @property (readonly) NSString *postalCode __attribute__((swift_name("postalCode")));
 @property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
+@property (readonly) NSString *type __attribute__((swift_name("type")));
 @end
 
 

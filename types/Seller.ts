@@ -114,6 +114,7 @@ export namespace Seller {
       readonly schemaVersion: 1;
       category: string;
       page: string;
+      type: string;
     }
 
 
@@ -131,6 +132,7 @@ export namespace Seller {
       page: string;
       phone: string;
       postalCode: string;
+      type: string;
     }
 
 
