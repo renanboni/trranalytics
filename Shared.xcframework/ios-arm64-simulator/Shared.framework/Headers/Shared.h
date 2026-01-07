@@ -210,7 +210,7 @@ __attribute__((swift_name("SellerV1.ConsignmentHome")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
- * event="consignor_estimator_category_selected", schemaVersion=1
+ * event="Consignor Estimator Category Selected", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.ConsignorEstimatorCategorySelected")))
@@ -220,13 +220,13 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorCategorySelected")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
- * event="consignor_estimator_category_selected", schemaVersion=1
+ * event="Consignor Estimator Category Selected", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
- * event="consignor_estimator_category_selected", schemaVersion=1
+ * event="Consignor Estimator Category Selected", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -234,7 +234,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorCategorySelected")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
- * event="consignor_estimator_category_selected", schemaVersion=1
+ * event="Consignor Estimator Category Selected", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -247,7 +247,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorCategorySelected")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
- * event="consignor_estimator_details_submitted", schemaVersion=1
+ * event="Consignor Estimator Details Submitted", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.ConsignorEstimatorDetailsSubmitted")))
@@ -257,13 +257,13 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorDetailsSubmitted")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
- * event="consignor_estimator_details_submitted", schemaVersion=1
+ * event="Consignor Estimator Details Submitted", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
- * event="consignor_estimator_details_submitted", schemaVersion=1
+ * event="Consignor Estimator Details Submitted", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -271,7 +271,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorDetailsSubmitted")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
- * event="consignor_estimator_details_submitted", schemaVersion=1
+ * event="Consignor Estimator Details Submitted", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -290,7 +290,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorDetailsSubmitted")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
- * event="consignor_estimator_item_details", schemaVersion=1
+ * event="Consignor Estimator Item Details", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.ConsignorEstimatorItemDetails")))
@@ -300,13 +300,13 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorItemDetails")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
- * event="consignor_estimator_item_details", schemaVersion=1
+ * event="Consignor Estimator Item Details", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
- * event="consignor_estimator_item_details", schemaVersion=1
+ * event="Consignor Estimator Item Details", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -314,7 +314,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorItemDetails")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
- * event="consignor_estimator_item_details", schemaVersion=1
+ * event="Consignor Estimator Item Details", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -325,7 +325,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorItemDetails")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
- * event="consignor_estimator_landing", schemaVersion=1
+ * event="Consignor Estimator Landing", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.ConsignorEstimatorLanding")))
@@ -335,13 +335,13 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorLanding")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
- * event="consignor_estimator_landing", schemaVersion=1
+ * event="Consignor Estimator Landing", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
- * event="consignor_estimator_landing", schemaVersion=1
+ * event="Consignor Estimator Landing", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -349,7 +349,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorLanding")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
- * event="consignor_estimator_landing", schemaVersion=1
+ * event="Consignor Estimator Landing", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -360,7 +360,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorLanding")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
- * event="consignor_estimator_results", schemaVersion=1
+ * event="Consignor Estimator Results", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.ConsignorEstimatorResults")))
@@ -370,13 +370,13 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorResults")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
- * event="consignor_estimator_results", schemaVersion=1
+ * event="Consignor Estimator Results", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
- * event="consignor_estimator_results", schemaVersion=1
+ * event="Consignor Estimator Results", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -384,7 +384,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorResults")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
- * event="consignor_estimator_results", schemaVersion=1
+ * event="Consignor Estimator Results", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -404,7 +404,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorResults")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
- * event="edit_item_details_selected", schemaVersion=1
+ * event="Edit Item Details Selected", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
@@ -414,13 +414,13 @@ __attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
- * event="edit_item_details_selected", schemaVersion=1
+ * event="Edit Item Details Selected", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
- * event="edit_item_details_selected", schemaVersion=1
+ * event="Edit Item Details Selected", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -428,7 +428,7 @@ __attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
- * event="edit_item_details_selected", schemaVersion=1
+ * event="Edit Item Details Selected", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -440,7 +440,7 @@ __attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
- * event="form_started", schemaVersion=1
+ * event="Form Started", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.FormStarted")))
@@ -450,13 +450,13 @@ __attribute__((swift_name("SellerV1.FormStarted")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
- * event="form_started", schemaVersion=1
+ * event="Form Started", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
- * event="form_started", schemaVersion=1
+ * event="Form Started", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -464,7 +464,7 @@ __attribute__((swift_name("SellerV1.FormStarted")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
- * event="form_started", schemaVersion=1
+ * event="Form Started", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -476,7 +476,7 @@ __attribute__((swift_name("SellerV1.FormStarted")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
- * event="form_submitted", schemaVersion=1
+ * event="Form Submitted", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.FormSubmitted")))
@@ -486,13 +486,13 @@ __attribute__((swift_name("SellerV1.FormSubmitted")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
- * event="form_submitted", schemaVersion=1
+ * event="Form Submitted", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
- * event="form_submitted", schemaVersion=1
+ * event="Form Submitted", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -500,7 +500,7 @@ __attribute__((swift_name("SellerV1.FormSubmitted")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
- * event="form_submitted", schemaVersion=1
+ * event="Form Submitted", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -517,7 +517,7 @@ __attribute__((swift_name("SellerV1.FormSubmitted")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
- * event="lead_form_viewed", schemaVersion=1
+ * event="Lead Form Viewed", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.LeadFormViewed")))
@@ -527,13 +527,13 @@ __attribute__((swift_name("SellerV1.LeadFormViewed")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
- * event="lead_form_viewed", schemaVersion=1
+ * event="Lead Form Viewed", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
- * event="lead_form_viewed", schemaVersion=1
+ * event="Lead Form Viewed", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -541,7 +541,7 @@ __attribute__((swift_name("SellerV1.LeadFormViewed")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
- * event="lead_form_viewed", schemaVersion=1
+ * event="Lead Form Viewed", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -553,7 +553,7 @@ __attribute__((swift_name("SellerV1.LeadFormViewed")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
- * event="new_search_selected", schemaVersion=1
+ * event="New Search Selected", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.NewSearchSelected")))
@@ -563,13 +563,13 @@ __attribute__((swift_name("SellerV1.NewSearchSelected")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
- * event="new_search_selected", schemaVersion=1
+ * event="New Search Selected", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
- * event="new_search_selected", schemaVersion=1
+ * event="New Search Selected", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -577,7 +577,7 @@ __attribute__((swift_name("SellerV1.NewSearchSelected")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
- * event="new_search_selected", schemaVersion=1
+ * event="New Search Selected", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -589,7 +589,7 @@ __attribute__((swift_name("SellerV1.NewSearchSelected")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
- * event="server_error", schemaVersion=1
+ * event="Server Error", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SellerV1.ServerError")))
@@ -599,13 +599,13 @@ __attribute__((swift_name("SellerV1.ServerError")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
- * event="server_error", schemaVersion=1
+ * event="Server Error", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
- * event="server_error", schemaVersion=1
+ * event="Server Error", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
@@ -613,7 +613,7 @@ __attribute__((swift_name("SellerV1.ServerError")))
 
 /**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
- * event="server_error", schemaVersion=1
+ * event="Server Error", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));

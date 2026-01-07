@@ -21,10 +21,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
-     * event="consignor_estimator_category_selected", schemaVersion=1
+     * event="Consignor Estimator Category Selected", schemaVersion=1
      */
     export interface ConsignorEstimatorCategorySelected extends Seller {
-      readonly eventName: "consignor_estimator_category_selected";
+      readonly eventName: "Consignor Estimator Category Selected";
       readonly schemaVersion: 1;
       category: string;
       page: string;
@@ -34,10 +34,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
-     * event="consignor_estimator_details_submitted", schemaVersion=1
+     * event="Consignor Estimator Details Submitted", schemaVersion=1
      */
     export interface ConsignorEstimatorDetailsSubmitted extends Seller {
-      readonly eventName: "consignor_estimator_details_submitted";
+      readonly eventName: "Consignor Estimator Details Submitted";
       readonly schemaVersion: 1;
       category: string;
       page: string;
@@ -53,10 +53,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
-     * event="consignor_estimator_item_details", schemaVersion=1
+     * event="Consignor Estimator Item Details", schemaVersion=1
      */
     export interface ConsignorEstimatorItemDetails extends Seller {
-      readonly eventName: "consignor_estimator_item_details";
+      readonly eventName: "Consignor Estimator Item Details";
       readonly schemaVersion: 1;
       category: string;
     }
@@ -64,10 +64,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
-     * event="consignor_estimator_landing", schemaVersion=1
+     * event="Consignor Estimator Landing", schemaVersion=1
      */
     export interface ConsignorEstimatorLanding extends Seller {
-      readonly eventName: "consignor_estimator_landing";
+      readonly eventName: "Consignor Estimator Landing";
       readonly schemaVersion: 1;
       category: string;
     }
@@ -75,10 +75,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
-     * event="consignor_estimator_results", schemaVersion=1
+     * event="Consignor Estimator Results", schemaVersion=1
      */
     export interface ConsignorEstimatorResults extends Seller {
-      readonly eventName: "consignor_estimator_results";
+      readonly eventName: "Consignor Estimator Results";
       readonly schemaVersion: 1;
       category: string;
       estimateResultFrom: number;
@@ -95,10 +95,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
-     * event="edit_item_details_selected", schemaVersion=1
+     * event="Edit Item Details Selected", schemaVersion=1
      */
     export interface EditItemDetailsSelected extends Seller {
-      readonly eventName: "edit_item_details_selected";
+      readonly eventName: "Edit Item Details Selected";
       readonly schemaVersion: 1;
       category: string;
       page: string;
@@ -107,10 +107,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
-     * event="form_started", schemaVersion=1
+     * event="Form Started", schemaVersion=1
      */
     export interface FormStarted extends Seller {
-      readonly eventName: "form_started";
+      readonly eventName: "Form Started";
       readonly schemaVersion: 1;
       category: string;
       page: string;
@@ -119,10 +119,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
-     * event="form_submitted", schemaVersion=1
+     * event="Form Submitted", schemaVersion=1
      */
     export interface FormSubmitted extends Seller {
-      readonly eventName: "form_submitted";
+      readonly eventName: "Form Submitted";
       readonly schemaVersion: 1;
       category: string;
       email: string;
@@ -136,10 +136,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
-     * event="lead_form_viewed", schemaVersion=1
+     * event="Lead Form Viewed", schemaVersion=1
      */
     export interface LeadFormViewed extends Seller {
-      readonly eventName: "lead_form_viewed";
+      readonly eventName: "Lead Form Viewed";
       readonly schemaVersion: 1;
       category: string;
       page: string;
@@ -148,10 +148,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
-     * event="new_search_selected", schemaVersion=1
+     * event="New Search Selected", schemaVersion=1
      */
     export interface NewSearchSelected extends Seller {
-      readonly eventName: "new_search_selected";
+      readonly eventName: "New Search Selected";
       readonly schemaVersion: 1;
       category: string;
       page: string;
@@ -160,10 +160,10 @@ export namespace Seller {
 
     /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
-     * event="server_error", schemaVersion=1
+     * event="Server Error", schemaVersion=1
      */
     export interface ServerError extends Seller {
-      readonly eventName: "server_error";
+      readonly eventName: "Server Error";
       readonly schemaVersion: 1;
       category: string;
       error: string;
