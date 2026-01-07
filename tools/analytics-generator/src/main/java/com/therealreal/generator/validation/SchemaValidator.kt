@@ -8,8 +8,10 @@ import kotlin.io.path.readText
 
 class SchemaValidator {
 
-    private val supportedTypes = setOf("string", "number", "integer", "boolean", "object", "array", "null")
-    private val unsupportedKeywords = setOf("\$ref", "oneOf", "anyOf", "allOf", "\$id", "\$schema", "definitions", "\$defs")
+    private val supportedTypes =
+        setOf("string", "number", "integer", "boolean", "object", "array", "null")
+    private val unsupportedKeywords =
+        setOf("\$ref", "oneOf", "anyOf", "allOf", "\$id", "\$schema", "definitions", "\$defs")
     private val snakeCaseRegex = Regex("^[a-z][a-z0-9]*(_[a-z0-9]+)*$")
 
     fun validate(schemaFile: Path): ValidationResult {
@@ -36,11 +38,13 @@ class SchemaValidator {
         // Validate x-eventName if present
         val eventName = (rootObj["x-eventName"] as? JsonPrimitive)?.contentOrNull
         if (eventName != null && !snakeCaseRegex.matches(eventName)) {
-            issues.add(ValidationIssue(
-                schemaFile, "x-eventName",
-                "Event name '$eventName' must be snake_case (e.g., 'lead_form_viewed')",
-                ERROR
-            ))
+            issues.add(
+                ValidationIssue(
+                    schemaFile, "x-eventName",
+                    "Event name '$eventName' must be snake_case (e.g., 'lead_form_viewed')",
+                    ERROR
+                )
+            )
         }
 
         // Validate schema content
@@ -63,11 +67,13 @@ class SchemaValidator {
                 if (eventName != null) {
                     val existing = eventNames[eventName]
                     if (existing != null) {
-                        allIssues.add(ValidationIssue(
-                            file, "root",
-                            "Duplicate event name '$eventName' (also in $existing)",
-                            ERROR
-                        ))
+                        allIssues.add(
+                            ValidationIssue(
+                                file, "root",
+                                "Duplicate event name '$eventName' (also in $existing)",
+                                ERROR
+                            )
+                        )
                     } else {
                         eventNames[eventName] = file
                     }
@@ -83,7 +89,14 @@ class SchemaValidator {
         val parts = normalized.split('/').filter { it.isNotBlank() }
 
         if (parts.size < 3) {
-            issues.add(ValidationIssue(file, "path", "Schema path must be <family>/<vN>/<event>.json", ERROR))
+            issues.add(
+                ValidationIssue(
+                    file,
+                    "path",
+                    "Schema path must be <family>/<vN>/<event>.json",
+                    ERROR
+                )
+            )
             return
         }
 
@@ -97,7 +110,14 @@ class SchemaValidator {
         }
 
         if (fileName.contains(" ") || fileName.contains("-")) {
-            issues.add(ValidationIssue(file, "path", "File name should use underscores, not spaces or hyphens", WARNING))
+            issues.add(
+                ValidationIssue(
+                    file,
+                    "path",
+                    "File name should use underscores, not spaces or hyphens",
+                    WARNING
+                )
+            )
         }
 
         if (fileName != fileName.lowercase()) {
@@ -106,12 +126,26 @@ class SchemaValidator {
 
         // Validate version folder
         if (!versionFolder.matches(Regex("v\\d+"))) {
-            issues.add(ValidationIssue(file, "path", "Version folder must be like 'v1', 'v2', etc. Got: '$versionFolder'", ERROR))
+            issues.add(
+                ValidationIssue(
+                    file,
+                    "path",
+                    "Version folder must be like 'v1', 'v2', etc. Got: '$versionFolder'",
+                    ERROR
+                )
+            )
         }
 
         // Validate family folder
         if (familyFolder.contains(" ") || familyFolder.contains("-")) {
-            issues.add(ValidationIssue(file, "path", "Family folder should use underscores, not spaces or hyphens", WARNING))
+            issues.add(
+                ValidationIssue(
+                    file,
+                    "path",
+                    "Family folder should use underscores, not spaces or hyphens",
+                    WARNING
+                )
+            )
         }
 
         if (familyFolder != familyFolder.lowercase()) {
@@ -144,7 +178,14 @@ class SchemaValidator {
             is JsonPrimitive -> listOf(typeElement.content)
             is JsonArray -> typeElement.map { it.jsonPrimitive.content }
             else -> {
-                issues.add(ValidationIssue(file, path, "'type' must be a string or array of strings", ERROR))
+                issues.add(
+                    ValidationIssue(
+                        file,
+                        path,
+                        "'type' must be a string or array of strings",
+                        ERROR
+                    )
+                )
                 return
             }
         }
@@ -152,17 +193,38 @@ class SchemaValidator {
         // Validate type values
         for (t in types) {
             if (t !in supportedTypes) {
-                issues.add(ValidationIssue(file, path, "Unsupported type '$t'. Supported: $supportedTypes", ERROR))
+                issues.add(
+                    ValidationIssue(
+                        file,
+                        path,
+                        "Unsupported type '$t'. Supported: $supportedTypes",
+                        ERROR
+                    )
+                )
             }
         }
 
         val nonNullTypes = types.filter { it != "null" }
         if (nonNullTypes.isEmpty()) {
-            issues.add(ValidationIssue(file, path, "Type must have at least one non-null type", ERROR))
+            issues.add(
+                ValidationIssue(
+                    file,
+                    path,
+                    "Type must have at least one non-null type",
+                    ERROR
+                )
+            )
             return
         }
         if (nonNullTypes.size > 1) {
-            issues.add(ValidationIssue(file, path, "Multiple non-null types not supported: $nonNullTypes", ERROR))
+            issues.add(
+                ValidationIssue(
+                    file,
+                    path,
+                    "Multiple non-null types not supported: $nonNullTypes",
+                    ERROR
+                )
+            )
             return
         }
 
@@ -170,7 +232,14 @@ class SchemaValidator {
 
         // Root must be object
         if (isRoot && primaryType != "object") {
-            issues.add(ValidationIssue(file, path, "Root type must be 'object', got '$primaryType'", ERROR))
+            issues.add(
+                ValidationIssue(
+                    file,
+                    path,
+                    "Root type must be 'object', got '$primaryType'",
+                    ERROR
+                )
+            )
         }
 
         // Type-specific validation
@@ -181,7 +250,12 @@ class SchemaValidator {
         }
     }
 
-    private fun validateObject(node: JsonObject, file: Path, path: String, issues: MutableList<ValidationIssue>) {
+    private fun validateObject(
+        node: JsonObject,
+        file: Path,
+        path: String,
+        issues: MutableList<ValidationIssue>
+    ) {
         val properties = node["properties"]
         if (properties == null) {
             issues.add(ValidationIssue(file, path, "Object must have 'properties' field", ERROR))
@@ -202,11 +276,25 @@ class SchemaValidator {
         // Validate additionalProperties
         val additionalProps = node["additionalProperties"]
         if (additionalProps == null) {
-            issues.add(ValidationIssue(file, path, "Missing 'additionalProperties: false' (recommended for analytics stability)", WARNING))
+            issues.add(
+                ValidationIssue(
+                    file,
+                    path,
+                    "Missing 'additionalProperties: false' (recommended for analytics stability)",
+                    WARNING
+                )
+            )
         } else {
             val value = (additionalProps as? JsonPrimitive)?.booleanOrNull
             if (value != false) {
-                issues.add(ValidationIssue(file, path, "'additionalProperties' should be false for analytics stability", WARNING))
+                issues.add(
+                    ValidationIssue(
+                        file,
+                        path,
+                        "'additionalProperties' should be false for analytics stability",
+                        WARNING
+                    )
+                )
             }
         }
 
@@ -215,18 +303,32 @@ class SchemaValidator {
         val requiredSet = if (required != null) {
             try {
                 required.jsonArray.map { it.jsonPrimitive.content }.toSet()
-            } catch (e: Exception) {
-                issues.add(ValidationIssue(file, path, "'required' must be an array of strings", ERROR))
+            } catch (_: Exception) {
+                issues.add(
+                    ValidationIssue(
+                        file,
+                        path,
+                        "'required' must be an array of strings",
+                        ERROR
+                    )
+                )
                 emptySet()
             }
         } else {
-            emptySet<String>()
+            emptySet()
         }
 
         // Check required fields exist in properties
         val missingRequired = requiredSet - propsObj.keys
         if (missingRequired.isNotEmpty()) {
-            issues.add(ValidationIssue(file, path, "Required fields not in properties: $missingRequired", ERROR))
+            issues.add(
+                ValidationIssue(
+                    file,
+                    path,
+                    "Required fields not in properties: $missingRequired",
+                    ERROR
+                )
+            )
         }
 
         // Validate each property
@@ -235,17 +337,26 @@ class SchemaValidator {
 
             // Validate property name is snake_case
             if (!snakeCaseRegex.matches(propName)) {
-                issues.add(ValidationIssue(
-                    file, propPath,
-                    "Property name '$propName' must be snake_case (e.g., 'user_id', 'first_name')",
-                    ERROR
-                ))
+                issues.add(
+                    ValidationIssue(
+                        file, propPath,
+                        "Property name '$propName' must be snake_case (e.g., 'user_id', 'first_name')",
+                        ERROR
+                    )
+                )
             }
 
             val propObj = try {
                 propValue.jsonObject
-            } catch (e: Exception) {
-                issues.add(ValidationIssue(file, propPath, "Property definition must be an object", ERROR))
+            } catch (_: Exception) {
+                issues.add(
+                    ValidationIssue(
+                        file,
+                        propPath,
+                        "Property definition must be an object",
+                        ERROR
+                    )
+                )
                 continue
             }
 
@@ -253,7 +364,12 @@ class SchemaValidator {
         }
     }
 
-    private fun validateArray(node: JsonObject, file: Path, path: String, issues: MutableList<ValidationIssue>) {
+    private fun validateArray(
+        node: JsonObject,
+        file: Path,
+        path: String,
+        issues: MutableList<ValidationIssue>
+    ) {
         val items = node["items"]
         if (items == null) {
             issues.add(ValidationIssue(file, path, "Array must have 'items' field", ERROR))
@@ -276,19 +392,31 @@ class SchemaValidator {
                 else -> emptyList()
             }
             if ("array" in itemTypes) {
-                issues.add(ValidationIssue(file, path, "Nested arrays (array of array) not supported", ERROR))
+                issues.add(
+                    ValidationIssue(
+                        file,
+                        path,
+                        "Nested arrays (array of array) not supported",
+                        ERROR
+                    )
+                )
             }
         }
 
         validateNode(itemsObj, file, "$path.items", issues)
     }
 
-    private fun validateString(node: JsonObject, file: Path, path: String, issues: MutableList<ValidationIssue>) {
+    private fun validateString(
+        node: JsonObject,
+        file: Path,
+        path: String,
+        issues: MutableList<ValidationIssue>
+    ) {
         val enumValues = node["enum"]
         if (enumValues != null) {
             val values = try {
                 enumValues.jsonArray.map { it.jsonPrimitive.content }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 issues.add(ValidationIssue(file, path, "'enum' must be an array of strings", ERROR))
                 return
             }
@@ -316,7 +444,7 @@ class SchemaValidator {
             (json["x-eventName"] as? JsonPrimitive)?.contentOrNull
                 ?: (json["title"] as? JsonPrimitive)?.contentOrNull
                 ?: file.fileName.toString().removeSuffix(".json")
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
     }
