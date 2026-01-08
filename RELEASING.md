@@ -270,7 +270,7 @@ MAJOR.MINOR.PATCH
 
 Monitor release progress:
 ```
-https://github.com/YOUR_ORG/TRRAnalytics/actions
+https://github.com/TheRealReal/trr-analytics/actions
 ```
 
 The workflow typically takes **3-5 minutes** to complete.

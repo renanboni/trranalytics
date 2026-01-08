@@ -20,8 +20,6 @@ val typeScriptOutDir = layout.buildDirectory.dir("generated/source/analytics/typ
 val generatorProject = project(":tools:analytics-generator")
 
 kotlin {
-    jvmToolchain(17)
-
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
