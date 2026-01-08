@@ -160,6 +160,7 @@ export namespace Seller {
       readonly schemaVersion: 1;
       inquiryId: string;
       repeatConsignor: boolean;
+      feature?: string | null;
       firstName?: string | null;
       inquirySlug?: string | null;
       lastName?: string | null;
