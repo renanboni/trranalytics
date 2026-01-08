@@ -42,6 +42,9 @@
     },
     "zip_code": {
       "type": "string"
+    },
+    "feature": {
+      "type": "string"
     }
   }
 }
