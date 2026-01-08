@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedKotlinNothing, SharedKotlinx_serialization_coreSerialKind, SharedKotlinx_serialization_coreSerializersModule, SharedKotlinx_serialization_jsonJsonElement, SharedKotlinx_serialization_jsonJsonElementCompanion, SharedSellerV1, SharedSellerV1ConsignmentHome, SharedSellerV1ConsignorEstimatorCategorySelected, SharedSellerV1ConsignorEstimatorDetailsSubmitted, SharedSellerV1ConsignorEstimatorItemDetails, SharedSellerV1ConsignorEstimatorLanding, SharedSellerV1ConsignorEstimatorResults, SharedSellerV1EditItemDetailsSelected, SharedSellerV1FormStarted, SharedSellerV1FormSubmitted, SharedSellerV1LeadFormViewed, SharedSellerV1NewSearchSelected, SharedSellerV1ServerError;
+@class SharedKotlinNothing, SharedKotlinx_serialization_coreSerialKind, SharedKotlinx_serialization_coreSerializersModule, SharedKotlinx_serialization_jsonJsonElement, SharedKotlinx_serialization_jsonJsonElementCompanion, SharedSellerV1, SharedSellerV1ConsignmentHome, SharedSellerV1ConsignorEstimatorCategorySelected, SharedSellerV1ConsignorEstimatorDetailsSubmitted, SharedSellerV1ConsignorEstimatorItemDetails, SharedSellerV1ConsignorEstimatorLanding, SharedSellerV1ConsignorEstimatorResults, SharedSellerV1EditItemDetailsSelected, SharedSellerV1FeedbackSubmitted, SharedSellerV1FormStarted, SharedSellerV1FormSubmitted, SharedSellerV1InquiryCreated, SharedSellerV1LeadFormViewed, SharedSellerV1NewSearchSelected, SharedSellerV1ServerError;
 
 @protocol SharedAnalyticsEvent, SharedKotlinAnnotation, SharedKotlinKAnnotatedElement, SharedKotlinKClass, SharedKotlinKClassifier, SharedKotlinKDeclarationContainer, SharedKotlinx_serialization_coreCompositeDecoder, SharedKotlinx_serialization_coreCompositeEncoder, SharedKotlinx_serialization_coreDecoder, SharedKotlinx_serialization_coreDeserializationStrategy, SharedKotlinx_serialization_coreEncoder, SharedKotlinx_serialization_coreKSerializer, SharedKotlinx_serialization_coreSerialDescriptor, SharedKotlinx_serialization_coreSerializationStrategy, SharedKotlinx_serialization_coreSerializersModuleCollector, SharedPlatform, SharedSeller;
 
@@ -439,6 +439,45 @@ __attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
 
 
 /**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
+ * event="Feedback Submitted", schemaVersion=1
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SellerV1.FeedbackSubmitted")))
+@interface SharedSellerV1FeedbackSubmitted : SharedBase <SharedSeller>
+- (instancetype)initWithFeatureName:(NSString *)featureName location:(NSString *)location comment:(NSString * _Nullable)comment feedbackType:(NSString * _Nullable)feedbackType optionsSelected:(NSArray<NSString *> * _Nullable)optionsSelected __attribute__((swift_name("init(featureName:location:comment:feedbackType:optionsSelected:)"))) __attribute__((objc_designated_initializer));
+- (SharedSellerV1FeedbackSubmitted *)doCopyFeatureName:(NSString *)featureName location:(NSString *)location comment:(NSString * _Nullable)comment feedbackType:(NSString * _Nullable)feedbackType optionsSelected:(NSArray<NSString *> * _Nullable)optionsSelected __attribute__((swift_name("doCopy(featureName:location:comment:feedbackType:optionsSelected:)")));
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
+ * event="Feedback Submitted", schemaVersion=1
+ */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
+ * event="Feedback Submitted", schemaVersion=1
+ */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
+- (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)properties __attribute__((swift_name("properties()")));
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
+ * event="Feedback Submitted", schemaVersion=1
+ */
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString * _Nullable comment __attribute__((swift_name("comment")));
+@property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
+@property (readonly) NSString *featureName __attribute__((swift_name("featureName")));
+@property (readonly) NSString * _Nullable feedbackType __attribute__((swift_name("feedbackType")));
+@property (readonly) NSString *location __attribute__((swift_name("location")));
+@property (readonly) NSArray<NSString *> * _Nullable optionsSelected __attribute__((swift_name("optionsSelected")));
+@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
+@end
+
+
+/**
  * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
  * event="Form Started", schemaVersion=1
  */
@@ -514,6 +553,52 @@ __attribute__((swift_name("SellerV1.FormSubmitted")))
 @property (readonly) NSString *postalCode __attribute__((swift_name("postalCode")));
 @property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString *type __attribute__((swift_name("type")));
+@end
+
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
+ * event="Inquiry Created", schemaVersion=1
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SellerV1.InquiryCreated")))
+@interface SharedSellerV1InquiryCreated : SharedBase <SharedSeller>
+- (instancetype)initWithInquiryId:(NSString *)inquiryId repeatConsignor:(BOOL)repeatConsignor firstName:(NSString * _Nullable)firstName inquirySlug:(NSString * _Nullable)inquirySlug lastName:(NSString * _Nullable)lastName leadEmail:(NSString * _Nullable)leadEmail leadSource:(NSString * _Nullable)leadSource leadSubSource:(NSString * _Nullable)leadSubSource loggedIn:(SharedBoolean * _Nullable)loggedIn method:(NSString * _Nullable)method path:(NSString * _Nullable)path zipCode:(NSString * _Nullable)zipCode __attribute__((swift_name("init(inquiryId:repeatConsignor:firstName:inquirySlug:lastName:leadEmail:leadSource:leadSubSource:loggedIn:method:path:zipCode:)"))) __attribute__((objc_designated_initializer));
+- (SharedSellerV1InquiryCreated *)doCopyInquiryId:(NSString *)inquiryId repeatConsignor:(BOOL)repeatConsignor firstName:(NSString * _Nullable)firstName inquirySlug:(NSString * _Nullable)inquirySlug lastName:(NSString * _Nullable)lastName leadEmail:(NSString * _Nullable)leadEmail leadSource:(NSString * _Nullable)leadSource leadSubSource:(NSString * _Nullable)leadSubSource loggedIn:(SharedBoolean * _Nullable)loggedIn method:(NSString * _Nullable)method path:(NSString * _Nullable)path zipCode:(NSString * _Nullable)zipCode __attribute__((swift_name("doCopy(inquiryId:repeatConsignor:firstName:inquirySlug:lastName:leadEmail:leadSource:leadSubSource:loggedIn:method:path:zipCode:)")));
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
+ * event="Inquiry Created", schemaVersion=1
+ */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
+ * event="Inquiry Created", schemaVersion=1
+ */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)payload __attribute__((swift_name("payload()")));
+- (NSDictionary<NSString *, SharedKotlinx_serialization_jsonJsonElement *> *)properties __attribute__((swift_name("properties()")));
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
+ * event="Inquiry Created", schemaVersion=1
+ */
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
+@property (readonly) NSString * _Nullable firstName __attribute__((swift_name("firstName")));
+@property (readonly) NSString *inquiryId __attribute__((swift_name("inquiryId")));
+@property (readonly) NSString * _Nullable inquirySlug __attribute__((swift_name("inquirySlug")));
+@property (readonly) NSString * _Nullable lastName __attribute__((swift_name("lastName")));
+@property (readonly) NSString * _Nullable leadEmail __attribute__((swift_name("leadEmail")));
+@property (readonly) NSString * _Nullable leadSource __attribute__((swift_name("leadSource")));
+@property (readonly) NSString * _Nullable leadSubSource __attribute__((swift_name("leadSubSource")));
+@property (readonly) SharedBoolean * _Nullable loggedIn __attribute__((swift_name("loggedIn")));
+@property (readonly) NSString * _Nullable method __attribute__((swift_name("method")));
+@property (readonly) NSString * _Nullable path __attribute__((swift_name("path")));
+@property (readonly) BOOL repeatConsignor __attribute__((swift_name("repeatConsignor")));
+@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
+@property (readonly) NSString * _Nullable zipCode __attribute__((swift_name("zipCode")));
 @end
 
 

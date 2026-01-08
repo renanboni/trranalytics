@@ -106,6 +106,21 @@ export namespace Seller {
 
 
     /**
+     * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
+     * event="Feedback Submitted", schemaVersion=1
+     */
+    export interface FeedbackSubmitted extends Seller {
+      readonly eventName: "Feedback Submitted";
+      readonly schemaVersion: 1;
+      featureName: string;
+      location: string;
+      comment?: string | null;
+      feedbackType?: string | null;
+      optionsSelected?: string[] | null;
+    }
+
+
+    /**
      * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
      * event="Form Started", schemaVersion=1
      */
@@ -133,6 +148,28 @@ export namespace Seller {
       phone: string;
       postalCode: string;
       type: string;
+    }
+
+
+    /**
+     * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
+     * event="Inquiry Created", schemaVersion=1
+     */
+    export interface InquiryCreated extends Seller {
+      readonly eventName: "Inquiry Created";
+      readonly schemaVersion: 1;
+      inquiryId: string;
+      repeatConsignor: boolean;
+      firstName?: string | null;
+      inquirySlug?: string | null;
+      lastName?: string | null;
+      leadEmail?: string | null;
+      leadSource?: string | null;
+      leadSubSource?: string | null;
+      loggedIn?: boolean | null;
+      method?: string | null;
+      path?: string | null;
+      zipCode?: string | null;
     }
 
 
