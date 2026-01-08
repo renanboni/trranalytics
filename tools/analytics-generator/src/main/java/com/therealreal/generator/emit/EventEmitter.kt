@@ -108,56 +108,51 @@ class EventEmitter(
     }
 
     private fun buildMapEmitter(o: Type.ObjectT, receiverIndent: String): String {
-        val entries = mutableListOf<String>()
+        val lines = mutableListOf<String>()
 
         o.fields.forEach { f ->
             val name = f.name
             val access = f.name.toCamelCase()
 
             if (f.required) {
-                entries += emitMapEntry(name, access, f.type, receiverIndent)
+                lines += emitPutEntry(name, access, f.type, receiverIndent)
             } else {
-                entries += emitMapEntry(name, access, f.type, receiverIndent)
+                // Optional field - only include if not null
+                lines += "${receiverIndent}${access}?.let { put(\"${name.escapeKotlin()}\", ${emitValueExpr("it", f.type.copyNonNull())}) }"
             }
         }
 
-        val body = entries.joinToString(",\n")
+        val body = lines.joinToString("\n")
         return """
-            mapOf(
+            buildMap {
             $body
-            $receiverIndent)
+            $receiverIndent}
         """.trimIndent()
     }
 
-    private fun emitMapEntry(jsonKey: String, valueExpr: String, t: Type, indent: String): String {
+    private fun emitPutEntry(jsonKey: String, valueExpr: String, t: Type, indent: String): String {
+        return """${indent}put("${jsonKey.escapeKotlin()}", ${emitValueExpr(valueExpr, t)})"""
+    }
+
+    private fun emitValueExpr(valueExpr: String, t: Type): String {
         return when (t) {
-            is Type.StringT ->
-                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr"""
-            is Type.NumberT ->
-                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr"""
-            is Type.IntegerT ->
-                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr"""
-            is Type.BooleanT ->
-                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr"""
-            is Type.EnumStringT ->
-                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr.name"""
-            is Type.ObjectT ->
-                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr.toMap()"""
-            is Type.ArrayT -> emitArrayEntry(jsonKey, valueExpr, t, indent)
+            is Type.StringT -> valueExpr
+            is Type.NumberT -> valueExpr
+            is Type.IntegerT -> valueExpr
+            is Type.BooleanT -> valueExpr
+            is Type.EnumStringT -> "$valueExpr.name"
+            is Type.ObjectT -> "$valueExpr.toMap()"
+            is Type.ArrayT -> emitArrayValueExpr(valueExpr, t)
         }
     }
 
-    private fun emitArrayEntry(jsonKey: String, valueExpr: String, t: Type.ArrayT, indent: String): String {
+    private fun emitArrayValueExpr(valueExpr: String, t: Type.ArrayT): String {
         val item = t.itemType.copyNonNull()
         return when (item) {
-            is Type.StringT, is Type.NumberT, is Type.IntegerT, is Type.BooleanT ->
-                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr"""
-            is Type.EnumStringT ->
-                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr.map { it.name }"""
-            is Type.ObjectT ->
-                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr.map { it.toMap() }"""
-            is Type.ArrayT ->
-                error("Nested arrays (array of array) not supported for key '$jsonKey'.")
+            is Type.StringT, is Type.NumberT, is Type.IntegerT, is Type.BooleanT -> valueExpr
+            is Type.EnumStringT -> "$valueExpr.map { it.name }"
+            is Type.ObjectT -> "$valueExpr.map { it.toMap() }"
+            is Type.ArrayT -> error("Nested arrays not supported")
         }
     }
 
