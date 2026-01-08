@@ -206,6 +206,80 @@ Naming rules:
 -   `v1` becomes `V1`, `v2` becomes `V2`
 -   file name becomes event class name: `return_item.json` →
     `ReturnItem`
+-   Event names and property names must use `snake_case`
+
+------------------------------------------------------------------------
+
+## Schema Versioning Guidelines
+
+Create a new version (v1 → v2) when you make **breaking changes**. Non-breaking changes can stay in the current version.
+
+### Non-breaking changes (stay in current version)
+
+| Change | Why it's safe |
+|--------|---------------|
+| Add a new **optional** property | Old code ignores it |
+| Add a new **event** | Old code doesn't use it |
+| Add new enum values | Old code ignores unknown values |
+| Change description/docs | No runtime impact |
+| Make a required field **optional** | Old code still sends it |
+
+### Breaking changes (create new version)
+
+| Change | Why it breaks |
+|--------|---------------|
+| **Remove** a property | Old code still tries to send it |
+| **Rename** a property | Old code sends wrong key |
+| Add a new **required** property | Old code doesn't send it |
+| Change property **type** | Type mismatch (string → number) |
+| Remove enum values | Old code may send removed value |
+| Rename event name | Old analytics won't match new |
+
+### Example
+
+```
+schemas/seller/
+├── v1/
+│   └── checkout_started.json    # original: { amount, currency }
+└── v2/
+    └── checkout_started.json    # breaking: { total_amount, currency, items[] }
+```
+
+Both versions coexist - some clients use v1 while others migrate to v2.
+
+### Rule of thumb
+
+> "Can old code still work if I make this change?"
+> - **Yes** → stay in current version
+> - **No** → create new version
+
+------------------------------------------------------------------------
+
+## Schema Validation
+
+Run the validator to check schemas for errors before generating code:
+
+```bash
+make validate
+# or
+./gradlew :shared:validateSchemas
+```
+
+The validator checks for:
+
+| Check | Severity |
+|-------|----------|
+| Missing `type` field | Error |
+| Invalid type values | Error |
+| Unsupported keywords (`$ref`, `oneOf`, etc.) | Error |
+| Required fields not in properties | Error |
+| Event names not in snake_case | Error |
+| Property names not in snake_case | Error |
+| Missing `items` for arrays | Error |
+| Nested arrays | Error |
+| Missing `additionalProperties: false` | Warning |
+
+Validation runs automatically before code generation.
 
 ------------------------------------------------------------------------
 

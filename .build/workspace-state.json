@@ -1,0 +1,31 @@
+{
+  "object" : {
+    "artifacts" : [
+      {
+        "kind" : {
+          "xcframework" : {
+
+          }
+        },
+        "packageRef" : {
+          "identity" : "trranalytics",
+          "kind" : "root",
+          "location" : "/Users/renan.boni/Downloads/TRRAnalytics",
+          "name" : "TRRAnalytics"
+        },
+        "path" : "/Users/renan.boni/Downloads/TRRAnalytics/Shared.xcframework",
+        "source" : {
+          "type" : "local"
+        },
+        "targetName" : "Shared"
+      }
+    ],
+    "dependencies" : [
+
+    ],
+    "prebuilts" : [
+
+    ]
+  },
+  "version" : 7
+}
