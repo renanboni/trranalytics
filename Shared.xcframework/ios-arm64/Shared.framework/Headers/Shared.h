@@ -173,7 +173,7 @@ __attribute__((swift_name("SellerV1")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
  * event="Consignment Home", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -183,13 +183,13 @@ __attribute__((swift_name("SellerV1.ConsignmentHome")))
 - (SharedSellerV1ConsignmentHome *)doCopyLoggedIn:(BOOL)loggedIn repeatConsignor:(BOOL)repeatConsignor __attribute__((swift_name("doCopy(loggedIn:repeatConsignor:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
  * event="Consignment Home", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
  * event="Consignment Home", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -197,7 +197,7 @@ __attribute__((swift_name("SellerV1.ConsignmentHome")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
  * event="Consignment Home", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -209,7 +209,7 @@ __attribute__((swift_name("SellerV1.ConsignmentHome")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
  * event="Consignor Estimator Category Selected", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -219,13 +219,13 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorCategorySelected")))
 - (SharedSellerV1ConsignorEstimatorCategorySelected *)doCopyCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory __attribute__((swift_name("doCopy(category:page:selectedCategory:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
  * event="Consignor Estimator Category Selected", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
  * event="Consignor Estimator Category Selected", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -233,7 +233,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorCategorySelected")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
  * event="Consignor Estimator Category Selected", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -246,7 +246,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorCategorySelected")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
  * event="Consignor Estimator Details Submitted", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -256,13 +256,13 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorDetailsSubmitted")))
 - (SharedSellerV1ConsignorEstimatorDetailsSubmitted *)doCopyCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionalColor:(NSString * _Nullable)selectedOptionalColor selectedOptionalMaterial:(NSString * _Nullable)selectedOptionalMaterial __attribute__((swift_name("doCopy(category:page:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionalColor:selectedOptionalMaterial:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
  * event="Consignor Estimator Details Submitted", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
  * event="Consignor Estimator Details Submitted", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -270,7 +270,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorDetailsSubmitted")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
  * event="Consignor Estimator Details Submitted", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -289,7 +289,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorDetailsSubmitted")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
  * event="Consignor Estimator Item Details", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -299,13 +299,13 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorItemDetails")))
 - (SharedSellerV1ConsignorEstimatorItemDetails *)doCopyCategory:(NSString *)category __attribute__((swift_name("doCopy(category:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
  * event="Consignor Estimator Item Details", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
  * event="Consignor Estimator Item Details", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -313,7 +313,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorItemDetails")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
  * event="Consignor Estimator Item Details", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -324,7 +324,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorItemDetails")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
  * event="Consignor Estimator Landing", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -334,13 +334,13 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorLanding")))
 - (SharedSellerV1ConsignorEstimatorLanding *)doCopyCategory:(NSString *)category __attribute__((swift_name("doCopy(category:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
  * event="Consignor Estimator Landing", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
  * event="Consignor Estimator Landing", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -348,7 +348,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorLanding")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
  * event="Consignor Estimator Landing", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -359,7 +359,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorLanding")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_results.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
  * event="Consignor Estimator Results", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -369,13 +369,13 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorResults")))
 - (SharedSellerV1ConsignorEstimatorResults *)doCopyCategory:(NSString *)category estimateResultFrom:(NSString *)estimateResultFrom estimateResultTo:(NSString *)estimateResultTo selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionalColor:(NSString * _Nullable)selectedOptionalColor selectedOptionalMaterial:(NSString * _Nullable)selectedOptionalMaterial __attribute__((swift_name("doCopy(category:estimateResultFrom:estimateResultTo:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionalColor:selectedOptionalMaterial:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_results.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
  * event="Consignor Estimator Results", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_results.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
  * event="Consignor Estimator Results", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -383,7 +383,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorResults")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/consignor_estimator_results.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
  * event="Consignor Estimator Results", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -403,7 +403,7 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorResults")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/edit_item_details_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
  * event="Edit Item Details Selected", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -413,13 +413,13 @@ __attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
 - (SharedSellerV1EditItemDetailsSelected *)doCopyCategory:(NSString *)category page:(NSString *)page __attribute__((swift_name("doCopy(category:page:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/edit_item_details_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
  * event="Edit Item Details Selected", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/edit_item_details_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
  * event="Edit Item Details Selected", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -427,7 +427,7 @@ __attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/edit_item_details_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
  * event="Edit Item Details Selected", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -439,7 +439,7 @@ __attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/feedback_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
  * event="Feedback Submitted", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -449,13 +449,13 @@ __attribute__((swift_name("SellerV1.FeedbackSubmitted")))
 - (SharedSellerV1FeedbackSubmitted *)doCopyFeatureName:(NSString *)featureName location:(NSString *)location comment:(NSString * _Nullable)comment feedbackType:(NSString * _Nullable)feedbackType optionsSelected:(NSArray<NSString *> * _Nullable)optionsSelected __attribute__((swift_name("doCopy(featureName:location:comment:feedbackType:optionsSelected:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/feedback_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
  * event="Feedback Submitted", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/feedback_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
  * event="Feedback Submitted", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -463,7 +463,7 @@ __attribute__((swift_name("SellerV1.FeedbackSubmitted")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/feedback_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
  * event="Feedback Submitted", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -478,7 +478,7 @@ __attribute__((swift_name("SellerV1.FeedbackSubmitted")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/form_started.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
  * event="Form Started", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -488,13 +488,13 @@ __attribute__((swift_name("SellerV1.FormStarted")))
 - (SharedSellerV1FormStarted *)doCopyCategory:(NSString *)category page:(NSString *)page type:(NSString *)type __attribute__((swift_name("doCopy(category:page:type:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/form_started.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
  * event="Form Started", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/form_started.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
  * event="Form Started", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -502,7 +502,7 @@ __attribute__((swift_name("SellerV1.FormStarted")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/form_started.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
  * event="Form Started", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -515,7 +515,7 @@ __attribute__((swift_name("SellerV1.FormStarted")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/form_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
  * event="Form Submitted", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -525,13 +525,13 @@ __attribute__((swift_name("SellerV1.FormSubmitted")))
 - (SharedSellerV1FormSubmitted *)doCopyCategory:(NSString *)category email:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName page:(NSString *)page phone:(NSString *)phone postalCode:(NSString *)postalCode type:(NSString *)type __attribute__((swift_name("doCopy(category:email:firstName:lastName:page:phone:postalCode:type:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/form_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
  * event="Form Submitted", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/form_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
  * event="Form Submitted", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -539,7 +539,7 @@ __attribute__((swift_name("SellerV1.FormSubmitted")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/form_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
  * event="Form Submitted", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -557,7 +557,7 @@ __attribute__((swift_name("SellerV1.FormSubmitted")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/inquiry_created.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
  * event="Inquiry Created", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -567,13 +567,13 @@ __attribute__((swift_name("SellerV1.InquiryCreated")))
 - (SharedSellerV1InquiryCreated *)doCopyInquiryId:(NSString *)inquiryId repeatConsignor:(BOOL)repeatConsignor firstName:(NSString * _Nullable)firstName inquirySlug:(NSString * _Nullable)inquirySlug lastName:(NSString * _Nullable)lastName leadEmail:(NSString * _Nullable)leadEmail leadSource:(NSString * _Nullable)leadSource leadSubSource:(NSString * _Nullable)leadSubSource loggedIn:(SharedBoolean * _Nullable)loggedIn method:(NSString * _Nullable)method path:(NSString * _Nullable)path zipCode:(NSString * _Nullable)zipCode __attribute__((swift_name("doCopy(inquiryId:repeatConsignor:firstName:inquirySlug:lastName:leadEmail:leadSource:leadSubSource:loggedIn:method:path:zipCode:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/inquiry_created.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
  * event="Inquiry Created", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/inquiry_created.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
  * event="Inquiry Created", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -581,7 +581,7 @@ __attribute__((swift_name("SellerV1.InquiryCreated")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/inquiry_created.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
  * event="Inquiry Created", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -603,7 +603,7 @@ __attribute__((swift_name("SellerV1.InquiryCreated")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/lead_form_viewed.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
  * event="Lead Form Viewed", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -613,13 +613,13 @@ __attribute__((swift_name("SellerV1.LeadFormViewed")))
 - (SharedSellerV1LeadFormViewed *)doCopyCategory:(NSString *)category page:(NSString *)page __attribute__((swift_name("doCopy(category:page:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/lead_form_viewed.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
  * event="Lead Form Viewed", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/lead_form_viewed.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
  * event="Lead Form Viewed", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -627,7 +627,7 @@ __attribute__((swift_name("SellerV1.LeadFormViewed")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/lead_form_viewed.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
  * event="Lead Form Viewed", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -639,7 +639,7 @@ __attribute__((swift_name("SellerV1.LeadFormViewed")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/new_search_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
  * event="New Search Selected", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -649,13 +649,13 @@ __attribute__((swift_name("SellerV1.NewSearchSelected")))
 - (SharedSellerV1NewSearchSelected *)doCopyCategory:(NSString *)category page:(NSString *)page __attribute__((swift_name("doCopy(category:page:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/new_search_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
  * event="New Search Selected", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/new_search_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
  * event="New Search Selected", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -663,7 +663,7 @@ __attribute__((swift_name("SellerV1.NewSearchSelected")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/new_search_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
  * event="New Search Selected", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -675,7 +675,7 @@ __attribute__((swift_name("SellerV1.NewSearchSelected")))
 
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/server_error.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
  * event="Server Error", schemaVersion=1
  */
 __attribute__((objc_subclassing_restricted))
@@ -685,13 +685,13 @@ __attribute__((swift_name("SellerV1.ServerError")))
 - (SharedSellerV1ServerError *)doCopyCategory:(NSString *)category error:(NSString *)error page:(NSString *)page type:(NSString *)type __attribute__((swift_name("doCopy(category:error:page:type:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/server_error.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
  * event="Server Error", schemaVersion=1
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/server_error.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
  * event="Server Error", schemaVersion=1
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -699,7 +699,7 @@ __attribute__((swift_name("SellerV1.ServerError")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/v1/server_error.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
  * event="Server Error", schemaVersion=1
  */
 - (NSString *)description __attribute__((swift_name("description()")));
