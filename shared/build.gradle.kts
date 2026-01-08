@@ -40,9 +40,6 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             kotlin.srcDir(kotlinOutDir)
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-            }
         }
     }
 

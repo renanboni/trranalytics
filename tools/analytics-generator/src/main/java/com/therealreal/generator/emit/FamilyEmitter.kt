@@ -20,7 +20,6 @@ class FamilyEmitter(
         return """
             package $pkg
 
-            import kotlinx.serialization.json.*
             import com.therealreal.analytics.events.AnalyticsEvent
 
             /**

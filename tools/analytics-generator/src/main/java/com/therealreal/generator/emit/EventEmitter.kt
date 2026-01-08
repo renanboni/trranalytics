@@ -42,7 +42,7 @@ class EventEmitter(
         val enumsBlock = collected.enums.joinToString("\n\n") { emitEnum(it) }
         val nestedObjectsBlock = collected.objects.joinToString("\n\n") { emitNestedObjectClass(it) }
 
-        val propsJson = buildJsonObjectEmitter(root, receiverIndent = "    ")
+        val propsMap = buildMapEmitter(root, receiverIndent = "    ")
 
         return """
             /**
@@ -63,13 +63,13 @@ class EventEmitter(
             $optionalBacking
             ${indent(optionalSetters, 4).trimEnd()}
 
-                override fun properties(): JsonObject = $propsJson
+                override fun properties(): Map<String, Any?> = $propsMap
 
-                override fun payload(): JsonObject = buildJsonObject {
-                    put("event", eventName)
-                    put("schemaVersion", schemaVersion)
-                    put("properties", properties())
-                }
+                override fun payload(): Map<String, Any?> = mapOf(
+                    "event" to eventName,
+                    "schemaVersion" to schemaVersion,
+                    "properties" to properties()
+                )
             }
         """.trimIndent()
     }
@@ -96,68 +96,66 @@ class EventEmitter(
 
         val ctorArgs = allCtorArgs.joinToString(",\n        ")
 
-        val toJson = buildJsonObjectEmitter(o, receiverIndent = "        ")
+        val toMap = buildMapEmitter(o, receiverIndent = "        ")
 
         return """
             class ${o.name}(
                 $ctorArgs
             ) {
-                internal fun toJson(): JsonObject = $toJson
+                internal fun toMap(): Map<String, Any?> = $toMap
             }
         """.trimIndent()
     }
 
-    private fun buildJsonObjectEmitter(o: Type.ObjectT, receiverIndent: String): String {
-        val lines = mutableListOf<String>()
+    private fun buildMapEmitter(o: Type.ObjectT, receiverIndent: String): String {
+        val entries = mutableListOf<String>()
 
         o.fields.forEach { f ->
             val name = f.name
             val access = f.name.toCamelCase()
 
             if (f.required) {
-                lines += emitPutLine(name, access, f.type, receiverIndent)
+                entries += emitMapEntry(name, access, f.type, receiverIndent)
             } else {
-                lines += "${receiverIndent}${access}?.let {"
-                lines += emitPutLine(name, "it", f.type.copyNonNull(), receiverIndent + "    ")
-                lines += "${receiverIndent}}"
+                entries += emitMapEntry(name, access, f.type, receiverIndent)
             }
         }
 
-        val body = lines.joinToString("\n")
+        val body = entries.joinToString(",\n")
         return """
-            buildJsonObject {
+            mapOf(
             $body
-            $receiverIndent}
+            $receiverIndent)
         """.trimIndent()
     }
 
-    private fun emitPutLine(jsonKey: String, valueExpr: String, t: Type, indent: String): String {
+    private fun emitMapEntry(jsonKey: String, valueExpr: String, t: Type, indent: String): String {
         return when (t) {
             is Type.StringT ->
-                """${indent}put("${jsonKey.escapeKotlin()}", $valueExpr)"""
+                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr"""
             is Type.NumberT ->
-                """${indent}put("${jsonKey.escapeKotlin()}", $valueExpr)"""
+                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr"""
             is Type.IntegerT ->
-                """${indent}put("${jsonKey.escapeKotlin()}", $valueExpr)"""
+                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr"""
             is Type.BooleanT ->
-                """${indent}put("${jsonKey.escapeKotlin()}", JsonPrimitive($valueExpr))"""
+                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr"""
             is Type.EnumStringT ->
-                """${indent}put("${jsonKey.escapeKotlin()}", $valueExpr.name)"""
+                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr.name"""
             is Type.ObjectT ->
-                """${indent}put("${jsonKey.escapeKotlin()}", $valueExpr.toJson())"""
-            is Type.ArrayT -> emitArrayPut(jsonKey, valueExpr, t, indent)
+                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr.toMap()"""
+            is Type.ArrayT -> emitArrayEntry(jsonKey, valueExpr, t, indent)
         }
     }
 
-    private fun emitArrayPut(jsonKey: String, valueExpr: String, t: Type.ArrayT, indent: String): String {
+    private fun emitArrayEntry(jsonKey: String, valueExpr: String, t: Type.ArrayT, indent: String): String {
         val item = t.itemType.copyNonNull()
         return when (item) {
             is Type.StringT, is Type.NumberT, is Type.IntegerT, is Type.BooleanT ->
-                """${indent}put("${jsonKey.escapeKotlin()}", buildJsonArray { $valueExpr.forEach { add(it) } })"""
+                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr"""
             is Type.EnumStringT ->
-                """${indent}put("${jsonKey.escapeKotlin()}", buildJsonArray { $valueExpr.forEach { add(it.name) } })"""
+                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr.map { it.name }"""
             is Type.ObjectT ->
-                """${indent}put("${jsonKey.escapeKotlin()}", buildJsonArray { $valueExpr.forEach { add(it.toJson()) } })"""
+                """${indent}"${jsonKey.escapeKotlin()}" to $valueExpr.map { it.toMap() }"""
             is Type.ArrayT ->
                 error("Nested arrays (array of array) not supported for key '$jsonKey'.")
         }
