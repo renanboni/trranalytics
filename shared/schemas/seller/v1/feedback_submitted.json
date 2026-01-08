@@ -1,0 +1,30 @@
+{
+  "x-eventName": "feedback_submitted",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "feature_name",
+    "location"
+  ],
+  "properties": {
+    "feature_name": {
+      "type": "string"
+    },
+    "feedback_type": {
+      "type": "string"
+    },
+    "options_selected": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "comment": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    }
+  }
+}
+
