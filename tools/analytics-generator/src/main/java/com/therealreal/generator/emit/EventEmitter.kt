@@ -140,7 +140,7 @@ class EventEmitter(
             is Type.IntegerT ->
                 """${indent}put("${jsonKey.escapeKotlin()}", $valueExpr)"""
             is Type.BooleanT ->
-                """${indent}put("${jsonKey.escapeKotlin()}", $valueExpr)"""
+                """${indent}put("${jsonKey.escapeKotlin()}", JsonPrimitive($valueExpr))"""
             is Type.EnumStringT ->
                 """${indent}put("${jsonKey.escapeKotlin()}", $valueExpr.name)"""
             is Type.ObjectT ->
