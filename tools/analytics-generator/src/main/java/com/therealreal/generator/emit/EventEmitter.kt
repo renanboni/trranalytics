@@ -1,5 +1,6 @@
 package com.therealreal.generator.emit
 
+import com.therealreal.generator.model.Field
 import com.therealreal.generator.model.Type
 import com.therealreal.generator.util.escapeKotlin
 import com.therealreal.generator.util.indent
@@ -36,13 +37,12 @@ class EventEmitter(
 
         val ctorArgs = allCtorArgs.joinToString(",\n    ")
 
-        val optionalBacking = ""
-        val optionalSetters = ""
-
         val enumsBlock = collected.enums.joinToString("\n\n") { emitEnum(it) }
         val nestedObjectsBlock = collected.objects.joinToString("\n\n") { emitNestedObjectClass(it) }
 
         val propsMap = buildMapEmitter(root, receiverIndent = "    ")
+
+        val secondaryCtor = emitSecondaryConstructor(requiredFields, optionalFields)
 
         return """
             /**
@@ -60,8 +60,7 @@ class EventEmitter(
                 override val eventName: String = "${analyticsEventName.escapeKotlin()}"
                 override val schemaVersion: Int = $versionInt
 
-            $optionalBacking
-            ${indent(optionalSetters, 4).trimEnd()}
+            ${indent(secondaryCtor, 4).trimEnd()}
 
                 override fun properties(): Map<String, Any?> = $propsMap
 
@@ -117,7 +116,6 @@ class EventEmitter(
             if (f.required) {
                 lines += emitPutEntry(name, access, f.type, receiverIndent)
             } else {
-                // Optional field - only include if not null
                 lines += "${receiverIndent}${access}?.let { put(\"${name.escapeKotlin()}\", ${emitValueExpr("it", f.type.copyNonNull())}) }"
             }
         }
@@ -157,4 +155,33 @@ class EventEmitter(
     }
 
     private fun Type.copyNonNull(): Type = typeRenderer.run { this@copyNonNull.copyNonNull() }
+
+    /**
+     * Generates a secondary constructor with only required fields.
+     * This provides iOS compatibility since Kotlin default parameters aren't exposed to Swift.
+     */
+    private fun emitSecondaryConstructor(
+        requiredFields: List<Field>,
+        optionalFields: List<Field>
+    ): String {
+        if (optionalFields.isEmpty()) return ""
+
+        val params = requiredFields.joinToString(", ") { f ->
+            "${f.name.toCamelCase()}: ${typeRenderer.kotlinType(f.type)}"
+        }
+
+        val allArgs = mutableListOf<String>()
+        requiredFields.forEach { f ->
+            allArgs += f.name.toCamelCase()
+        }
+        optionalFields.forEach { _ ->
+            allArgs += "null"
+        }
+        val primaryCtorCall = allArgs.joinToString(", ")
+
+        return """
+            /** Secondary constructor with required fields only (for iOS compatibility) */
+            constructor($params) : this($primaryCtorCall)
+        """.trimIndent()
+    }
 }
