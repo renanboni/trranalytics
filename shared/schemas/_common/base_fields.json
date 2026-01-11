@@ -1,0 +1,17 @@
+{
+  "description": "Common optional fields added to all analytics events",
+  "properties": {
+    "utm_source": {
+      "type": ["string", "null"],
+      "description": "UTM source parameter for campaign tracking"
+    },
+    "utm_medium": {
+      "type": ["string", "null"],
+      "description": "UTM medium parameter for campaign tracking"
+    },
+    "utm_campaign": {
+      "type": ["string", "null"],
+      "description": "UTM campaign parameter for campaign tracking"
+    }
+  }
+}

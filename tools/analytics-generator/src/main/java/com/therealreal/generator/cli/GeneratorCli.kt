@@ -6,6 +6,7 @@ import com.therealreal.generator.emit.TypeScriptFamilyEmitter
 import com.therealreal.generator.io.KotlinFileWriter
 import com.therealreal.generator.io.TypeScriptFileWriter
 import com.therealreal.generator.io.SchemaLocator
+import com.therealreal.generator.schema.CommonFieldsLoader
 import com.therealreal.generator.schema.SchemaParseException
 import com.therealreal.generator.schema.SchemaParser
 import com.therealreal.generator.validation.SchemaValidator
@@ -16,7 +17,6 @@ import kotlin.system.exitProcess
 object GeneratorCli {
 
     fun run(args: Array<String>) {
-        // Check for validate command
         if (args.firstOrNull() == "validate") {
             runValidate(args.drop(1).toTypedArray())
             return
@@ -26,7 +26,14 @@ object GeneratorCli {
 
         val json = Json { ignoreUnknownKeys = true }
         val locator = SchemaLocator()
-        val parser = SchemaParser(json)
+        val commonFieldsLoader = CommonFieldsLoader(json)
+
+        val commonFields = locator.findCommonFieldsSchema(config.schemasDir)?.let { commonSchemaPath ->
+            println("Loading common fields from: $commonSchemaPath")
+            commonFieldsLoader.load(commonSchemaPath)
+        } ?: emptyList()
+
+        val parser = SchemaParser(json, commonFields)
 
         val schemaFiles = locator.findSchemas(config.schemasDir)
         if (schemaFiles.isEmpty()) {
@@ -43,7 +50,6 @@ object GeneratorCli {
 
         val eventsByFamily = events.groupBy { it.familyName }.toSortedMap()
 
-        // Generate Kotlin
         val kotlinWriter = KotlinFileWriter(config.kotlinOutDir)
         eventsByFamily.forEach { (familyName, familyEvents) ->
             val code = FamilyEmitter(
@@ -56,15 +62,12 @@ object GeneratorCli {
             println("Generated ${config.kotlinOutDir.resolve("$familyName.kt")}")
         }
 
-        // Generate TypeScript (if output directory specified)
         config.typeScriptOutDir?.let { tsOutDir ->
             val tsWriter = TypeScriptFileWriter(tsOutDir)
 
-            // Write base interface
             tsWriter.write("AnalyticsEvent.ts", TypeScriptFamilyEmitter.emitBaseInterface())
             println("Generated ${tsOutDir.resolve("AnalyticsEvent.ts")}")
 
-            // Write family files
             eventsByFamily.forEach { (familyName, familyEvents) ->
                 val code = TypeScriptFamilyEmitter(
                     familyName = familyName,
@@ -75,7 +78,6 @@ object GeneratorCli {
                 println("Generated ${tsOutDir.resolve("$familyName.ts")}")
             }
 
-            // Write index file
             tsWriter.write("index.ts", TypeScriptFamilyEmitter.emitIndex(eventsByFamily.keys.toList()))
             println("Generated ${tsOutDir.resolve("index.ts")}")
         }

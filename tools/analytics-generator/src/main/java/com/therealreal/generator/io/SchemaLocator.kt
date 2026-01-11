@@ -13,8 +13,14 @@ class SchemaLocator {
         return Files.walk(root).use { stream ->
             stream.asSequence()
                 .filter { it.isRegularFile() && it.extension.equals("json", ignoreCase = true) }
+                .filter { !it.toString().contains("/_common/") && !it.toString().contains("\\_common\\") }
                 .sorted()
                 .toList()
         }
+    }
+
+    fun findCommonFieldsSchema(root: Path): Path? {
+        val commonPath = root.resolve("_common/base_fields.json")
+        return if (Files.exists(commonPath)) commonPath else null
     }
 }

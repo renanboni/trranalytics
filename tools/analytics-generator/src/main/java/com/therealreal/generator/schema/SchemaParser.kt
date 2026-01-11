@@ -1,6 +1,7 @@
 package com.therealreal.generator.schema
 
 import com.therealreal.generator.model.EventDef
+import com.therealreal.generator.model.Field
 import com.therealreal.generator.model.ParsePath
 import com.therealreal.generator.model.Type
 import com.therealreal.generator.util.toPascalCase
@@ -10,7 +11,10 @@ import kotlinx.serialization.json.jsonObject
 import java.nio.file.Path
 import kotlin.io.path.readText
 
-class SchemaParser(private val json: Json) {
+class SchemaParser(
+    private val json: Json,
+    private val commonFields: List<Field> = emptyList()
+) {
 
     private val typeParser = TypeParser()
 
@@ -78,6 +82,8 @@ class SchemaParser(private val json: Json) {
             )
         }
 
+        val mergedRoot = mergeCommonFields(rootType)
+
         return EventDef(
             familyName = familyName,
             familyRaw = familyRaw,
@@ -86,7 +92,18 @@ class SchemaParser(private val json: Json) {
             eventClassName = eventClassName,
             analyticsEventName = analyticsEventName,
             schemaFilePath = schemaFile.toString(),
-            root = rootType
+            root = mergedRoot
         )
+    }
+
+    private fun mergeCommonFields(rootType: Type.ObjectT): Type.ObjectT {
+        if (commonFields.isEmpty()) return rootType
+
+        val existingFieldNames = rootType.fields.map { it.name }.toSet()
+        val fieldsToAdd = commonFields.filter { it.name !in existingFieldNames }
+
+        val mergedFields = (rootType.fields + fieldsToAdd).sortedBy { it.name }
+
+        return rootType.copy(fields = mergedFields)
     }
 }

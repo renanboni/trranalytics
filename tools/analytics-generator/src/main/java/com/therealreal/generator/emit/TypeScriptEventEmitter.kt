@@ -29,7 +29,8 @@ class TypeScriptEventEmitter(
         }
 
         optionalFields.forEach { f ->
-            allProps += "${f.name.toCamelCase()}?: ${typeRenderer.tsType(f.type)} | null;"
+            val baseType = typeRenderer.run { tsType(f.type.copyNonNull()) }
+            allProps += "${f.name.toCamelCase()}?: $baseType | null;"
         }
 
         val propsBlock = allProps.joinToString("\n  ")
@@ -72,7 +73,8 @@ ${indent(nestedTypesBlock, 0).trimEnd()}
         }
 
         optionalFields.forEach { f ->
-            allProps += "${f.name.toCamelCase()}?: ${typeRenderer.tsType(f.type)} | null;"
+            val baseType = typeRenderer.run { tsType(f.type.copyNonNull()) }
+            allProps += "${f.name.toCamelCase()}?: $baseType | null;"
         }
 
         val propsBlock = allProps.joinToString("\n  ")
