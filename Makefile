@@ -26,6 +26,8 @@ build-all: ## Build all artifacts (Android + iOS)
 
 generate: ## Generate analytics events from schemas (Kotlin + TypeScript)
 	@./gradlew :shared:generateAnalyticsEvents
+	@cp shared/build/generated/source/analytics/typescript/*.ts types/
+	@echo "✓ TypeScript types copied to types/"
 
 validate: ## Validate JSON schemas for errors
 	@./gradlew :shared:validateSchemas
