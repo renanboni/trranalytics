@@ -16,6 +16,9 @@ export namespace Seller {
       readonly schemaVersion: 1;
       loggedIn: boolean;
       repeatConsignor: boolean;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -29,6 +32,9 @@ export namespace Seller {
       category: string;
       page: string;
       selectedCategory: string;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -48,6 +54,9 @@ export namespace Seller {
       selectedSubcategory: string;
       selectedOptionalColor?: string | null;
       selectedOptionalMaterial?: string | null;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -59,6 +68,9 @@ export namespace Seller {
       readonly eventName: "Consignor Estimator Item Details";
       readonly schemaVersion: 1;
       category: string;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -70,6 +82,9 @@ export namespace Seller {
       readonly eventName: "Consignor Estimator Landing";
       readonly schemaVersion: 1;
       category: string;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -90,6 +105,9 @@ export namespace Seller {
       selectedSubcategory: string;
       selectedOptionalColor?: string | null;
       selectedOptionalMaterial?: string | null;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -102,6 +120,9 @@ export namespace Seller {
       readonly schemaVersion: 1;
       category: string;
       page: string;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -117,6 +138,9 @@ export namespace Seller {
       comment?: string | null;
       feedbackType?: string | null;
       optionsSelected?: string[] | null;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -130,6 +154,9 @@ export namespace Seller {
       category: string;
       page: string;
       type: string;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -148,6 +175,9 @@ export namespace Seller {
       phone: string;
       postalCode: string;
       type: string;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -170,6 +200,9 @@ export namespace Seller {
       loggedIn?: boolean | null;
       method?: string | null;
       path?: string | null;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
       zipCode?: string | null;
     }
 
@@ -183,6 +216,9 @@ export namespace Seller {
       readonly schemaVersion: 1;
       category: string;
       page: string;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -195,6 +231,9 @@ export namespace Seller {
       readonly schemaVersion: 1;
       category: string;
       page: string;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
 
@@ -209,6 +248,9 @@ export namespace Seller {
       error: string;
       page: string;
       type: string;
+      utmCampaign?: string | null;
+      utmMedium?: string | null;
+      utmSource?: string | null;
     }
 
   }
