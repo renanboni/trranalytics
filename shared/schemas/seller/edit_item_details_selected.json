@@ -1,7 +1,6 @@
 {
-  "x-eventName": "lead_form_viewed",
+  "eventName": "edit_item_details_selected",
   "type": "object",
-  "additionalProperties": false,
   "required": [
     "page",
     "category"

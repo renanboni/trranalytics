@@ -19,51 +19,28 @@ class SchemaParser(
     private val typeParser = TypeParser()
 
     fun parse(schemaFile: Path): EventDef {
-        // Expect: .../<family>/<vN>/<event>.json
+        // Expect: .../<family>/<event>.json
         val normalized = schemaFile.normalize().toString().replace('\\', '/')
         val parts = normalized.split('/').filter { it.isNotBlank() }
-        if (parts.size < 3) {
+        if (parts.size < 2) {
             throw SchemaParseException(
-                message = "Schema path must end with <family>/<vN>/<event>.json",
+                message = "Schema path must end with <family>/<event>.json",
                 file = schemaFile,
                 at = "path"
             )
         }
 
-        val versionRaw = parts[parts.size - 2]
-        val familyRaw = parts[parts.size - 3]
-
-        if (!versionRaw.startsWith("v")) {
-            throw SchemaParseException(
-                message = "Version folder must be like v1; got '$versionRaw'",
-                file = schemaFile,
-                at = "path"
-            )
-        }
-
-        val versionInt = versionRaw.removePrefix("v").toIntOrNull()
-            ?: throw SchemaParseException(
-                message = "Version folder must be like v1; got '$versionRaw'",
-                file = schemaFile,
-                at = "path"
-            )
-
+        val familyRaw = parts[parts.size - 2]
         val familyName = familyRaw.toPascalCase()
-        val versionName = "V$versionInt"
         val eventClassName = schemaFile.fileName.toString().removeSuffix(".json").toPascalCase()
 
         val rootObj = json.parseToJsonElement(schemaFile.readText()).jsonObject
 
         val analyticsEventName = (
-            rootObj.stringOrNull("x-eventName")
+            rootObj.stringOrNull("eventName")
                 ?: rootObj.stringOrNull("title")
                 ?: schemaFile.fileName.toString().removeSuffix(".json")
         ).toTitleCase()
-
-        val additionalProps = rootObj.booleanOrNull("additionalProperties")
-        if (additionalProps != false) {
-            println("WARN: $schemaFile: recommend additionalProperties=false for analytics stability.")
-        }
 
         val registry = NameRegistry()
         val rootType = typeParser.parse(
@@ -87,8 +64,6 @@ class SchemaParser(
         return EventDef(
             familyName = familyName,
             familyRaw = familyRaw,
-            versionInt = versionInt,
-            versionName = versionName,
             eventClassName = eventClassName,
             analyticsEventName = analyticsEventName,
             schemaFilePath = schemaFile.toString(),

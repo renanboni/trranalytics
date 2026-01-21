@@ -1,7 +1,6 @@
 {
-  "x-eventName": "consignor_estimator_details_submitted",
+  "eventName": "consignor_estimator_details_submitted",
   "type": "object",
-  "additionalProperties": false,
   "required": [
     "page",
     "category",

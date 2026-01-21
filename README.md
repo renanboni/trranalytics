@@ -1,12 +1,6 @@
-# Analytics Event Kotlin Generator
+# TRRAnalytics
 
-This project generates Kotlin Multiplatform source files and TypeScript types from JSON Schema files laid
-out in a simple directory structure. The output is a strongly-typed
-API for analytics events, producing `JsonObject` payloads
-via `kotlinx.serialization.json`.
-
-The generator is intentionally strict and focused on a small JSON Schema
-subset that matches typical analytics event schemas.
+A Kotlin Multiplatform library that generates type-safe analytics events from JSON Schema files. Define events once, use them across Android, iOS, and Web with full type safety.
 
 ------------------------------------------------------------------------
 
@@ -24,24 +18,22 @@ subset that matches typical analytics event schemas.
 
 For each **family**, the generator outputs a single Kotlin file:
 
--   `Purchase.kt`
--   `Signup.kt`
+-   `Seller.kt`
+-   `Buyer.kt`
 -   etc.
 
 Each family file contains:
 
 -   a sealed interface `FamilyName : AnalyticsEvent`
--   per-version container objects (`V1`, `V2`, ...)
--   event classes (one per schema)
+-   event data classes (one per schema)
 -   nested classes/enums for nested object/enum types
+-   secondary constructors for iOS compatibility
 
 Events implement:
 
 -   `eventName: String`
--   `schemaVersion: Int`
--   `properties(): JsonObject`
--   `payload(): JsonObject` (includes `event`, `schemaVersion`,
-    `properties`)
+-   `properties(): Map<String, Any?>`
+-   `payload(): Map<String, Any?>`
 
 ------------------------------------------------------------------------
 
@@ -51,60 +43,63 @@ Events implement:
 
 All properties (required and optional) are passed as constructor parameters. Optional properties default to `null`:
 
-``` kotlin
-import analytics.events.Purchase
-import com.therealreal.analytics.events.propertiesMap
+```kotlin
+import analytics.events.Seller
 
 // Create an event with required and optional properties
-val event = Purchase.V1.RefundRequested(
-    amount = 100.0,
-    orderId = "ORDER-123",
-    reason = "damaged"  // optional
+val event = Seller.ConsignmentHome(
+    loggedIn = true,
+    repeatConsignor = false,
+    utmSource = "google"  // optional
 )
 
-// Get properties as Map<String, Any> for tracking
-val properties: Map<String, Any?> = event.propertiesMap()
+// Get properties as Map<String, Any?> for tracking
+val properties = event.properties()
 trackEvent(event.eventName, properties)
 
-// Or use the JsonObject directly
+// Or use the full payload
 val payload = event.payload()
 ```
 
 ### Swift (iOS)
 
-The same events work seamlessly in Swift:
+The same events work seamlessly in Swift. Secondary constructors allow you to omit optional parameters:
 
-``` swift
+```swift
 import Shared
 
-// Create an event
-let event = PurchaseV1.RefundRequested(
-    amount: 100.0,
-    orderId: "ORDER-123",
-    reason: "damaged"  // optional
+// Create an event with only required fields
+let event = Seller.ConsignmentHome(
+    loggedIn: true,
+    repeatConsignor: false
 )
 
-// Get properties as [String: AnyHashable] for tracking
-let properties = event.propertiesMap()
-Analytics.track(event.eventName, properties: properties)
+// Or with optional UTM params
+let eventWithUtm = Seller.ConsignmentHome(
+    loggedIn: true,
+    repeatConsignor: false,
+    utmSource: "google",
+    utmMedium: "cpc",
+    utmCampaign: "summer"
+)
 
-// Or use the JsonObject if needed
-let payload = event.payload()
+// Track the event
+Analytics.track(event.eventName, properties: event.properties())
 ```
 
 ### TypeScript (Web)
 
-The generated TypeScript types provide compile-time type safety without runtime overhead:
+The generated TypeScript types provide compile-time type safety:
 
-``` typescript
-import { Seller } from './generated/analytics';
+```typescript
+import { Seller } from '@therealreal/analytics-types';
 
 // Type-safe event creation
-const event: Seller.V1.ConsignmentHome = {
-  eventName: "consignment_home",
-  schemaVersion: 1,
+const event: Seller.ConsignmentHome = {
+  eventName: "Consignment Home",
   loggedIn: true,
-  repeatConsignor: false
+  repeatConsignor: false,
+  utmSource: "google"  // optional
 };
 
 // Track with your analytics provider
@@ -185,36 +180,58 @@ Schemas must be stored as:
 
     <schemasDir>/
       <family>/
-        v<version>/
-          <event>.json
+        <event>.json
 
 Examples:
 
     schemas/
-      purchase/
-        v1/
-          return_item.json
-          checkout_started.json
-      signup/
-        v2/
-          completed.json
+      _common/
+        base_fields.json      # shared fields added to all events
+      seller/
+        consignment_home.json
+        form_started.json
+      buyer/
+        product_viewed.json
 
 Naming rules:
 
--   `family` folder becomes a PascalCase Kotlin type: `purchase` →
-    `Purchase`
--   `v1` becomes `V1`, `v2` becomes `V2`
--   file name becomes event class name: `return_item.json` →
-    `ReturnItem`
+-   `family` folder becomes a PascalCase Kotlin type: `seller` → `Seller`
+-   file name becomes event class name: `consignment_home.json` → `ConsignmentHome`
 -   Event names and property names must use `snake_case`
 
 ------------------------------------------------------------------------
 
-## Schema Versioning Guidelines
+## Common Fields
 
-Create a new version (v1 → v2) when you make **breaking changes**. Non-breaking changes can stay in the current version.
+Define shared fields once in `schemas/_common/base_fields.json`. These fields are automatically added to all events as optional properties.
 
-### Non-breaking changes (stay in current version)
+```json
+{
+  "description": "Common optional fields added to all analytics events",
+  "properties": {
+    "utm_source": {
+      "type": ["string", "null"],
+      "description": "UTM source parameter for campaign tracking"
+    },
+    "utm_medium": {
+      "type": ["string", "null"],
+      "description": "UTM medium parameter for campaign tracking"
+    },
+    "utm_campaign": {
+      "type": ["string", "null"],
+      "description": "UTM campaign parameter for campaign tracking"
+    }
+  }
+}
+```
+
+------------------------------------------------------------------------
+
+## Schema Evolution Guidelines
+
+Events evolve through **additive changes only**. This ensures backward compatibility without versioning complexity.
+
+### Allowed changes
 
 | Change | Why it's safe |
 |--------|---------------|
@@ -222,9 +239,8 @@ Create a new version (v1 → v2) when you make **breaking changes**. Non-breakin
 | Add a new **event** | Old code doesn't use it |
 | Add new enum values | Old code ignores unknown values |
 | Change description/docs | No runtime impact |
-| Make a required field **optional** | Old code still sends it |
 
-### Breaking changes (create new version)
+### Not allowed (would require a new event)
 
 | Change | Why it breaks |
 |--------|---------------|
@@ -232,26 +248,12 @@ Create a new version (v1 → v2) when you make **breaking changes**. Non-breakin
 | **Rename** a property | Old code sends wrong key |
 | Add a new **required** property | Old code doesn't send it |
 | Change property **type** | Type mismatch (string → number) |
-| Remove enum values | Old code may send removed value |
-| Rename event name | Old analytics won't match new |
-
-### Example
-
-```
-schemas/seller/
-├── v1/
-│   └── checkout_started.json    # original: { amount, currency }
-└── v2/
-    └── checkout_started.json    # breaking: { total_amount, currency, items[] }
-```
-
-Both versions coexist - some clients use v1 while others migrate to v2.
 
 ### Rule of thumb
 
 > "Can old code still work if I make this change?"
-> - **Yes** → stay in current version
-> - **No** → create new version
+> - **Yes** → make the change
+> - **No** → create a new event instead
 
 ------------------------------------------------------------------------
 
@@ -277,9 +279,28 @@ The validator checks for:
 | Property names not in snake_case | Error |
 | Missing `items` for arrays | Error |
 | Nested arrays | Error |
-| Missing `additionalProperties: false` | Warning |
 
 Validation runs automatically before code generation.
+
+------------------------------------------------------------------------
+
+## Example Schema
+
+```json
+{
+  "eventName": "consignment_home",
+  "type": "object",
+  "required": ["logged_in", "repeat_consignor"],
+  "properties": {
+    "logged_in": {
+      "type": "boolean"
+    },
+    "repeat_consignor": {
+      "type": "boolean"
+    }
+  }
+}
+```
 
 ------------------------------------------------------------------------
 
@@ -287,16 +308,13 @@ Validation runs automatically before code generation.
 
 ### Types
 
--   `type: "object"`, `"string"`, `"number"`, `"integer"`, `"boolean"`,
-    `"array"`
+-   `type: "object"`, `"string"`, `"number"`, `"integer"`, `"boolean"`, `"array"`
 -   Nullable variants via `type: ["null", "<type>"]`
 
 ### Objects
 
 -   `properties` is required for objects
--   `required` is supported
--   `additionalProperties` is not enforced but the generator will warn
-    if it isn't `false`
+-   `required` array specifies mandatory fields
 
 ### Arrays
 
@@ -307,11 +325,10 @@ Validation runs automatically before code generation.
 ### Enums
 
 -   `type: "string"` + `enum: [...]` generates a Kotlin `enum class`
--   enums are emitted as `.name` into JSON
 
 ### Event name
 
-Resolved in order: 1. `x-eventName` 2. `title` 3. `<family>_<filename>`
+Resolved in order: 1. `eventName` 2. `title` 3. filename
 
 ------------------------------------------------------------------------
 
@@ -325,50 +342,20 @@ Resolved in order: 1. `x-eventName` 2. `title` 3. `<family>_<filename>`
 
 ------------------------------------------------------------------------
 
-## How it works (architecture)
-
-**CLI** - argument parsing - orchestration - error reporting
-
-**IO** - deterministic schema discovery - Kotlin file writing
-
-**Schema parsing** - path-based family/version resolution - strict JSON
-Schema parsing - name de-duplication for nested types
-
-**Model** - sealed `Type` hierarchy - explicit `Field` definitions -
-parsed `EventDef`
-
-**Emission** - family-level generation - per-event class generation -
-nested enums and objects - JSON builders
-
-------------------------------------------------------------------------
-
-## Optional fields and nullability
-
-Optional (non-required) fields are represented as nullable constructor parameters
-with default values of `null`. Even if the schema type itself is non-null,
-optional fields become nullable in the generated Kotlin code.
-
-Fields are only emitted into JSON if they are not `null`.
-
-------------------------------------------------------------------------
-
 ## Running the generator
 
-CLI arguments:
-
-    <schemasDir> <kotlinOutDir> [typeScriptOutDir] [outputPackage]
-
-Examples:
-
-``` bash
-# Generate Kotlin only
-./gradlew run --args "schemas/ build/generated-src"
-
-# Generate both Kotlin and TypeScript
-./gradlew run --args "schemas/ build/generated-kotlin build/generated-typescript analytics.events"
-
-# Using Make
+```bash
+# Generate Kotlin and TypeScript
 make generate
+
+# Validate schemas only
+make validate
+
+# Build iOS XCFramework
+make build-ios
+
+# Create a release
+make release
 ```
 
 ### Generated output locations
@@ -376,7 +363,6 @@ make generate
 After running `make generate`:
 
 - **Kotlin**: `shared/build/generated/source/analytics/commonMain/kotlin/`
-- **TypeScript**: `shared/build/generated/source/analytics/typescript/`
+- **TypeScript**: `types/`
 
 ------------------------------------------------------------------------
-

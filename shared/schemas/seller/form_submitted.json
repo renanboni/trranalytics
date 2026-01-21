@@ -1,7 +1,6 @@
 {
-  "x-eventName": "form_submitted",
+  "eventName": "form_submitted",
   "type": "object",
-  "additionalProperties": false,
   "required": [
     "page",
     "category",

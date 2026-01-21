@@ -1,20 +1,15 @@
 {
-  "x-eventName": "form_started",
+  "eventName": "new_search_selected",
   "type": "object",
-  "additionalProperties": false,
   "required": [
     "page",
-    "category",
-    "type"
+    "category"
   ],
   "properties": {
     "page": {
       "type": "string"
     },
     "category": {
-      "type": "string"
-    },
-    "type": {
       "type": "string"
     }
   }

@@ -9,7 +9,6 @@ import com.therealreal.generator.util.toEnumConstant
 
 class EventEmitter(
     private val familyName: String,
-    private val versionInt: Int,
     private val eventClassName: String,
     private val analyticsEventName: String,
     private val schemaFilePath: String,
@@ -47,7 +46,7 @@ class EventEmitter(
         return """
             /**
              * Generated from JSON Schema ($schemaFilePath)
-             * event="$analyticsEventName", schemaVersion=$versionInt
+             * event="$analyticsEventName"
              */
             data class $eventClassName(
                 $ctorArgs
@@ -58,7 +57,6 @@ class EventEmitter(
             ${indent(nestedObjectsBlock, 4).trimEnd()}
 
                 override val eventName: String = "${analyticsEventName.escapeKotlin()}"
-                override val schemaVersion: Int = $versionInt
 
             ${indent(secondaryCtor, 4).trimEnd()}
 
@@ -66,7 +64,6 @@ class EventEmitter(
 
                 override fun payload(): Map<String, Any?> = mapOf(
                     "event" to eventName,
-                    "schemaVersion" to schemaVersion,
                     "properties" to properties()
                 )
             }

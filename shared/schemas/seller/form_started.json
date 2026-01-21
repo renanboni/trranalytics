@@ -1,16 +1,19 @@
 {
-  "x-eventName": "edit_item_details_selected",
+  "eventName": "form_started",
   "type": "object",
-  "additionalProperties": false,
   "required": [
     "page",
-    "category"
+    "category",
+    "type"
   ],
   "properties": {
     "page": {
       "type": "string"
     },
     "category": {
+      "type": "string"
+    },
+    "type": {
       "type": "string"
     }
   }

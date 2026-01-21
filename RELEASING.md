@@ -230,9 +230,8 @@ Usage:
 ```typescript
 import { Seller, AnalyticsEvent } from '@therealreal/analytics-types';
 
-const event: Seller.V1.ConsignmentHome = {
-  eventName: "consignment_home",
-  schemaVersion: 1,
+const event: Seller.ConsignmentHome = {
+  eventName: "Consignment Home",
   loggedIn: true,
   repeatConsignor: false
 };

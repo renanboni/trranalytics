@@ -1,15 +1,10 @@
 {
-  "x-eventName": "new_search_selected",
+  "eventName": "consignor_estimator_item_details",
   "type": "object",
-  "additionalProperties": false,
   "required": [
-    "page",
     "category"
   ],
   "properties": {
-    "page": {
-      "type": "string"
-    },
     "category": {
       "type": "string"
     }

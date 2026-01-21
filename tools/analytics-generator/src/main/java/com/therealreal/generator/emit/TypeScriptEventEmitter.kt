@@ -7,7 +7,6 @@ import com.therealreal.generator.util.toCamelCase
 
 class TypeScriptEventEmitter(
     private val familyName: String,
-    private val versionInt: Int,
     private val eventClassName: String,
     private val analyticsEventName: String,
     private val schemaFilePath: String,
@@ -45,11 +44,10 @@ class TypeScriptEventEmitter(
         return """
 /**
  * Generated from JSON Schema ($schemaFilePath)
- * event="$analyticsEventName", schemaVersion=$versionInt
+ * event="$analyticsEventName"
  */
 export interface $eventClassName extends $familyName {
   readonly eventName: "${analyticsEventName.escapeKotlin()}";
-  readonly schemaVersion: $versionInt;
   $propsBlock
 }
 

@@ -3,5 +3,4 @@
  */
 export interface AnalyticsEvent {
   readonly eventName: string;
-  readonly schemaVersion: number;
 }

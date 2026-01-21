@@ -1,7 +1,6 @@
 {
-  "x-eventName": "feedback_submitted",
+  "eventName": "feedback_submitted",
   "type": "object",
-  "additionalProperties": false,
   "required": [
     "feature_name",
     "location"

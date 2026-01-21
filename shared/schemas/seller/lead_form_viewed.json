@@ -1,14 +1,18 @@
 {
-  "x-eventName": "consignor_estimator_landing",
+  "eventName": "lead_form_viewed",
   "type": "object",
-  "additionalProperties": false,
   "required": [
+    "page",
     "category"
   ],
   "properties": {
+    "page": {
+      "type": "string"
+    },
     "category": {
       "type": "string"
     }
   }
 }
+
 

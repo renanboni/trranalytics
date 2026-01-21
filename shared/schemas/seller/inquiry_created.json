@@ -1,7 +1,6 @@
 {
-  "x-eventName": "inquiry_created",
+  "eventName": "inquiry_created",
   "type": "object",
-  "additionalProperties": false,
   "required": [
     "repeat_consignor",
     "inquiry_id"

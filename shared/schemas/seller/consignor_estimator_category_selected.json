@@ -1,12 +1,10 @@
 {
-  "x-eventName": "server_error",
+  "eventName": "consignor_estimator_category_selected",
   "type": "object",
-  "additionalProperties": false,
   "required": [
     "page",
     "category",
-    "type",
-    "error"
+    "selected_category"
   ],
   "properties": {
     "page": {
@@ -15,10 +13,7 @@
     "category": {
       "type": "string"
     },
-    "type": {
-      "type": "string"
-    },
-    "error": {
+    "selected_category": {
       "type": "string"
     }
   }

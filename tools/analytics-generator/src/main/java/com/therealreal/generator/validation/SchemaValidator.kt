@@ -35,12 +35,12 @@ class SchemaValidator {
             return ValidationResult(issues)
         }
 
-        // Validate x-eventName if present
-        val eventName = (rootObj["x-eventName"] as? JsonPrimitive)?.contentOrNull
+        // Validate eventName if present
+        val eventName = (rootObj["eventName"] as? JsonPrimitive)?.contentOrNull
         if (eventName != null && !snakeCaseRegex.matches(eventName)) {
             issues.add(
                 ValidationIssue(
-                    schemaFile, "x-eventName",
+                    schemaFile, "eventName",
                     "Event name '$eventName' must be snake_case (e.g., 'lead_form_viewed')",
                     ERROR
                 )
@@ -88,12 +88,12 @@ class SchemaValidator {
         val normalized = file.normalize().toString().replace('\\', '/')
         val parts = normalized.split('/').filter { it.isNotBlank() }
 
-        if (parts.size < 3) {
+        if (parts.size < 2) {
             issues.add(
                 ValidationIssue(
                     file,
                     "path",
-                    "Schema path must be <family>/<vN>/<event>.json",
+                    "Schema path must be <family>/<event>.json",
                     ERROR
                 )
             )
@@ -101,8 +101,7 @@ class SchemaValidator {
         }
 
         val fileName = parts.last()
-        val versionFolder = parts[parts.size - 2]
-        val familyFolder = parts[parts.size - 3]
+        val familyFolder = parts[parts.size - 2]
 
         // Validate file name
         if (!fileName.endsWith(".json")) {
@@ -122,18 +121,6 @@ class SchemaValidator {
 
         if (fileName != fileName.lowercase()) {
             issues.add(ValidationIssue(file, "path", "File name should be lowercase", WARNING))
-        }
-
-        // Validate version folder
-        if (!versionFolder.matches(Regex("v\\d+"))) {
-            issues.add(
-                ValidationIssue(
-                    file,
-                    "path",
-                    "Version folder must be like 'v1', 'v2', etc. Got: '$versionFolder'",
-                    ERROR
-                )
-            )
         }
 
         // Validate family folder
@@ -271,31 +258,6 @@ class SchemaValidator {
 
         if (propsObj.isEmpty()) {
             issues.add(ValidationIssue(file, path, "'properties' should not be empty", WARNING))
-        }
-
-        // Validate additionalProperties
-        val additionalProps = node["additionalProperties"]
-        if (additionalProps == null) {
-            issues.add(
-                ValidationIssue(
-                    file,
-                    path,
-                    "Missing 'additionalProperties: false' (recommended for analytics stability)",
-                    WARNING
-                )
-            )
-        } else {
-            val value = (additionalProps as? JsonPrimitive)?.booleanOrNull
-            if (value != false) {
-                issues.add(
-                    ValidationIssue(
-                        file,
-                        path,
-                        "'additionalProperties' should be false for analytics stability",
-                        WARNING
-                    )
-                )
-            }
         }
 
         // Validate required array
@@ -441,7 +403,7 @@ class SchemaValidator {
     private fun extractEventName(file: Path): String? {
         return try {
             val json = Json.parseToJsonElement(file.readText()).jsonObject
-            (json["x-eventName"] as? JsonPrimitive)?.contentOrNull
+            (json["eventName"] as? JsonPrimitive)?.contentOrNull
                 ?: (json["title"] as? JsonPrimitive)?.contentOrNull
                 ?: file.fileName.toString().removeSuffix(".json")
         } catch (_: Exception) {

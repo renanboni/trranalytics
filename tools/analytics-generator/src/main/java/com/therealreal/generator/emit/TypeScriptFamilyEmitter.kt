@@ -8,13 +8,16 @@ class TypeScriptFamilyEmitter(
     private val familyEvents: List<EventDef>
 ) {
     fun emitFamily(): String {
-        val byVersion = familyEvents.groupBy { it.versionInt }.toSortedMap()
-
-        val versionBlocks = byVersion.values.joinToString("\n\n") { eventsInVersion ->
-            val vInt = eventsInVersion.first().versionInt
-            val vName = eventsInVersion.first().versionName
-            emitVersion(vInt, vName, eventsInVersion)
-        }
+        val eventBlocks = familyEvents.sortedBy { it.eventClassName }
+            .joinToString("\n\n") { e ->
+                TypeScriptEventEmitter(
+                    familyName = familyName,
+                    eventClassName = e.eventClassName,
+                    analyticsEventName = e.analyticsEventName,
+                    schemaFilePath = e.schemaFilePath,
+                    root = e.root
+                ).emitEvent()
+            }
 
         return """
 import { AnalyticsEvent } from './AnalyticsEvent';
@@ -25,29 +28,9 @@ import { AnalyticsEvent } from './AnalyticsEvent';
 export interface $familyName extends AnalyticsEvent {}
 
 export namespace $familyName {
-${indent(versionBlocks, 2)}
-}
-        """.trimIndent().trim() + "\n"
-    }
-
-    private fun emitVersion(versionInt: Int, versionName: String, events: List<EventDef>): String {
-        val eventBlocks = events.sortedBy { it.eventClassName }
-            .joinToString("\n\n") { e ->
-                TypeScriptEventEmitter(
-                    familyName = familyName,
-                    versionInt = versionInt,
-                    eventClassName = e.eventClassName,
-                    analyticsEventName = e.analyticsEventName,
-                    schemaFilePath = e.schemaFilePath,
-                    root = e.root
-                ).emitEvent()
-            }
-
-        return """
-export namespace $versionName {
 ${indent(eventBlocks, 2)}
 }
-        """.trimIndent().trim()
+        """.trimIndent().trim() + "\n"
     }
 
     companion object {
@@ -58,7 +41,6 @@ ${indent(eventBlocks, 2)}
  */
 export interface AnalyticsEvent {
   readonly eventName: string;
-  readonly schemaVersion: number;
 }
             """.trimIndent().trim() + "\n"
         }

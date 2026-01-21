@@ -9,13 +9,16 @@ class FamilyEmitter(
     private val familyEvents: List<EventDef>
 ) {
     fun emitFamily(): String {
-        val byVersion = familyEvents.groupBy { it.versionInt }.toSortedMap()
-
-        val versionBlocks = byVersion.values.joinToString("\n\n") { eventsInVersion ->
-            val vInt = eventsInVersion.first().versionInt
-            val vName = eventsInVersion.first().versionName
-            emitVersion(vInt, vName, eventsInVersion)
-        }
+        val eventBlocks = familyEvents.sortedBy { it.eventClassName }
+            .joinToString("\n\n") { e ->
+                EventEmitter(
+                    familyName = familyName,
+                    eventClassName = e.eventClassName,
+                    analyticsEventName = e.analyticsEventName,
+                    schemaFilePath = e.schemaFilePath,
+                    root = e.root
+                ).emitEvent()
+            }
 
         return """
             package $pkg
@@ -27,28 +30,8 @@ class FamilyEmitter(
              */
             sealed interface $familyName : AnalyticsEvent {
 
-            ${indent(versionBlocks, 2).trimEnd()}
-            }
-        """.trimIndent() + "\n"
-    }
-
-    private fun emitVersion(versionInt: Int, versionName: String, events: List<EventDef>): String {
-        val eventBlocks = events.sortedBy { it.eventClassName }
-            .joinToString("\n\n") { e ->
-                EventEmitter(
-                    familyName = familyName,
-                    versionInt = versionInt,
-                    eventClassName = e.eventClassName,
-                    analyticsEventName = e.analyticsEventName,
-                    schemaFilePath = e.schemaFilePath,
-                    root = e.root
-                ).emitEvent()
-            }
-
-        return """
-            object $versionName {
             ${indent(eventBlocks, 2).trimEnd()}
             }
-        """.trimIndent()
+        """.trimIndent() + "\n"
     }
 }
