@@ -1,6 +1,6 @@
 {
   "name": "@therealreal/analytics-types",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "TypeScript type definitions for TRRAnalytics events",
   "main": "index.ts",
   "types": "index.ts",

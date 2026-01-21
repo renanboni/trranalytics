@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedSellerV1, SharedSellerV1ConsignmentHome, SharedSellerV1ConsignorEstimatorCategorySelected, SharedSellerV1ConsignorEstimatorDetailsSubmitted, SharedSellerV1ConsignorEstimatorItemDetails, SharedSellerV1ConsignorEstimatorLanding, SharedSellerV1ConsignorEstimatorResults, SharedSellerV1EditItemDetailsSelected, SharedSellerV1FeedbackSubmitted, SharedSellerV1FormStarted, SharedSellerV1FormSubmitted, SharedSellerV1InquiryCreated, SharedSellerV1LeadFormViewed, SharedSellerV1NewSearchSelected, SharedSellerV1ServerError;
+@class SharedSellerConsignmentHome, SharedSellerConsignorEstimatorCategorySelected, SharedSellerConsignorEstimatorDetailsSubmitted, SharedSellerConsignorEstimatorItemDetails, SharedSellerConsignorEstimatorLanding, SharedSellerConsignorEstimatorResults, SharedSellerEditItemDetailsSelected, SharedSellerFeedbackSubmitted, SharedSellerFormStarted, SharedSellerFormSubmitted, SharedSellerInquiryCreated, SharedSellerLeadFormViewed, SharedSellerNewSearchSelected, SharedSellerServerError;
 
 @protocol SharedAnalyticsEvent, SharedPlatform, SharedSeller;
 
@@ -150,7 +150,6 @@ __attribute__((swift_name("AnalyticsEvent")))
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @end
 
 
@@ -162,52 +161,42 @@ __attribute__((swift_name("Seller")))
 @required
 @end
 
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1")))
-@interface SharedSellerV1 : SharedBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)v1 __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SharedSellerV1 *shared __attribute__((swift_name("shared")));
-@end
-
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
- * event="Consignment Home", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_home.json)
+ * event="Consignment Home"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.ConsignmentHome")))
-@interface SharedSellerV1ConsignmentHome : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerConsignmentHome")))
+@interface SharedSellerConsignmentHome : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithLoggedIn:(BOOL)loggedIn repeatConsignor:(BOOL)repeatConsignor __attribute__((swift_name("init(loggedIn:repeatConsignor:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithLoggedIn:(BOOL)loggedIn repeatConsignor:(BOOL)repeatConsignor utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(loggedIn:repeatConsignor:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1ConsignmentHome *)doCopyLoggedIn:(BOOL)loggedIn repeatConsignor:(BOOL)repeatConsignor utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(loggedIn:repeatConsignor:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerConsignmentHome *)doCopyLoggedIn:(BOOL)loggedIn repeatConsignor:(BOOL)repeatConsignor utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(loggedIn:repeatConsignor:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
- * event="Consignment Home", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_home.json)
+ * event="Consignment Home"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
- * event="Consignment Home", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_home.json)
+ * event="Consignment Home"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignment_home.json)
- * event="Consignment Home", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_home.json)
+ * event="Consignment Home"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
 @property (readonly) BOOL loggedIn __attribute__((swift_name("loggedIn")));
 @property (readonly) BOOL repeatConsignor __attribute__((swift_name("repeatConsignor")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
 @property (readonly) NSString * _Nullable utmSource __attribute__((swift_name("utmSource")));
@@ -215,41 +204,40 @@ __attribute__((swift_name("SellerV1.ConsignmentHome")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
- * event="Consignor Estimator Category Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
+ * event="Consignor Estimator Category Selected"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.ConsignorEstimatorCategorySelected")))
-@interface SharedSellerV1ConsignorEstimatorCategorySelected : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerConsignorEstimatorCategorySelected")))
+@interface SharedSellerConsignorEstimatorCategorySelected : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory __attribute__((swift_name("init(category:page:selectedCategory:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:page:selectedCategory:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1ConsignorEstimatorCategorySelected *)doCopyCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:selectedCategory:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerConsignorEstimatorCategorySelected *)doCopyCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:selectedCategory:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
- * event="Consignor Estimator Category Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
+ * event="Consignor Estimator Category Selected"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
- * event="Consignor Estimator Category Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
+ * event="Consignor Estimator Category Selected"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_category_selected.json)
- * event="Consignor Estimator Category Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
+ * event="Consignor Estimator Category Selected"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
 @property (readonly) NSString *page __attribute__((swift_name("page")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString *selectedCategory __attribute__((swift_name("selectedCategory")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
@@ -258,41 +246,40 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorCategorySelected")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
- * event="Consignor Estimator Details Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
+ * event="Consignor Estimator Details Submitted"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.ConsignorEstimatorDetailsSubmitted")))
-@interface SharedSellerV1ConsignorEstimatorDetailsSubmitted : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerConsignorEstimatorDetailsSubmitted")))
+@interface SharedSellerConsignorEstimatorDetailsSubmitted : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory __attribute__((swift_name("init(category:page:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionalColor:(NSString * _Nullable)selectedOptionalColor selectedOptionalMaterial:(NSString * _Nullable)selectedOptionalMaterial utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:page:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionalColor:selectedOptionalMaterial:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1ConsignorEstimatorDetailsSubmitted *)doCopyCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionalColor:(NSString * _Nullable)selectedOptionalColor selectedOptionalMaterial:(NSString * _Nullable)selectedOptionalMaterial utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionalColor:selectedOptionalMaterial:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerConsignorEstimatorDetailsSubmitted *)doCopyCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionalColor:(NSString * _Nullable)selectedOptionalColor selectedOptionalMaterial:(NSString * _Nullable)selectedOptionalMaterial utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionalColor:selectedOptionalMaterial:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
- * event="Consignor Estimator Details Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
+ * event="Consignor Estimator Details Submitted"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
- * event="Consignor Estimator Details Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
+ * event="Consignor Estimator Details Submitted"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_details_submitted.json)
- * event="Consignor Estimator Details Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
+ * event="Consignor Estimator Details Submitted"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
 @property (readonly) NSString *page __attribute__((swift_name("page")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString *selectedCategory __attribute__((swift_name("selectedCategory")));
 @property (readonly) NSString *selectedCondition __attribute__((swift_name("selectedCondition")));
 @property (readonly) NSString *selectedDesigner __attribute__((swift_name("selectedDesigner")));
@@ -307,40 +294,39 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorDetailsSubmitted")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
- * event="Consignor Estimator Item Details", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
+ * event="Consignor Estimator Item Details"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.ConsignorEstimatorItemDetails")))
-@interface SharedSellerV1ConsignorEstimatorItemDetails : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerConsignorEstimatorItemDetails")))
+@interface SharedSellerConsignorEstimatorItemDetails : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category __attribute__((swift_name("init(category:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1ConsignorEstimatorItemDetails *)doCopyCategory:(NSString *)category utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerConsignorEstimatorItemDetails *)doCopyCategory:(NSString *)category utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
- * event="Consignor Estimator Item Details", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
+ * event="Consignor Estimator Item Details"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
- * event="Consignor Estimator Item Details", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
+ * event="Consignor Estimator Item Details"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_item_details.json)
- * event="Consignor Estimator Item Details", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
+ * event="Consignor Estimator Item Details"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
 @property (readonly) NSString * _Nullable utmSource __attribute__((swift_name("utmSource")));
@@ -348,40 +334,39 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorItemDetails")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
- * event="Consignor Estimator Landing", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
+ * event="Consignor Estimator Landing"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.ConsignorEstimatorLanding")))
-@interface SharedSellerV1ConsignorEstimatorLanding : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerConsignorEstimatorLanding")))
+@interface SharedSellerConsignorEstimatorLanding : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category __attribute__((swift_name("init(category:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1ConsignorEstimatorLanding *)doCopyCategory:(NSString *)category utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerConsignorEstimatorLanding *)doCopyCategory:(NSString *)category utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
- * event="Consignor Estimator Landing", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
+ * event="Consignor Estimator Landing"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
- * event="Consignor Estimator Landing", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
+ * event="Consignor Estimator Landing"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_landing.json)
- * event="Consignor Estimator Landing", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
+ * event="Consignor Estimator Landing"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
 @property (readonly) NSString * _Nullable utmSource __attribute__((swift_name("utmSource")));
@@ -389,42 +374,41 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorLanding")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
- * event="Consignor Estimator Results", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
+ * event="Consignor Estimator Results"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.ConsignorEstimatorResults")))
-@interface SharedSellerV1ConsignorEstimatorResults : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerConsignorEstimatorResults")))
+@interface SharedSellerConsignorEstimatorResults : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category estimateResultFrom:(NSString *)estimateResultFrom estimateResultTo:(NSString *)estimateResultTo selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory __attribute__((swift_name("init(category:estimateResultFrom:estimateResultTo:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category estimateResultFrom:(NSString *)estimateResultFrom estimateResultTo:(NSString *)estimateResultTo selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionalColor:(NSString * _Nullable)selectedOptionalColor selectedOptionalMaterial:(NSString * _Nullable)selectedOptionalMaterial utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:estimateResultFrom:estimateResultTo:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionalColor:selectedOptionalMaterial:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1ConsignorEstimatorResults *)doCopyCategory:(NSString *)category estimateResultFrom:(NSString *)estimateResultFrom estimateResultTo:(NSString *)estimateResultTo selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionalColor:(NSString * _Nullable)selectedOptionalColor selectedOptionalMaterial:(NSString * _Nullable)selectedOptionalMaterial utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:estimateResultFrom:estimateResultTo:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionalColor:selectedOptionalMaterial:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerConsignorEstimatorResults *)doCopyCategory:(NSString *)category estimateResultFrom:(NSString *)estimateResultFrom estimateResultTo:(NSString *)estimateResultTo selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionalColor:(NSString * _Nullable)selectedOptionalColor selectedOptionalMaterial:(NSString * _Nullable)selectedOptionalMaterial utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:estimateResultFrom:estimateResultTo:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionalColor:selectedOptionalMaterial:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
- * event="Consignor Estimator Results", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
+ * event="Consignor Estimator Results"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
- * event="Consignor Estimator Results", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
+ * event="Consignor Estimator Results"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/consignor_estimator_results.json)
- * event="Consignor Estimator Results", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
+ * event="Consignor Estimator Results"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *estimateResultFrom __attribute__((swift_name("estimateResultFrom")));
 @property (readonly) NSString *estimateResultTo __attribute__((swift_name("estimateResultTo")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString *selectedCategory __attribute__((swift_name("selectedCategory")));
 @property (readonly) NSString *selectedCondition __attribute__((swift_name("selectedCondition")));
 @property (readonly) NSString *selectedDesigner __attribute__((swift_name("selectedDesigner")));
@@ -439,41 +423,40 @@ __attribute__((swift_name("SellerV1.ConsignorEstimatorResults")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
- * event="Edit Item Details Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_item_details_selected.json)
+ * event="Edit Item Details Selected"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
-@interface SharedSellerV1EditItemDetailsSelected : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerEditItemDetailsSelected")))
+@interface SharedSellerEditItemDetailsSelected : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page __attribute__((swift_name("init(category:page:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:page:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1EditItemDetailsSelected *)doCopyCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerEditItemDetailsSelected *)doCopyCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
- * event="Edit Item Details Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_item_details_selected.json)
+ * event="Edit Item Details Selected"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
- * event="Edit Item Details Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_item_details_selected.json)
+ * event="Edit Item Details Selected"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/edit_item_details_selected.json)
- * event="Edit Item Details Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_item_details_selected.json)
+ * event="Edit Item Details Selected"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
 @property (readonly) NSString *page __attribute__((swift_name("page")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
 @property (readonly) NSString * _Nullable utmSource __attribute__((swift_name("utmSource")));
@@ -481,35 +464,35 @@ __attribute__((swift_name("SellerV1.EditItemDetailsSelected")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
- * event="Feedback Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_submitted.json)
+ * event="Feedback Submitted"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.FeedbackSubmitted")))
-@interface SharedSellerV1FeedbackSubmitted : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerFeedbackSubmitted")))
+@interface SharedSellerFeedbackSubmitted : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithFeatureName:(NSString *)featureName location:(NSString *)location __attribute__((swift_name("init(featureName:location:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithFeatureName:(NSString *)featureName location:(NSString *)location comment:(NSString * _Nullable)comment feedbackType:(NSString * _Nullable)feedbackType optionsSelected:(NSArray<NSString *> * _Nullable)optionsSelected utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(featureName:location:comment:feedbackType:optionsSelected:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1FeedbackSubmitted *)doCopyFeatureName:(NSString *)featureName location:(NSString *)location comment:(NSString * _Nullable)comment feedbackType:(NSString * _Nullable)feedbackType optionsSelected:(NSArray<NSString *> * _Nullable)optionsSelected utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(featureName:location:comment:feedbackType:optionsSelected:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerFeedbackSubmitted *)doCopyFeatureName:(NSString *)featureName location:(NSString *)location comment:(NSString * _Nullable)comment feedbackType:(NSString * _Nullable)feedbackType optionsSelected:(NSArray<NSString *> * _Nullable)optionsSelected utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(featureName:location:comment:feedbackType:optionsSelected:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
- * event="Feedback Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_submitted.json)
+ * event="Feedback Submitted"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
- * event="Feedback Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_submitted.json)
+ * event="Feedback Submitted"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/feedback_submitted.json)
- * event="Feedback Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_submitted.json)
+ * event="Feedback Submitted"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString * _Nullable comment __attribute__((swift_name("comment")));
@@ -518,7 +501,6 @@ __attribute__((swift_name("SellerV1.FeedbackSubmitted")))
 @property (readonly) NSString * _Nullable feedbackType __attribute__((swift_name("feedbackType")));
 @property (readonly) NSString *location __attribute__((swift_name("location")));
 @property (readonly) NSArray<NSString *> * _Nullable optionsSelected __attribute__((swift_name("optionsSelected")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
 @property (readonly) NSString * _Nullable utmSource __attribute__((swift_name("utmSource")));
@@ -526,41 +508,40 @@ __attribute__((swift_name("SellerV1.FeedbackSubmitted")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
- * event="Form Started", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_started.json)
+ * event="Form Started"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.FormStarted")))
-@interface SharedSellerV1FormStarted : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerFormStarted")))
+@interface SharedSellerFormStarted : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page type:(NSString *)type __attribute__((swift_name("init(category:page:type:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:page:type:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1FormStarted *)doCopyCategory:(NSString *)category page:(NSString *)page type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:type:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerFormStarted *)doCopyCategory:(NSString *)category page:(NSString *)page type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:type:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
- * event="Form Started", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_started.json)
+ * event="Form Started"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
- * event="Form Started", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_started.json)
+ * event="Form Started"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_started.json)
- * event="Form Started", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_started.json)
+ * event="Form Started"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
 @property (readonly) NSString *page __attribute__((swift_name("page")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString *type __attribute__((swift_name("type")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
@@ -569,35 +550,35 @@ __attribute__((swift_name("SellerV1.FormStarted")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
- * event="Form Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_submitted.json)
+ * event="Form Submitted"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.FormSubmitted")))
-@interface SharedSellerV1FormSubmitted : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerFormSubmitted")))
+@interface SharedSellerFormSubmitted : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category email:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName page:(NSString *)page phone:(NSString *)phone postalCode:(NSString *)postalCode type:(NSString *)type __attribute__((swift_name("init(category:email:firstName:lastName:page:phone:postalCode:type:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category email:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName page:(NSString *)page phone:(NSString *)phone postalCode:(NSString *)postalCode type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:email:firstName:lastName:page:phone:postalCode:type:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1FormSubmitted *)doCopyCategory:(NSString *)category email:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName page:(NSString *)page phone:(NSString *)phone postalCode:(NSString *)postalCode type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:email:firstName:lastName:page:phone:postalCode:type:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerFormSubmitted *)doCopyCategory:(NSString *)category email:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName page:(NSString *)page phone:(NSString *)phone postalCode:(NSString *)postalCode type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:email:firstName:lastName:page:phone:postalCode:type:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
- * event="Form Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_submitted.json)
+ * event="Form Submitted"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
- * event="Form Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_submitted.json)
+ * event="Form Submitted"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/form_submitted.json)
- * event="Form Submitted", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_submitted.json)
+ * event="Form Submitted"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
@@ -608,7 +589,6 @@ __attribute__((swift_name("SellerV1.FormSubmitted")))
 @property (readonly) NSString *page __attribute__((swift_name("page")));
 @property (readonly) NSString *phone __attribute__((swift_name("phone")));
 @property (readonly) NSString *postalCode __attribute__((swift_name("postalCode")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString *type __attribute__((swift_name("type")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
@@ -617,35 +597,35 @@ __attribute__((swift_name("SellerV1.FormSubmitted")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
- * event="Inquiry Created", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_created.json)
+ * event="Inquiry Created"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.InquiryCreated")))
-@interface SharedSellerV1InquiryCreated : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerInquiryCreated")))
+@interface SharedSellerInquiryCreated : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithInquiryId:(NSString *)inquiryId repeatConsignor:(BOOL)repeatConsignor __attribute__((swift_name("init(inquiryId:repeatConsignor:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithInquiryId:(NSString *)inquiryId repeatConsignor:(BOOL)repeatConsignor feature:(NSString * _Nullable)feature firstName:(NSString * _Nullable)firstName inquirySlug:(NSString * _Nullable)inquirySlug lastName:(NSString * _Nullable)lastName leadEmail:(NSString * _Nullable)leadEmail leadSource:(NSString * _Nullable)leadSource leadSubSource:(NSString * _Nullable)leadSubSource loggedIn:(SharedBoolean * _Nullable)loggedIn method:(NSString * _Nullable)method path:(NSString * _Nullable)path utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource zipCode:(NSString * _Nullable)zipCode __attribute__((swift_name("init(inquiryId:repeatConsignor:feature:firstName:inquirySlug:lastName:leadEmail:leadSource:leadSubSource:loggedIn:method:path:utmCampaign:utmMedium:utmSource:zipCode:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1InquiryCreated *)doCopyInquiryId:(NSString *)inquiryId repeatConsignor:(BOOL)repeatConsignor feature:(NSString * _Nullable)feature firstName:(NSString * _Nullable)firstName inquirySlug:(NSString * _Nullable)inquirySlug lastName:(NSString * _Nullable)lastName leadEmail:(NSString * _Nullable)leadEmail leadSource:(NSString * _Nullable)leadSource leadSubSource:(NSString * _Nullable)leadSubSource loggedIn:(SharedBoolean * _Nullable)loggedIn method:(NSString * _Nullable)method path:(NSString * _Nullable)path utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource zipCode:(NSString * _Nullable)zipCode __attribute__((swift_name("doCopy(inquiryId:repeatConsignor:feature:firstName:inquirySlug:lastName:leadEmail:leadSource:leadSubSource:loggedIn:method:path:utmCampaign:utmMedium:utmSource:zipCode:)")));
+- (SharedSellerInquiryCreated *)doCopyInquiryId:(NSString *)inquiryId repeatConsignor:(BOOL)repeatConsignor feature:(NSString * _Nullable)feature firstName:(NSString * _Nullable)firstName inquirySlug:(NSString * _Nullable)inquirySlug lastName:(NSString * _Nullable)lastName leadEmail:(NSString * _Nullable)leadEmail leadSource:(NSString * _Nullable)leadSource leadSubSource:(NSString * _Nullable)leadSubSource loggedIn:(SharedBoolean * _Nullable)loggedIn method:(NSString * _Nullable)method path:(NSString * _Nullable)path utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource zipCode:(NSString * _Nullable)zipCode __attribute__((swift_name("doCopy(inquiryId:repeatConsignor:feature:firstName:inquirySlug:lastName:leadEmail:leadSource:leadSubSource:loggedIn:method:path:utmCampaign:utmMedium:utmSource:zipCode:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
- * event="Inquiry Created", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_created.json)
+ * event="Inquiry Created"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
- * event="Inquiry Created", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_created.json)
+ * event="Inquiry Created"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/inquiry_created.json)
- * event="Inquiry Created", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_created.json)
+ * event="Inquiry Created"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
@@ -661,7 +641,6 @@ __attribute__((swift_name("SellerV1.InquiryCreated")))
 @property (readonly) NSString * _Nullable method __attribute__((swift_name("method")));
 @property (readonly) NSString * _Nullable path __attribute__((swift_name("path")));
 @property (readonly) BOOL repeatConsignor __attribute__((swift_name("repeatConsignor")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
 @property (readonly) NSString * _Nullable utmSource __attribute__((swift_name("utmSource")));
@@ -670,41 +649,40 @@ __attribute__((swift_name("SellerV1.InquiryCreated")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
- * event="Lead Form Viewed", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
+ * event="Lead Form Viewed"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.LeadFormViewed")))
-@interface SharedSellerV1LeadFormViewed : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerLeadFormViewed")))
+@interface SharedSellerLeadFormViewed : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page __attribute__((swift_name("init(category:page:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:page:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1LeadFormViewed *)doCopyCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerLeadFormViewed *)doCopyCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
- * event="Lead Form Viewed", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
+ * event="Lead Form Viewed"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
- * event="Lead Form Viewed", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
+ * event="Lead Form Viewed"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/lead_form_viewed.json)
- * event="Lead Form Viewed", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
+ * event="Lead Form Viewed"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
 @property (readonly) NSString *page __attribute__((swift_name("page")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
 @property (readonly) NSString * _Nullable utmSource __attribute__((swift_name("utmSource")));
@@ -712,41 +690,40 @@ __attribute__((swift_name("SellerV1.LeadFormViewed")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
- * event="New Search Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/new_search_selected.json)
+ * event="New Search Selected"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.NewSearchSelected")))
-@interface SharedSellerV1NewSearchSelected : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerNewSearchSelected")))
+@interface SharedSellerNewSearchSelected : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page __attribute__((swift_name("init(category:page:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:page:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1NewSearchSelected *)doCopyCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerNewSearchSelected *)doCopyCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
- * event="New Search Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/new_search_selected.json)
+ * event="New Search Selected"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
- * event="New Search Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/new_search_selected.json)
+ * event="New Search Selected"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/new_search_selected.json)
- * event="New Search Selected", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/new_search_selected.json)
+ * event="New Search Selected"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
 @property (readonly) NSString *page __attribute__((swift_name("page")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
 @property (readonly) NSString * _Nullable utmSource __attribute__((swift_name("utmSource")));
@@ -754,42 +731,41 @@ __attribute__((swift_name("SellerV1.NewSearchSelected")))
 
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
- * event="Server Error", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/server_error.json)
+ * event="Server Error"
  */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SellerV1.ServerError")))
-@interface SharedSellerV1ServerError : SharedBase <SharedSeller>
+__attribute__((swift_name("SellerServerError")))
+@interface SharedSellerServerError : SharedBase <SharedSeller>
 
 /** Secondary constructor with required fields only (for iOS compatibility) */
 - (instancetype)initWithCategory:(NSString *)category error:(NSString *)error page:(NSString *)page type:(NSString *)type __attribute__((swift_name("init(category:error:page:type:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCategory:(NSString *)category error:(NSString *)error page:(NSString *)page type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:error:page:type:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
-- (SharedSellerV1ServerError *)doCopyCategory:(NSString *)category error:(NSString *)error page:(NSString *)page type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:error:page:type:utmCampaign:utmMedium:utmSource:)")));
+- (SharedSellerServerError *)doCopyCategory:(NSString *)category error:(NSString *)error page:(NSString *)page type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:error:page:type:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
- * event="Server Error", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/server_error.json)
+ * event="Server Error"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
- * event="Server Error", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/server_error.json)
+ * event="Server Error"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/v1/server_error.json)
- * event="Server Error", schemaVersion=1
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/server_error.json)
+ * event="Server Error"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *error __attribute__((swift_name("error")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
 @property (readonly) NSString *page __attribute__((swift_name("page")));
-@property (readonly) int32_t schemaVersion __attribute__((swift_name("schemaVersion")));
 @property (readonly) NSString *type __attribute__((swift_name("type")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
