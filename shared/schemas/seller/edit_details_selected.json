@@ -1,10 +1,14 @@
 {
-  "eventName": "consignor_estimator_results",
+  "eventName": "edit_details_selected",
   "type": "object",
   "required": [
+    "page",
     "category"
   ],
   "properties": {
+    "page": {
+      "type": "string"
+    },
     "category": {
       "type": "string"
     }
