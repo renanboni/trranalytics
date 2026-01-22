@@ -1,18 +1,16 @@
 {
-  "eventName": "edit_item_details_selected",
+  "eventName": "view_selling_options_clicked",
   "type": "object",
   "required": [
-    "page",
-    "category"
+    "category",
+    "page"
   ],
   "properties": {
-    "page": {
+    "category": {
       "type": "string"
     },
-    "category": {
+    "page": {
       "type": "string"
     }
   }
 }
-
-
