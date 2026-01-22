@@ -21,7 +21,8 @@ class TypeCollector {
                     t.fields.forEach { visit(it.type, isRoot = false) }
                 }
                 is Type.ArrayT -> visit(t.itemType, isRoot = false)
-                else -> Unit
+                is Type.MapT -> visit(t.valueType, isRoot = false)
+                is Type.StringT, is Type.NumberT, is Type.IntegerT, is Type.BooleanT, is Type.AnyT -> Unit
             }
         }
 

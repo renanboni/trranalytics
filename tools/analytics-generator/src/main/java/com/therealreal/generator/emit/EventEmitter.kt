@@ -135,19 +135,33 @@ class EventEmitter(
             is Type.NumberT -> valueExpr
             is Type.IntegerT -> valueExpr
             is Type.BooleanT -> valueExpr
+            is Type.AnyT -> valueExpr
             is Type.EnumStringT -> "$valueExpr.name"
             is Type.ObjectT -> "$valueExpr.toMap()"
             is Type.ArrayT -> emitArrayValueExpr(valueExpr, t)
+            is Type.MapT -> emitMapValueExpr(valueExpr, t)
         }
     }
 
     private fun emitArrayValueExpr(valueExpr: String, t: Type.ArrayT): String {
         val item = t.itemType.copyNonNull()
         return when (item) {
-            is Type.StringT, is Type.NumberT, is Type.IntegerT, is Type.BooleanT -> valueExpr
+            is Type.StringT, is Type.NumberT, is Type.IntegerT, is Type.BooleanT, is Type.AnyT -> valueExpr
             is Type.EnumStringT -> "$valueExpr.map { it.name }"
             is Type.ObjectT -> "$valueExpr.map { it.toMap() }"
             is Type.ArrayT -> error("Nested arrays not supported")
+            is Type.MapT -> "$valueExpr.map { ${emitMapValueExpr("it", item)} }"
+        }
+    }
+
+    private fun emitMapValueExpr(valueExpr: String, t: Type.MapT): String {
+        val valueType = t.valueType.copyNonNull()
+        return when (valueType) {
+            is Type.StringT, is Type.NumberT, is Type.IntegerT, is Type.BooleanT, is Type.AnyT -> valueExpr
+            is Type.EnumStringT -> "$valueExpr.mapValues { (_, v) -> v.name }"
+            is Type.ObjectT -> "$valueExpr.mapValues { (_, v) -> v.toMap() }"
+            is Type.ArrayT -> "$valueExpr.mapValues { (_, v) -> ${emitArrayValueExpr("v", valueType)} }"
+            is Type.MapT -> "$valueExpr.mapValues { (_, v) -> ${emitMapValueExpr("v", valueType)} }"
         }
     }
 

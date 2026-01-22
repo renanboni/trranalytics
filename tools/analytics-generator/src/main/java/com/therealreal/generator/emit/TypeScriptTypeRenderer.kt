@@ -13,6 +13,8 @@ class TypeScriptTypeRenderer {
             is Type.EnumStringT -> t.name
             is Type.ObjectT -> t.name
             is Type.ArrayT -> "${tsType(t.itemType.copyNonNull())}[]"
+            is Type.MapT -> "Record<string, ${tsType(t.valueType.copyNonNull())}>"
+            is Type.AnyT -> "unknown"
         }
 
         val isNullable = t.nullable || forceNullable
@@ -31,5 +33,7 @@ class TypeScriptTypeRenderer {
         is Type.EnumStringT -> copy(nullable = false)
         is Type.ObjectT -> copy(nullable = false)
         is Type.ArrayT -> copy(nullable = false)
+        is Type.MapT -> copy(nullable = false)
+        is Type.AnyT -> copy(nullable = false)
     }
 }

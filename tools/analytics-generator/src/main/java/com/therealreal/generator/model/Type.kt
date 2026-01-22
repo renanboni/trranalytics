@@ -42,4 +42,15 @@ sealed interface Type {
     ) : Type {
         override fun debug() = "array(${itemType.debug()})${if (nullable) "?" else ""}"
     }
+
+    data class MapT(
+        val valueType: Type,
+        override val nullable: Boolean
+    ) : Type {
+        override fun debug() = "map(string -> ${valueType.debug()})${if (nullable) "?" else ""}"
+    }
+
+    data class AnyT(override val nullable: Boolean) : Type {
+        override fun debug() = "any${if (nullable) "?" else ""}"
+    }
 }

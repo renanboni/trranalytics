@@ -56,6 +56,8 @@ class TypeParser {
 
             "array" -> parseArray(schemaNode, suggestedName, file, path, names, nullable)
 
+            "map" -> parseMap(schemaNode, suggestedName, file, path, names, nullable)
+
             else -> throw SchemaParseException("Unsupported type '$primaryType'", file, path.describe())
         }
     }
@@ -67,9 +69,45 @@ class TypeParser {
         path: ParsePath,
         names: NameRegistry,
         nullable: Boolean
-    ): Type.ObjectT {
+    ): Type {
         val props = schemaNode["properties"]?.jsonObject
-            ?: throw SchemaParseException("Object must have 'properties'", file, path.describe())
+        val additionalProps = schemaNode["additionalProperties"]?.jsonObject
+
+        if (additionalProps != null) {
+            if (props != null && props.isNotEmpty()) {
+                throw SchemaParseException(
+                    "Cannot combine 'properties' with 'additionalProperties'. Use one or the other.",
+                    file,
+                    path.describe()
+                )
+            }
+
+            val mapPropName = when (path) {
+                is ParsePath.Property -> path.propName
+                is ParsePath.ArrayItems -> path.arrayPropName
+                ParsePath.Root -> throw SchemaParseException(
+                    "Top-level maps not supported; root must be object with properties",
+                    file,
+                    path.describe()
+                )
+            }
+
+            val valueSuggested = mapPropName.toPascalCase().singularize() + "Value"
+
+            val valueType = parse(
+                schemaNode = additionalProps,
+                suggestedName = valueSuggested,
+                file = file,
+                path = ParsePath.Property(mapPropName + "_value"),
+                names = names
+            )
+
+            return Type.MapT(valueType = valueType, nullable = nullable)
+        }
+
+        if (props == null) {
+            throw SchemaParseException("Object must have 'properties' or 'additionalProperties'", file, path.describe())
+        }
 
         val requiredSet = schemaNode["required"]
             ?.let { runCatching { it.jsonArray.map { x -> x.jsonPrimitive.content }.toSet() }.getOrNull() }
@@ -142,6 +180,43 @@ class TypeParser {
         }
 
         return Type.ArrayT(itemType = itemType, nullable = nullable)
+    }
+
+    private fun parseMap(
+        schemaNode: JsonObject,
+        suggestedName: String,
+        file: Path,
+        path: ParsePath,
+        names: NameRegistry,
+        nullable: Boolean
+    ): Type.MapT {
+        val valuesNode = schemaNode["values"]?.jsonObject
+
+        if (valuesNode == null) {
+            return Type.MapT(valueType = Type.AnyT(nullable = false), nullable = nullable)
+        }
+
+        val mapPropName = when (path) {
+            is ParsePath.Property -> path.propName
+            is ParsePath.ArrayItems -> path.arrayPropName
+            ParsePath.Root -> throw SchemaParseException(
+                "Top-level maps not supported; root must be object with properties",
+                file,
+                path.describe()
+            )
+        }
+
+        val valueSuggested = mapPropName.toPascalCase().singularize() + "Value"
+
+        val valueType = parse(
+            schemaNode = valuesNode,
+            suggestedName = valueSuggested,
+            file = file,
+            path = ParsePath.Property(mapPropName + "_value"),
+            names = names
+        )
+
+        return Type.MapT(valueType = valueType, nullable = nullable)
     }
 
     private fun parsePrimaryType(typeNode: JsonElement?, file: Path, path: ParsePath): Pair<String, Boolean> {

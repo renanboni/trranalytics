@@ -9,7 +9,7 @@ import kotlin.io.path.readText
 class SchemaValidator {
 
     private val supportedTypes =
-        setOf("string", "number", "integer", "boolean", "object", "array", "null")
+        setOf("string", "number", "integer", "boolean", "object", "array", "map", "null")
     private val unsupportedKeywords =
         setOf("\$ref", "oneOf", "anyOf", "allOf", "\$id", "\$schema", "definitions", "\$defs")
     private val snakeCaseRegex = Regex("^[a-z][a-z0-9]*(_[a-z0-9]+)*$")
@@ -234,6 +234,7 @@ class SchemaValidator {
             "object" -> validateObject(node, file, path, issues)
             "array" -> validateArray(node, file, path, issues)
             "string" -> validateString(node, file, path, issues)
+            "map" -> validateMap(node, file, path, issues)
         }
     }
 
@@ -244,8 +245,52 @@ class SchemaValidator {
         issues: MutableList<ValidationIssue>
     ) {
         val properties = node["properties"]
+        val additionalProperties = node["additionalProperties"]
+
+        // Check for additionalProperties (Map type)
+        if (additionalProperties != null) {
+            val additionalPropsObj = try {
+                additionalProperties.jsonObject
+            } catch (_: Exception) {
+                // additionalProperties: true/false is not supported, must be a schema
+                issues.add(
+                    ValidationIssue(
+                        file,
+                        path,
+                        "'additionalProperties' must be a schema object defining the value type",
+                        ERROR
+                    )
+                )
+                return
+            }
+
+            if (properties != null) {
+                val propsObj = try {
+                    properties.jsonObject
+                } catch (_: Exception) {
+                    null
+                }
+                if (propsObj != null && propsObj.isNotEmpty()) {
+                    issues.add(
+                        ValidationIssue(
+                            file,
+                            path,
+                            "Cannot combine non-empty 'properties' with 'additionalProperties'. Use one or the other.",
+                            ERROR
+                        )
+                    )
+                    return
+                }
+            }
+
+            // Validate the additionalProperties schema (value type)
+            validateNode(additionalPropsObj, file, "$path.additionalProperties", issues)
+            return
+        }
+
+        // Regular object with fixed properties
         if (properties == null) {
-            issues.add(ValidationIssue(file, path, "Object must have 'properties' field", ERROR))
+            issues.add(ValidationIssue(file, path, "Object must have 'properties' or 'additionalProperties' field", ERROR))
             return
         }
 
@@ -254,10 +299,6 @@ class SchemaValidator {
         } catch (e: Exception) {
             issues.add(ValidationIssue(file, path, "'properties' must be an object", ERROR))
             return
-        }
-
-        if (propsObj.isEmpty()) {
-            issues.add(ValidationIssue(file, path, "'properties' should not be empty", WARNING))
         }
 
         // Validate required array
@@ -366,6 +407,24 @@ class SchemaValidator {
         }
 
         validateNode(itemsObj, file, "$path.items", issues)
+    }
+
+    private fun validateMap(
+        node: JsonObject,
+        file: Path,
+        path: String,
+        issues: MutableList<ValidationIssue>
+    ) {
+        val values = node["values"]
+        if (values != null) {
+            val valuesObj = try {
+                values.jsonObject
+            } catch (e: Exception) {
+                issues.add(ValidationIssue(file, path, "'values' must be an object", ERROR))
+                return
+            }
+            validateNode(valuesObj, file, "$path.values", issues)
+        }
     }
 
     private fun validateString(
