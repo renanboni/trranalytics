@@ -163,7 +163,7 @@ __attribute__((swift_name("Seller")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_home.json)
  * event="Consignment Home"
  */
 __attribute__((objc_subclassing_restricted))
@@ -176,13 +176,13 @@ __attribute__((swift_name("SellerConsignmentHome")))
 - (SharedSellerConsignmentHome *)doCopyLoggedIn:(BOOL)loggedIn repeatConsignor:(BOOL)repeatConsignor utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(loggedIn:repeatConsignor:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_home.json)
  * event="Consignment Home"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_home.json)
  * event="Consignment Home"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -190,7 +190,7 @@ __attribute__((swift_name("SellerConsignmentHome")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignment_home.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_home.json)
  * event="Consignment Home"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -204,7 +204,7 @@ __attribute__((swift_name("SellerConsignmentHome")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
  * event="Consignor Estimator Category Selected"
  */
 __attribute__((objc_subclassing_restricted))
@@ -217,13 +217,13 @@ __attribute__((swift_name("SellerConsignorEstimatorCategorySelected")))
 - (SharedSellerConsignorEstimatorCategorySelected *)doCopyCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:selectedCategory:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
  * event="Consignor Estimator Category Selected"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
  * event="Consignor Estimator Category Selected"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -231,7 +231,7 @@ __attribute__((swift_name("SellerConsignorEstimatorCategorySelected")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected.json)
  * event="Consignor Estimator Category Selected"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -246,7 +246,7 @@ __attribute__((swift_name("SellerConsignorEstimatorCategorySelected")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
  * event="Consignor Estimator Details Submitted"
  */
 __attribute__((objc_subclassing_restricted))
@@ -259,13 +259,13 @@ __attribute__((swift_name("SellerConsignorEstimatorDetailsSubmitted")))
 - (SharedSellerConsignorEstimatorDetailsSubmitted *)doCopyCategory:(NSString *)category page:(NSString *)page selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionals:(NSDictionary<NSString *, id> * _Nullable)selectedOptionals utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionals:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
  * event="Consignor Estimator Details Submitted"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
  * event="Consignor Estimator Details Submitted"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -273,7 +273,7 @@ __attribute__((swift_name("SellerConsignorEstimatorDetailsSubmitted")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted.json)
  * event="Consignor Estimator Details Submitted"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -293,7 +293,7 @@ __attribute__((swift_name("SellerConsignorEstimatorDetailsSubmitted")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
  * event="Consignor Estimator Item Details"
  */
 __attribute__((objc_subclassing_restricted))
@@ -306,13 +306,13 @@ __attribute__((swift_name("SellerConsignorEstimatorItemDetails")))
 - (SharedSellerConsignorEstimatorItemDetails *)doCopyCategory:(NSString *)category utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
  * event="Consignor Estimator Item Details"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
  * event="Consignor Estimator Item Details"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -320,7 +320,7 @@ __attribute__((swift_name("SellerConsignorEstimatorItemDetails")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_details.json)
  * event="Consignor Estimator Item Details"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -333,7 +333,7 @@ __attribute__((swift_name("SellerConsignorEstimatorItemDetails")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
  * event="Consignor Estimator Landing"
  */
 __attribute__((objc_subclassing_restricted))
@@ -346,13 +346,13 @@ __attribute__((swift_name("SellerConsignorEstimatorLanding")))
 - (SharedSellerConsignorEstimatorLanding *)doCopyCategory:(NSString *)category utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
  * event="Consignor Estimator Landing"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
  * event="Consignor Estimator Landing"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -360,7 +360,7 @@ __attribute__((swift_name("SellerConsignorEstimatorLanding")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
  * event="Consignor Estimator Landing"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -373,7 +373,7 @@ __attribute__((swift_name("SellerConsignorEstimatorLanding")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_result_generated.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_result_generated.json)
  * event="Consignor Estimator Result Generated"
  */
 __attribute__((objc_subclassing_restricted))
@@ -386,13 +386,13 @@ __attribute__((swift_name("SellerConsignorEstimatorResultGenerated")))
 - (SharedSellerConsignorEstimatorResultGenerated *)doCopyCategory:(NSString *)category selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedOptionals:(NSDictionary<NSString *, id> *)selectedOptionals selectedSubcategory:(NSString *)selectedSubcategory utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedOptionals:selectedSubcategory:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_result_generated.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_result_generated.json)
  * event="Consignor Estimator Result Generated"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_result_generated.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_result_generated.json)
  * event="Consignor Estimator Result Generated"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -400,7 +400,7 @@ __attribute__((swift_name("SellerConsignorEstimatorResultGenerated")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_result_generated.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_result_generated.json)
  * event="Consignor Estimator Result Generated"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -419,7 +419,7 @@ __attribute__((swift_name("SellerConsignorEstimatorResultGenerated")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
  * event="Consignor Estimator Results"
  */
 __attribute__((objc_subclassing_restricted))
@@ -432,13 +432,13 @@ __attribute__((swift_name("SellerConsignorEstimatorResults")))
 - (SharedSellerConsignorEstimatorResults *)doCopyCategory:(NSString *)category utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
  * event="Consignor Estimator Results"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
  * event="Consignor Estimator Results"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -446,7 +446,7 @@ __attribute__((swift_name("SellerConsignorEstimatorResults")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_results.json)
  * event="Consignor Estimator Results"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -459,7 +459,7 @@ __attribute__((swift_name("SellerConsignorEstimatorResults")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/edit_details_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_details_selected.json)
  * event="Edit Details Selected"
  */
 __attribute__((objc_subclassing_restricted))
@@ -472,13 +472,13 @@ __attribute__((swift_name("SellerEditDetailsSelected")))
 - (SharedSellerEditDetailsSelected *)doCopyCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/edit_details_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_details_selected.json)
  * event="Edit Details Selected"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/edit_details_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_details_selected.json)
  * event="Edit Details Selected"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -486,7 +486,7 @@ __attribute__((swift_name("SellerEditDetailsSelected")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/edit_details_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_details_selected.json)
  * event="Edit Details Selected"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -500,7 +500,7 @@ __attribute__((swift_name("SellerEditDetailsSelected")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/feedback_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_submitted.json)
  * event="Feedback Submitted"
  */
 __attribute__((objc_subclassing_restricted))
@@ -513,13 +513,13 @@ __attribute__((swift_name("SellerFeedbackSubmitted")))
 - (SharedSellerFeedbackSubmitted *)doCopyFeatureName:(NSString *)featureName location:(NSString *)location comment:(NSString * _Nullable)comment feedbackType:(NSString * _Nullable)feedbackType optionsSelected:(NSArray<NSString *> * _Nullable)optionsSelected utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(featureName:location:comment:feedbackType:optionsSelected:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/feedback_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_submitted.json)
  * event="Feedback Submitted"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/feedback_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_submitted.json)
  * event="Feedback Submitted"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -527,7 +527,7 @@ __attribute__((swift_name("SellerFeedbackSubmitted")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/feedback_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_submitted.json)
  * event="Feedback Submitted"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -544,7 +544,7 @@ __attribute__((swift_name("SellerFeedbackSubmitted")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/form_started.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_started.json)
  * event="Form Started"
  */
 __attribute__((objc_subclassing_restricted))
@@ -557,13 +557,13 @@ __attribute__((swift_name("SellerFormStarted")))
 - (SharedSellerFormStarted *)doCopyCategory:(NSString *)category page:(NSString *)page type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:type:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/form_started.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_started.json)
  * event="Form Started"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/form_started.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_started.json)
  * event="Form Started"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -571,7 +571,7 @@ __attribute__((swift_name("SellerFormStarted")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/form_started.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_started.json)
  * event="Form Started"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -586,7 +586,7 @@ __attribute__((swift_name("SellerFormStarted")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/form_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_submitted.json)
  * event="Form Submitted"
  */
 __attribute__((objc_subclassing_restricted))
@@ -599,13 +599,13 @@ __attribute__((swift_name("SellerFormSubmitted")))
 - (SharedSellerFormSubmitted *)doCopyCategory:(NSString *)category email:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName page:(NSString *)page phone:(NSString *)phone postalCode:(NSString *)postalCode type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:email:firstName:lastName:page:phone:postalCode:type:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/form_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_submitted.json)
  * event="Form Submitted"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/form_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_submitted.json)
  * event="Form Submitted"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -613,7 +613,7 @@ __attribute__((swift_name("SellerFormSubmitted")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/form_submitted.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_submitted.json)
  * event="Form Submitted"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -633,7 +633,7 @@ __attribute__((swift_name("SellerFormSubmitted")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/inquiry_created.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_created.json)
  * event="Inquiry Created"
  */
 __attribute__((objc_subclassing_restricted))
@@ -646,13 +646,13 @@ __attribute__((swift_name("SellerInquiryCreated")))
 - (SharedSellerInquiryCreated *)doCopyInquiryId:(NSString *)inquiryId repeatConsignor:(BOOL)repeatConsignor feature:(NSString * _Nullable)feature firstName:(NSString * _Nullable)firstName inquirySlug:(NSString * _Nullable)inquirySlug lastName:(NSString * _Nullable)lastName leadEmail:(NSString * _Nullable)leadEmail leadSource:(NSString * _Nullable)leadSource leadSubSource:(NSString * _Nullable)leadSubSource loggedIn:(SharedBoolean * _Nullable)loggedIn method:(NSString * _Nullable)method path:(NSString * _Nullable)path utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource zipCode:(NSString * _Nullable)zipCode __attribute__((swift_name("doCopy(inquiryId:repeatConsignor:feature:firstName:inquirySlug:lastName:leadEmail:leadSource:leadSubSource:loggedIn:method:path:utmCampaign:utmMedium:utmSource:zipCode:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/inquiry_created.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_created.json)
  * event="Inquiry Created"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/inquiry_created.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_created.json)
  * event="Inquiry Created"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -660,7 +660,7 @@ __attribute__((swift_name("SellerInquiryCreated")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/inquiry_created.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_created.json)
  * event="Inquiry Created"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -685,7 +685,7 @@ __attribute__((swift_name("SellerInquiryCreated")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
  * event="Lead Form Viewed"
  */
 __attribute__((objc_subclassing_restricted))
@@ -698,13 +698,13 @@ __attribute__((swift_name("SellerLeadFormViewed")))
 - (SharedSellerLeadFormViewed *)doCopyCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
  * event="Lead Form Viewed"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
  * event="Lead Form Viewed"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -712,7 +712,7 @@ __attribute__((swift_name("SellerLeadFormViewed")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/lead_form_viewed.json)
  * event="Lead Form Viewed"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -726,7 +726,7 @@ __attribute__((swift_name("SellerLeadFormViewed")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/new_search_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/new_search_selected.json)
  * event="New Search Selected"
  */
 __attribute__((objc_subclassing_restricted))
@@ -739,13 +739,13 @@ __attribute__((swift_name("SellerNewSearchSelected")))
 - (SharedSellerNewSearchSelected *)doCopyCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/new_search_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/new_search_selected.json)
  * event="New Search Selected"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/new_search_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/new_search_selected.json)
  * event="New Search Selected"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -753,7 +753,7 @@ __attribute__((swift_name("SellerNewSearchSelected")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/new_search_selected.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/new_search_selected.json)
  * event="New Search Selected"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -767,7 +767,7 @@ __attribute__((swift_name("SellerNewSearchSelected")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/server_error.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/server_error.json)
  * event="Server Error"
  */
 __attribute__((objc_subclassing_restricted))
@@ -780,13 +780,13 @@ __attribute__((swift_name("SellerServerError")))
 - (SharedSellerServerError *)doCopyCategory:(NSString *)category error:(NSString *)error page:(NSString *)page type:(NSString *)type utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:error:page:type:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/server_error.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/server_error.json)
  * event="Server Error"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/server_error.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/server_error.json)
  * event="Server Error"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -794,7 +794,7 @@ __attribute__((swift_name("SellerServerError")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/server_error.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/server_error.json)
  * event="Server Error"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -810,7 +810,7 @@ __attribute__((swift_name("SellerServerError")))
 
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/view_selling_options_clicked.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/view_selling_options_clicked.json)
  * event="View Selling Options Clicked"
  */
 __attribute__((objc_subclassing_restricted))
@@ -823,13 +823,13 @@ __attribute__((swift_name("SellerViewSellingOptionsClicked")))
 - (SharedSellerViewSellingOptionsClicked *)doCopyCategory:(NSString *)category page:(NSString *)page utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:page:utmCampaign:utmMedium:utmSource:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/view_selling_options_clicked.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/view_selling_options_clicked.json)
  * event="View Selling Options Clicked"
  */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/view_selling_options_clicked.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/view_selling_options_clicked.json)
  * event="View Selling Options Clicked"
  */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -837,7 +837,7 @@ __attribute__((swift_name("SellerViewSellingOptionsClicked")))
 - (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
 
 /**
- * Generated from JSON Schema (/Users/matheus.vasconcelosdesousa/trr-analytics/shared/schemas/seller/view_selling_options_clicked.json)
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/view_selling_options_clicked.json)
  * event="View Selling Options Clicked"
  */
 - (NSString *)description __attribute__((swift_name("description()")));
