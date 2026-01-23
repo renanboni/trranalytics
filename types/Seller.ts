@@ -69,6 +69,27 @@ export namespace Seller {
 
 
   /**
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_saved.json)
+   * event="Consignor Estimator Item Saved"
+   */
+  export interface ConsignorEstimatorItemSaved extends Seller {
+    readonly eventName: "Consignor Estimator Item Saved";
+    category: string;
+    estimateResultMax: string;
+    estimateResultMin: string;
+    selectedCategory: string;
+    selectedCondition: string;
+    selectedDesigner: string;
+    selectedItemType: string;
+    selectedSubcategory: string;
+    selectedOptionals?: Record<string, unknown> | null;
+    utmCampaign?: string | null;
+    utmMedium?: string | null;
+    utmSource?: string | null;
+  }
+
+
+  /**
    * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_landing.json)
    * event="Consignor Estimator Landing"
    */

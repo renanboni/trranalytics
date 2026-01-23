@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedSellerConsignmentHome, SharedSellerConsignorEstimatorCategorySelected, SharedSellerConsignorEstimatorDetailsSubmitted, SharedSellerConsignorEstimatorItemDetails, SharedSellerConsignorEstimatorLanding, SharedSellerConsignorEstimatorResultGenerated, SharedSellerConsignorEstimatorResults, SharedSellerEditDetailsSelected, SharedSellerFeedbackSubmitted, SharedSellerFormStarted, SharedSellerFormSubmitted, SharedSellerInquiryCreated, SharedSellerLeadFormViewed, SharedSellerNewSearchSelected, SharedSellerServerError, SharedSellerViewSellingOptionsClicked;
+@class SharedSellerConsignmentHome, SharedSellerConsignorEstimatorCategorySelected, SharedSellerConsignorEstimatorDetailsSubmitted, SharedSellerConsignorEstimatorItemDetails, SharedSellerConsignorEstimatorItemSaved, SharedSellerConsignorEstimatorLanding, SharedSellerConsignorEstimatorResultGenerated, SharedSellerConsignorEstimatorResults, SharedSellerEditDetailsSelected, SharedSellerFeedbackSubmitted, SharedSellerFormStarted, SharedSellerFormSubmitted, SharedSellerInquiryCreated, SharedSellerLeadFormViewed, SharedSellerNewSearchSelected, SharedSellerServerError, SharedSellerViewSellingOptionsClicked;
 
 @protocol SharedAnalyticsEvent, SharedPlatform, SharedSeller;
 
@@ -326,6 +326,54 @@ __attribute__((swift_name("SellerConsignorEstimatorItemDetails")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *category __attribute__((swift_name("category")));
 @property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
+@property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
+@property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
+@property (readonly) NSString * _Nullable utmSource __attribute__((swift_name("utmSource")));
+@end
+
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_saved.json)
+ * event="Consignor Estimator Item Saved"
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SellerConsignorEstimatorItemSaved")))
+@interface SharedSellerConsignorEstimatorItemSaved : SharedBase <SharedSeller>
+
+/** Secondary constructor with required fields only (for iOS compatibility) */
+- (instancetype)initWithCategory:(NSString *)category estimateResultMax:(NSString *)estimateResultMax estimateResultMin:(NSString *)estimateResultMin selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory __attribute__((swift_name("init(category:estimateResultMax:estimateResultMin:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCategory:(NSString *)category estimateResultMax:(NSString *)estimateResultMax estimateResultMin:(NSString *)estimateResultMin selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionals:(NSDictionary<NSString *, id> * _Nullable)selectedOptionals utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("init(category:estimateResultMax:estimateResultMin:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionals:utmCampaign:utmMedium:utmSource:)"))) __attribute__((objc_designated_initializer));
+- (SharedSellerConsignorEstimatorItemSaved *)doCopyCategory:(NSString *)category estimateResultMax:(NSString *)estimateResultMax estimateResultMin:(NSString *)estimateResultMin selectedCategory:(NSString *)selectedCategory selectedCondition:(NSString *)selectedCondition selectedDesigner:(NSString *)selectedDesigner selectedItemType:(NSString *)selectedItemType selectedSubcategory:(NSString *)selectedSubcategory selectedOptionals:(NSDictionary<NSString *, id> * _Nullable)selectedOptionals utmCampaign:(NSString * _Nullable)utmCampaign utmMedium:(NSString * _Nullable)utmMedium utmSource:(NSString * _Nullable)utmSource __attribute__((swift_name("doCopy(category:estimateResultMax:estimateResultMin:selectedCategory:selectedCondition:selectedDesigner:selectedItemType:selectedSubcategory:selectedOptionals:utmCampaign:utmMedium:utmSource:)")));
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_saved.json)
+ * event="Consignor Estimator Item Saved"
+ */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_saved.json)
+ * event="Consignor Estimator Item Saved"
+ */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSDictionary<NSString *, id> *)payload __attribute__((swift_name("payload()")));
+- (NSDictionary<NSString *, id> *)properties __attribute__((swift_name("properties()")));
+
+/**
+ * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_saved.json)
+ * event="Consignor Estimator Item Saved"
+ */
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *category __attribute__((swift_name("category")));
+@property (readonly) NSString *estimateResultMax __attribute__((swift_name("estimateResultMax")));
+@property (readonly) NSString *estimateResultMin __attribute__((swift_name("estimateResultMin")));
+@property (readonly) NSString *eventName __attribute__((swift_name("eventName")));
+@property (readonly) NSString *selectedCategory __attribute__((swift_name("selectedCategory")));
+@property (readonly) NSString *selectedCondition __attribute__((swift_name("selectedCondition")));
+@property (readonly) NSString *selectedDesigner __attribute__((swift_name("selectedDesigner")));
+@property (readonly) NSString *selectedItemType __attribute__((swift_name("selectedItemType")));
+@property (readonly) NSDictionary<NSString *, id> * _Nullable selectedOptionals __attribute__((swift_name("selectedOptionals")));
+@property (readonly) NSString *selectedSubcategory __attribute__((swift_name("selectedSubcategory")));
 @property (readonly) NSString * _Nullable utmCampaign __attribute__((swift_name("utmCampaign")));
 @property (readonly) NSString * _Nullable utmMedium __attribute__((swift_name("utmMedium")));
 @property (readonly) NSString * _Nullable utmSource __attribute__((swift_name("utmSource")));
