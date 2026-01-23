@@ -13,7 +13,9 @@ class EventEmitter(
     private val analyticsEventName: String,
     private val schemaVersion: Int,
     private val schemaFilePath: String,
-    private val root: Type.ObjectT
+    private val root: Type.ObjectT,
+    private val isDeprecated: Boolean = false,
+    private val latestVersion: Int = schemaVersion
 ) {
     private val typeRenderer = KotlinTypeRenderer()
     private val collector = TypeCollector()
@@ -44,12 +46,18 @@ class EventEmitter(
 
         val secondaryCtor = emitSecondaryConstructor(requiredFields, optionalFields)
 
+        val baseEventClassName = eventClassName.replace(Regex("V\\d+$"), "")
+        val deprecatedAnnotation = if (isDeprecated) {
+            """@Deprecated("Use ${baseEventClassName}V$latestVersion instead", ReplaceWith("${baseEventClassName}V$latestVersion"))
+            """
+        } else ""
+
         return """
             /**
              * Generated from JSON Schema ($schemaFilePath)
              * event="$analyticsEventName"
              */
-            data class $eventClassName(
+            ${deprecatedAnnotation}data class $eventClassName(
                 $ctorArgs
             ) : $familyName {
 

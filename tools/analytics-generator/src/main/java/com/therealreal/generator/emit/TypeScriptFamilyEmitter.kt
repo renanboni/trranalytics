@@ -8,15 +8,24 @@ class TypeScriptFamilyEmitter(
     private val familyEvents: List<EventDef>
 ) {
     fun emitFamily(): String {
+        // Group events by base name (analyticsEventName) and find max version for each
+        val maxVersionByEvent = familyEvents
+            .groupBy { it.analyticsEventName }
+            .mapValues { (_, events) -> events.maxOf { it.schemaVersion } }
+
         val eventBlocks = familyEvents.sortedBy { it.eventClassName }
             .joinToString("\n\n") { e ->
+                val maxVersion = maxVersionByEvent[e.analyticsEventName] ?: e.schemaVersion
+                val isDeprecated = e.schemaVersion < maxVersion
                 TypeScriptEventEmitter(
                     familyName = familyName,
                     eventClassName = e.eventClassName,
                     analyticsEventName = e.analyticsEventName,
                     schemaVersion = e.schemaVersion,
                     schemaFilePath = e.schemaFilePath,
-                    root = e.root
+                    root = e.root,
+                    isDeprecated = isDeprecated,
+                    latestVersion = maxVersion
                 ).emitEvent()
             }
 

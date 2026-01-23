@@ -11,7 +11,9 @@ class TypeScriptEventEmitter(
     private val analyticsEventName: String,
     private val schemaVersion: Int,
     private val schemaFilePath: String,
-    private val root: Type.ObjectT
+    private val root: Type.ObjectT,
+    private val isDeprecated: Boolean = false,
+    private val latestVersion: Int = schemaVersion
 ) {
     private val typeRenderer = TypeScriptTypeRenderer()
     private val collector = TypeCollector()
@@ -42,10 +44,15 @@ class TypeScriptEventEmitter(
             .filter { it.isNotBlank() }
             .joinToString("\n\n")
 
+        val baseEventClassName = eventClassName.replace(Regex("V\\d+$"), "")
+        val deprecatedTag = if (isDeprecated) {
+            "\n * @deprecated Use ${baseEventClassName}V$latestVersion instead"
+        } else ""
+
         return """
 /**
  * Generated from JSON Schema ($schemaFilePath)
- * event="$analyticsEventName"
+ * event="$analyticsEventName"$deprecatedTag
  */
 export interface $eventClassName extends $familyName {
   readonly eventName: "${analyticsEventName.escapeKotlin()}";
