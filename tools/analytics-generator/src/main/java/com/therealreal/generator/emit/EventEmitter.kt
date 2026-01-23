@@ -11,6 +11,7 @@ class EventEmitter(
     private val familyName: String,
     private val eventClassName: String,
     private val analyticsEventName: String,
+    private val schemaVersion: Int,
     private val schemaFilePath: String,
     private val root: Type.ObjectT
 ) {
@@ -57,6 +58,7 @@ class EventEmitter(
             ${indent(nestedObjectsBlock, 4).trimEnd()}
 
                 override val eventName: String = "${analyticsEventName.escapeKotlin()}"
+                override val schemaVersion: Int = $schemaVersion
 
             ${indent(secondaryCtor, 4).trimEnd()}
 
@@ -64,6 +66,7 @@ class EventEmitter(
 
                 override fun payload(): Map<String, Any?> = mapOf(
                     "event" to eventName,
+                    "schema_version" to schemaVersion,
                     "properties" to properties()
                 )
             }

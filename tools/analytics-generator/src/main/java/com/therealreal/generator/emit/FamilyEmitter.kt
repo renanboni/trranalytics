@@ -15,6 +15,7 @@ class FamilyEmitter(
                     familyName = familyName,
                     eventClassName = e.eventClassName,
                     analyticsEventName = e.analyticsEventName,
+                    schemaVersion = e.schemaVersion,
                     schemaFilePath = e.schemaFilePath,
                     root = e.root
                 ).emitEvent()

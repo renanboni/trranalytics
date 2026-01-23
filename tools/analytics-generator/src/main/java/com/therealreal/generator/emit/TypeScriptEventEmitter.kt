@@ -9,6 +9,7 @@ class TypeScriptEventEmitter(
     private val familyName: String,
     private val eventClassName: String,
     private val analyticsEventName: String,
+    private val schemaVersion: Int,
     private val schemaFilePath: String,
     private val root: Type.ObjectT
 ) {
@@ -48,6 +49,7 @@ class TypeScriptEventEmitter(
  */
 export interface $eventClassName extends $familyName {
   readonly eventName: "${analyticsEventName.escapeKotlin()}";
+  readonly schemaVersion: $schemaVersion;
   $propsBlock
 }
 

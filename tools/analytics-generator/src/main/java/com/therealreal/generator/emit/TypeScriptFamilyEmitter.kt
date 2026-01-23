@@ -14,6 +14,7 @@ class TypeScriptFamilyEmitter(
                     familyName = familyName,
                     eventClassName = e.eventClassName,
                     analyticsEventName = e.analyticsEventName,
+                    schemaVersion = e.schemaVersion,
                     schemaFilePath = e.schemaFilePath,
                     root = e.root
                 ).emitEvent()
@@ -41,6 +42,7 @@ ${indent(eventBlocks, 2)}
  */
 export interface AnalyticsEvent {
   readonly eventName: string;
+  readonly schemaVersion: number;
 }
             """.trimIndent().trim() + "\n"
         }

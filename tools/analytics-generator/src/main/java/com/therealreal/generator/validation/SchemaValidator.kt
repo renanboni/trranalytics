@@ -13,6 +13,7 @@ class SchemaValidator {
     private val unsupportedKeywords =
         setOf("\$ref", "oneOf", "anyOf", "allOf", "\$id", "\$schema", "definitions", "\$defs")
     private val snakeCaseRegex = Regex("^[a-z][a-z0-9]*(_[a-z0-9]+)*$")
+    private val versionRegex = Regex("^v(\\d+)$")
 
     fun validate(schemaFile: Path): ValidationResult {
         val issues = mutableListOf<ValidationIssue>()
@@ -55,28 +56,34 @@ class SchemaValidator {
 
     fun validateAll(schemaFiles: List<Path>): ValidationResult {
         val allIssues = mutableListOf<ValidationIssue>()
-        val eventNames = mutableMapOf<String, Path>()
+        // Key: eventName, Value: Map of eventFolder to first file seen
+        val eventNamesByFolder = mutableMapOf<String, MutableMap<String, Path>>()
 
         for (file in schemaFiles) {
             val result = validate(file)
             allIssues.addAll(result.issues)
 
-            // Check for duplicate event names
+            // Check for duplicate event names across different event folders
             if (result.isValid) {
                 val eventName = extractEventName(file)
-                if (eventName != null) {
-                    val existing = eventNames[eventName]
-                    if (existing != null) {
+                val eventFolder = extractEventFolder(file)
+                if (eventName != null && eventFolder != null) {
+                    val foldersForEvent = eventNamesByFolder.getOrPut(eventName) { mutableMapOf() }
+                    val existingFolder = foldersForEvent.keys.firstOrNull { it != eventFolder }
+                    if (existingFolder != null) {
+                        // Same eventName in a different event folder is an error
                         allIssues.add(
                             ValidationIssue(
                                 file, "root",
-                                "Duplicate event name '$eventName' (also in $existing)",
+                                "Duplicate event name '$eventName' (also in ${foldersForEvent[existingFolder]})",
                                 ERROR
                             )
                         )
-                    } else {
-                        eventNames[eventName] = file
+                    } else if (!foldersForEvent.containsKey(eventFolder)) {
+                        // First time seeing this eventName in this folder
+                        foldersForEvent[eventFolder] = file
                     }
+                    // Same eventName in same folder (different versions) is allowed
                 }
             }
         }
@@ -84,16 +91,23 @@ class SchemaValidator {
         return ValidationResult(allIssues)
     }
 
+    private fun extractEventFolder(file: Path): String? {
+        val normalized = file.normalize().toString().replace('\\', '/')
+        val parts = normalized.split('/').filter { it.isNotBlank() }
+        // Expected: .../<family>/<event>/<vN>.json
+        return if (parts.size >= 2) parts[parts.size - 2] else null
+    }
+
     private fun validatePathStructure(file: Path, issues: MutableList<ValidationIssue>) {
         val normalized = file.normalize().toString().replace('\\', '/')
         val parts = normalized.split('/').filter { it.isNotBlank() }
 
-        if (parts.size < 2) {
+        if (parts.size < 3) {
             issues.add(
                 ValidationIssue(
                     file,
                     "path",
-                    "Schema path must be <family>/<event>.json",
+                    "Schema path must be <family>/<event>/<vN>.json",
                     ERROR
                 )
             )
@@ -101,26 +115,40 @@ class SchemaValidator {
         }
 
         val fileName = parts.last()
-        val familyFolder = parts[parts.size - 2]
+        val eventFolder = parts[parts.size - 2]
+        val familyFolder = parts[parts.size - 3]
 
         // Validate file name
         if (!fileName.endsWith(".json")) {
             issues.add(ValidationIssue(file, "path", "File must have .json extension", ERROR))
         }
 
-        if (fileName.contains(" ") || fileName.contains("-")) {
+        val versionName = fileName.removeSuffix(".json")
+        if (!versionRegex.matches(versionName)) {
             issues.add(
                 ValidationIssue(
                     file,
                     "path",
-                    "File name should use underscores, not spaces or hyphens",
+                    "File name must be v<N>.json (e.g., v1.json, v2.json), got: $fileName",
+                    ERROR
+                )
+            )
+        }
+
+        // Validate event folder
+        if (eventFolder.contains(" ") || eventFolder.contains("-")) {
+            issues.add(
+                ValidationIssue(
+                    file,
+                    "path",
+                    "Event folder should use underscores, not spaces or hyphens",
                     WARNING
                 )
             )
         }
 
-        if (fileName != fileName.lowercase()) {
-            issues.add(ValidationIssue(file, "path", "File name should be lowercase", WARNING))
+        if (eventFolder != eventFolder.lowercase()) {
+            issues.add(ValidationIssue(file, "path", "Event folder should be lowercase", WARNING))
         }
 
         // Validate family folder

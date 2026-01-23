@@ -17,22 +17,33 @@ class SchemaParser(
 ) {
 
     private val typeParser = TypeParser()
+    private val versionRegex = Regex("""^v(\d+)$""")
 
     fun parse(schemaFile: Path): EventDef {
-        // Expect: .../<family>/<event>.json
+        // Expect: .../<family>/<event>/<vN>.json
         val normalized = schemaFile.normalize().toString().replace('\\', '/')
         val parts = normalized.split('/').filter { it.isNotBlank() }
-        if (parts.size < 2) {
+        if (parts.size < 3) {
             throw SchemaParseException(
-                message = "Schema path must end with <family>/<event>.json",
+                message = "Schema path must end with <family>/<event>/<vN>.json",
                 file = schemaFile,
                 at = "path"
             )
         }
 
-        val familyRaw = parts[parts.size - 2]
+        val familyRaw = parts[parts.size - 3]
         val familyName = familyRaw.toPascalCase()
-        val eventClassName = schemaFile.fileName.toString().removeSuffix(".json").toPascalCase()
+        val eventRaw = parts[parts.size - 2]
+        val versionFileName = schemaFile.fileName.toString().removeSuffix(".json")
+
+        val versionMatch = versionRegex.matchEntire(versionFileName)
+            ?: throw SchemaParseException(
+                message = "Schema filename must be v<N>.json (e.g., v1.json), got: ${schemaFile.fileName}",
+                file = schemaFile,
+                at = "filename"
+            )
+        val schemaVersion = versionMatch.groupValues[1].toInt()
+        val eventClassName = "${eventRaw.toPascalCase()}V$schemaVersion"
 
         val rootObj = json.parseToJsonElement(schemaFile.readText()).jsonObject
 
@@ -66,6 +77,7 @@ class SchemaParser(
             familyRaw = familyRaw,
             eventClassName = eventClassName,
             analyticsEventName = analyticsEventName,
+            schemaVersion = schemaVersion,
             schemaFilePath = schemaFile.toString(),
             root = mergedRoot
         )
