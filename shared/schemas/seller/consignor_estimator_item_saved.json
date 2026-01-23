@@ -1,0 +1,43 @@
+{
+  "eventName": "consignor_estimator_item_saved",
+  "type": "object",
+  "required": [
+    "category",
+    "estimate_result_min",
+    "estimate_result_max",
+    "selected_category",
+    "selected_designer",
+    "selected_subcategory",
+    "selected_item_type",
+    "selected_condition"
+  ],
+  "properties": {
+    "category": {
+      "type": "string"
+    },
+    "estimate_result_min": {
+      "type": "string"
+    },
+    "estimate_result_max": {
+      "type": "string"
+    },
+    "selected_category": {
+      "type": "string"
+    },
+    "selected_designer": {
+      "type": "string"
+    },
+    "selected_subcategory": {
+      "type": "string"
+    },
+    "selected_item_type": {
+      "type": "string"
+    },
+    "selected_condition": {
+      "type": "string"
+    },
+    "selected_optionals": {
+      "type": "map"
+    }
+  }
+}
