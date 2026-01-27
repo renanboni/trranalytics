@@ -58,13 +58,7 @@ jobs:
         run: ./gradlew :shared:assemble
 
       - name: Build XCFramework
-        run: |
-          ./gradlew :shared:linkReleaseFrameworkIosArm64 :shared:linkReleaseFrameworkIosSimulatorArm64
-          rm -rf Shared.xcframework
-          xcodebuild -create-xcframework \
-            -framework shared/build/bin/iosArm64/releaseFramework/Shared.framework \
-            -framework shared/build/bin/iosSimulatorArm64/releaseFramework/Shared.framework \
-            -output Shared.xcframework
+        run: ./scripts/build-xcframework.sh
 
       - name: Publish to GitHub Packages
         env:
@@ -94,10 +88,7 @@ jobs:
 
           # Copy built XCFramework to repo
           rm -rf Shared.xcframework
-          cp -R ../Shared.xcframework . 2>/dev/null || xcodebuild -create-xcframework \
-            -framework shared/build/bin/iosArm64/releaseFramework/Shared.framework \
-            -framework shared/build/bin/iosSimulatorArm64/releaseFramework/Shared.framework \
-            -output Shared.xcframework
+          cp -R ../Shared.xcframework . 2>/dev/null || ./scripts/build-xcframework.sh
 
           # Update TypeScript types
           cp shared/build/generated/source/analytics/typescript/*.ts types/

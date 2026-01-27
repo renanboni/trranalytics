@@ -13,13 +13,7 @@ build: ## Build the library (Android + iOS)
 	@./gradlew :shared:assemble
 
 build-ios: ## Build iOS XCFramework (for local testing)
-	@./gradlew :shared:linkReleaseFrameworkIosArm64 :shared:linkReleaseFrameworkIosSimulatorArm64
-	@rm -rf Shared.xcframework
-	@xcodebuild -create-xcframework \
-		-framework shared/build/bin/iosArm64/releaseFramework/Shared.framework \
-		-framework shared/build/bin/iosSimulatorArm64/releaseFramework/Shared.framework \
-		-output Shared.xcframework
-	@echo "✓ XCFramework built at Shared.xcframework"
+	@./scripts/build-xcframework.sh
 
 build-all: ## Build all artifacts (Android + iOS)
 	@./gradlew :shared:build
