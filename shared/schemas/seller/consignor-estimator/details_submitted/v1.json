@@ -1,27 +1,18 @@
 {
-  "eventName": "edit_details_selected",
+  "eventName": "consignor_estimator_details_submitted",
   "type": "object",
   "required": [
     "category",
-    "estimate_result_max",
-    "estimate_result_min",
     "flow",
     "page",
     "selected_category",
-    "selected_condition",
     "selected_designer",
+    "selected_subcategory",
     "selected_item_type",
-    "selected_optionals",
-    "selected_subcategory"
+    "selected_condition"
   ],
   "properties": {
     "category": {
-      "type": "string"
-    },
-    "estimate_result_max": {
-      "type": "string"
-    },
-    "estimate_result_min": {
       "type": "string"
     },
     "flow": {
@@ -33,20 +24,20 @@
     "selected_category": {
       "type": "string"
     },
-    "selected_condition": {
+    "selected_designer": {
       "type": "string"
     },
-    "selected_designer": {
+    "selected_subcategory": {
       "type": "string"
     },
     "selected_item_type": {
       "type": "string"
     },
+    "selected_condition": {
+      "type": "string"
+    },
     "selected_optionals": {
       "type": "map"
-    },
-    "selected_subcategory": {
-      "type": "string"
     }
   }
 }

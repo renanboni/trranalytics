@@ -1,30 +1,36 @@
 {
-  "eventName": "feedback_submitted",
+  "eventName": "consignment_funnel_consignment_options_viewed",
   "type": "object",
   "required": [
-    "feature_name",
-    "location"
+    "category",
+    "flow",
+    "funnel_page",
+    "inquiry_id",
+    "inquiry_slug",
+    "lead_type",
+    "methods",
+    "page"
   ],
   "properties": {
     "category": {
       "type": "string"
     },
-    "comment": {
-      "type": "string"
-    },
-    "feature_name": {
-      "type": "string"
-    },
-    "feedback_type": {
-      "type": "string"
-    },
     "flow": {
       "type": "string"
     },
-    "location": {
+    "funnel_page": {
       "type": "string"
     },
-    "options_selected": {
+    "inquiry_id": {
+      "type": "string"
+    },
+    "inquiry_slug": {
+      "type": "string"
+    },
+    "lead_type": {
+      "type": "string"
+    },
+    "methods": {
       "type": "array",
       "items": {
         "type": "string"
@@ -35,4 +41,3 @@
     }
   }
 }
-

@@ -1,32 +1,31 @@
 {
-  "eventName": "consignor_estimator_result_generated",
+  "eventName": "consignor_estimator_item_detail_selected",
   "type": "object",
   "required": [
     "category",
-    "selected_category",
-    "selected_condition",
-    "selected_designer",
-    "selected_item_type",
-    "selected_optionals",
-    "selected_subcategory"
+    "flow",
+    "page"
   ],
   "properties": {
     "category": {
       "type": "string"
     },
-    "selected_category": {
+    "flow": {
       "type": "string"
     },
-    "selected_condition": {
+    "page": {
       "type": "string"
     },
     "selected_designer": {
       "type": "string"
     },
+    "selected_subcategory": {
+      "type": "string"
+    },
     "selected_item_type": {
       "type": "string"
     },
-    "selected_subcategory": {
+    "selected_condition": {
       "type": "string"
     },
     "selected_optionals": {

@@ -1,0 +1,32 @@
+{
+  "eventName": "nav_packing_list_item_removed",
+  "type": "object",
+  "required": [
+    "category",
+    "designer",
+    "flow",
+    "id",
+    "page",
+    "taxon"
+  ],
+  "properties": {
+    "category": {
+      "type": "string"
+    },
+    "designer": {
+      "type": "string"
+    },
+    "flow": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "page": {
+      "type": "string"
+    },
+    "taxon": {
+      "type": "string"
+    }
+  }
+}

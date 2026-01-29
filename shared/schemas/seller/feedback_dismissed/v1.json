@@ -1,21 +1,18 @@
 {
-  "eventName": "feedback_submitted",
+  "eventName": "feedback_dismissed",
   "type": "object",
   "required": [
+    "category",
     "feature_name",
-    "location"
+    "flow",
+    "location",
+    "page"
   ],
   "properties": {
     "category": {
       "type": "string"
     },
-    "comment": {
-      "type": "string"
-    },
     "feature_name": {
-      "type": "string"
-    },
-    "feedback_type": {
       "type": "string"
     },
     "flow": {
@@ -24,15 +21,8 @@
     "location": {
       "type": "string"
     },
-    "options_selected": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
     "page": {
       "type": "string"
     }
   }
 }
-

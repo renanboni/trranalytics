@@ -6,8 +6,17 @@
     "inquiry_id"
   ],
   "properties": {
-    "repeat_consignor": {
-      "type": "boolean"
+    "category": {
+      "type": "string"
+    },
+    "feature": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "flow": {
+      "type": "string"
     },
     "inquiry_id": {
       "type": "string"
@@ -15,10 +24,10 @@
     "inquiry_slug": {
       "type": "string"
     },
-    "method": {
+    "last_name": {
       "type": "string"
     },
-    "path": {
+    "lead_email": {
       "type": "string"
     },
     "lead_source": {
@@ -30,19 +39,19 @@
     "logged_in": {
       "type": "boolean"
     },
-    "first_name": {
+    "method": {
       "type": "string"
     },
-    "last_name": {
+    "page": {
       "type": "string"
     },
-    "lead_email": {
+    "path": {
       "type": "string"
+    },
+    "repeat_consignor": {
+      "type": "boolean"
     },
     "zip_code": {
-      "type": "string"
-    },
-    "feature": {
       "type": "string"
     }
   }
