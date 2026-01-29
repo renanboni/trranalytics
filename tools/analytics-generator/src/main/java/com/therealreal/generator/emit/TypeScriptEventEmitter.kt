@@ -3,7 +3,6 @@ package com.therealreal.generator.emit
 import com.therealreal.generator.model.Type
 import com.therealreal.generator.util.escapeKotlin
 import com.therealreal.generator.util.indent
-import com.therealreal.generator.util.toCamelCase
 
 class TypeScriptEventEmitter(
     private val familyName: String,
@@ -27,12 +26,12 @@ class TypeScriptEventEmitter(
         val allProps = mutableListOf<String>()
 
         requiredFields.forEach { f ->
-            allProps += "${f.name.toCamelCase()}: ${typeRenderer.tsType(f.type)};"
+            allProps += "${f.name}: ${typeRenderer.tsType(f.type)};"
         }
 
         optionalFields.forEach { f ->
             val baseType = typeRenderer.run { tsType(f.type.copyNonNull()) }
-            allProps += "${f.name.toCamelCase()}?: $baseType | null;"
+            allProps += "${f.name}?: $baseType | null;"
         }
 
         val propsBlock = allProps.joinToString("\n  ")
@@ -55,8 +54,7 @@ class TypeScriptEventEmitter(
  * event="$analyticsEventName"$deprecatedTag
  */
 export interface $eventClassName extends $familyName {
-  readonly eventName: "${analyticsEventName.escapeKotlin()}";
-  readonly schemaVersion: $schemaVersion;
+  readonly event_name: "${analyticsEventName.escapeKotlin()}";
   $propsBlock
 }
 
@@ -76,12 +74,12 @@ ${indent(nestedTypesBlock, 0).trimEnd()}
         val allProps = mutableListOf<String>()
 
         requiredFields.forEach { f ->
-            allProps += "${f.name.toCamelCase()}: ${typeRenderer.tsType(f.type)};"
+            allProps += "${f.name}: ${typeRenderer.tsType(f.type)};"
         }
 
         optionalFields.forEach { f ->
             val baseType = typeRenderer.run { tsType(f.type.copyNonNull()) }
-            allProps += "${f.name.toCamelCase()}?: $baseType | null;"
+            allProps += "${f.name}?: $baseType | null;"
         }
 
         val propsBlock = allProps.joinToString("\n  ")
