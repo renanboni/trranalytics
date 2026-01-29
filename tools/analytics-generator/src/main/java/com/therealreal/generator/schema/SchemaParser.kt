@@ -13,7 +13,8 @@ import kotlin.io.path.readText
 
 class SchemaParser(
     private val json: Json,
-    private val commonFields: List<Field> = emptyList()
+    private val commonFields: List<Field> = emptyList(),
+    private val familyCommonFields: Map<String, List<Field>> = emptyMap()
 ) {
 
     private val typeParser = TypeParser()
@@ -70,7 +71,7 @@ class SchemaParser(
             )
         }
 
-        val mergedRoot = mergeCommonFields(rootType)
+        val mergedRoot = mergeCommonFields(rootType, familyRaw)
 
         return EventDef(
             familyName = familyName,
@@ -83,13 +84,21 @@ class SchemaParser(
         )
     }
 
-    private fun mergeCommonFields(rootType: Type.ObjectT): Type.ObjectT {
-        if (commonFields.isEmpty()) return rootType
+    private fun mergeCommonFields(rootType: Type.ObjectT, familyRaw: String): Type.ObjectT {
+        val familyFields = familyCommonFields[familyRaw] ?: emptyList()
 
-        val existingFieldNames = rootType.fields.map { it.name }.toSet()
-        val fieldsToAdd = commonFields.filter { it.name !in existingFieldNames }
+        if (commonFields.isEmpty() && familyFields.isEmpty()) return rootType
 
-        val mergedFields = (rootType.fields + fieldsToAdd).sortedBy { it.name }
+        val existingFieldNames = rootType.fields.map { it.name }.toMutableSet()
+
+        // First add family-level common fields (more specific)
+        val familyFieldsToAdd = familyFields.filter { it.name !in existingFieldNames }
+        existingFieldNames.addAll(familyFieldsToAdd.map { it.name })
+
+        // Then add global common fields (less specific, won't override family fields)
+        val globalFieldsToAdd = commonFields.filter { it.name !in existingFieldNames }
+
+        val mergedFields = (rootType.fields + familyFieldsToAdd + globalFieldsToAdd).sortedBy { it.name }
 
         return rootType.copy(fields = mergedFields)
     }

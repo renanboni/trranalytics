@@ -33,7 +33,13 @@ object GeneratorCli {
             commonFieldsLoader.load(commonSchemaPath)
         } ?: emptyList()
 
-        val parser = SchemaParser(json, commonFields)
+        val familyCommonFieldsPaths = locator.findFamilyCommonFieldsSchemas(config.schemasDir)
+        val familyCommonFields = familyCommonFieldsPaths.mapValues { (family, path) ->
+            println("Loading common fields for family '$family' from: $path")
+            commonFieldsLoader.load(path)
+        }
+
+        val parser = SchemaParser(json, commonFields, familyCommonFields)
 
         val schemaFiles = locator.findSchemas(config.schemasDir)
         if (schemaFiles.isEmpty()) {

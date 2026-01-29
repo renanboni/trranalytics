@@ -23,4 +23,24 @@ class SchemaLocator {
         val commonPath = root.resolve("_common/base_fields.json")
         return if (Files.exists(commonPath)) commonPath else null
     }
+
+    fun findFamilyCommonFieldsSchemas(root: Path): Map<String, Path> {
+        require(Files.exists(root)) { "Schemas dir not found: $root" }
+
+        val result = mutableMapOf<String, Path>()
+
+        Files.list(root).use { stream ->
+            stream.asSequence()
+                .filter { Files.isDirectory(it) }
+                .filter { it.fileName.toString() != "_common" }
+                .forEach { familyDir ->
+                    val familyCommonPath = familyDir.resolve("_common/base_fields.json")
+                    if (Files.exists(familyCommonPath)) {
+                        result[familyDir.fileName.toString()] = familyCommonPath
+                    }
+                }
+        }
+
+        return result
+    }
 }
