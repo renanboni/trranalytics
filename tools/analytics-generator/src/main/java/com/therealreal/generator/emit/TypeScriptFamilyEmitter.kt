@@ -13,7 +13,13 @@ class TypeScriptFamilyEmitter(
             .groupBy { it.analyticsEventName }
             .mapValues { (_, events) -> events.maxOf { it.schemaVersion } }
 
-        val eventBlocks = familyEvents.sortedBy { it.eventClassName }
+        // Separate direct events from sub-family events
+        val directEvents = familyEvents.filter { it.subFamilyName == null }
+        val subFamilyEvents = familyEvents.filter { it.subFamilyName != null }
+            .groupBy { it.subFamilyName!! }
+
+        // Emit direct events
+        val directEventBlocks = directEvents.sortedBy { it.eventClassName }
             .joinToString("\n\n") { e ->
                 val maxVersion = maxVersionByEvent[e.analyticsEventName] ?: e.schemaVersion
                 val isDeprecated = e.schemaVersion < maxVersion
@@ -29,6 +35,38 @@ class TypeScriptFamilyEmitter(
                 ).emitEvent()
             }
 
+        // Emit sub-family namespaces
+        val subFamilyBlocks = subFamilyEvents.entries.sortedBy { it.key }
+            .joinToString("\n\n") { (subFamilyName, events) ->
+                val subFamilyEventBlocks = events.sortedBy { it.eventClassName }
+                    .joinToString("\n\n") { e ->
+                        val maxVersion = maxVersionByEvent[e.analyticsEventName] ?: e.schemaVersion
+                        val isDeprecated = e.schemaVersion < maxVersion
+                        TypeScriptEventEmitter(
+                            familyName = subFamilyName,
+                            eventClassName = e.eventClassName,
+                            analyticsEventName = e.analyticsEventName,
+                            schemaVersion = e.schemaVersion,
+                            schemaFilePath = e.schemaFilePath,
+                            root = e.root,
+                            isDeprecated = isDeprecated,
+                            latestVersion = maxVersion
+                        ).emitEvent()
+                    }
+
+                """
+export interface $subFamilyName extends $familyName {}
+
+export namespace $subFamilyName {
+${indent(subFamilyEventBlocks, 2)}
+}
+                """.trimIndent().trim()
+            }
+
+        val allBlocks = listOf(directEventBlocks, subFamilyBlocks)
+            .filter { it.isNotBlank() }
+            .joinToString("\n\n")
+
         return """
 import { AnalyticsEvent } from './AnalyticsEvent';
 
@@ -38,7 +76,7 @@ import { AnalyticsEvent } from './AnalyticsEvent';
 export interface $familyName extends AnalyticsEvent {}
 
 export namespace $familyName {
-${indent(eventBlocks, 2)}
+${indent(allBlocks, 2)}
 }
         """.trimIndent().trim() + "\n"
     }

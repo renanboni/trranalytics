@@ -13,6 +13,7 @@ import kotlin.io.path.readText
 
 class SchemaParser(
     private val json: Json,
+    private val schemasRoot: Path? = null,
     private val commonFields: List<Field> = emptyList(),
     private val familyCommonFields: Map<String, List<Field>> = emptyMap()
 ) {
@@ -21,7 +22,7 @@ class SchemaParser(
     private val versionRegex = Regex("""^v(\d+)$""")
 
     fun parse(schemaFile: Path): EventDef {
-        // Expect: .../<family>/<event>/<vN>.json
+        // Expect: .../<family>/<event>/<vN>.json or .../<family>/<subfamily>/<event>/<vN>.json
         val normalized = schemaFile.normalize().toString().replace('\\', '/')
         val parts = normalized.split('/').filter { it.isNotBlank() }
         if (parts.size < 3) {
@@ -32,9 +33,21 @@ class SchemaParser(
             )
         }
 
-        val familyRaw = parts[parts.size - 3]
+        // Determine family/subfamily structure based on path depth from schemas root
+        val (familyRaw, subFamilyRaw, eventRaw) = if (schemasRoot != null) {
+            val relativePath = schemasRoot.relativize(schemaFile.parent) // parent to exclude version file
+            val relParts = relativePath.toString().replace('\\', '/').split('/').filter { it.isNotBlank() }
+            when {
+                relParts.size >= 3 -> Triple(relParts[0], relParts[1], relParts[2])
+                relParts.size == 2 -> Triple(relParts[0], null, relParts[1])
+                else -> Triple(parts[parts.size - 3], null, parts[parts.size - 2])
+            }
+        } else {
+            Triple(parts[parts.size - 3], null, parts[parts.size - 2])
+        }
+
         val familyName = familyRaw.toPascalCase()
-        val eventRaw = parts[parts.size - 2]
+        val subFamilyName = subFamilyRaw?.toPascalCase()
         val versionFileName = schemaFile.fileName.toString().removeSuffix(".json")
 
         val versionMatch = versionRegex.matchEntire(versionFileName)
@@ -73,13 +86,22 @@ class SchemaParser(
 
         val mergedRoot = mergeCommonFields(rootType, familyRaw)
 
+        // Use relative path from schemas root if available, otherwise use filename
+        val relativeSchemaPath = if (schemasRoot != null) {
+            schemasRoot.relativize(schemaFile).toString()
+        } else {
+            schemaFile.fileName.toString()
+        }
+
         return EventDef(
             familyName = familyName,
             familyRaw = familyRaw,
+            subFamilyName = subFamilyName,
+            subFamilyRaw = subFamilyRaw,
             eventClassName = eventClassName,
             analyticsEventName = analyticsEventName,
             schemaVersion = schemaVersion,
-            schemaFilePath = schemaFile.toString(),
+            schemaFilePath = relativeSchemaPath,
             root = mergedRoot
         )
     }

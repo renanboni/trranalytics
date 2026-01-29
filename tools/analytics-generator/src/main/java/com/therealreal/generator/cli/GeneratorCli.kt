@@ -39,7 +39,7 @@ object GeneratorCli {
             commonFieldsLoader.load(path)
         }
 
-        val parser = SchemaParser(json, commonFields, familyCommonFields)
+        val parser = SchemaParser(json, config.schemasDir, commonFields, familyCommonFields)
 
         val schemaFiles = locator.findSchemas(config.schemasDir)
         if (schemaFiles.isEmpty()) {
