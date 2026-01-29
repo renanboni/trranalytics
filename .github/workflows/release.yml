@@ -91,13 +91,13 @@ jobs:
           cp -R ../Shared.xcframework . 2>/dev/null || ./scripts/build-xcframework.sh
 
           # Update TypeScript types
-          cp shared/build/generated/source/analytics/typescript/*.ts types/
+          cp shared/build/generated/source/analytics/typescript/*.ts typescript/
 
-          # Update types/package.json version
-          sed -i '' "s|\"version\": \".*\"|\"version\": \"$VERSION\"|g" types/package.json
+          # Update typescript/package.json version
+          sed -i '' "s|\"version\": \".*\"|\"version\": \"$VERSION\"|g" package.json
 
           # Commit changes
-          git add Shared.xcframework types/
+          git add Shared.xcframework typescript/ package.json
           git commit -m "Release $VERSION - Update XCFramework and TypeScript types [skip ci]" || echo "No changes to commit"
 
           # Create tag on this commit
@@ -176,7 +176,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "${{ job.status == 'success' && '🎉 *Release artifacts published successfully!*\n\n*Available on:*\n• GitHub Packages (Android)\n• Swift Package Manager (iOS)\n• TypeScript types in types/ folder' || '⚠️ *Release workflow encountered an error.*\n\nPlease check the workflow logs for details.' }}"
+                    "text": "${{ job.status == 'success' && '🎉 *Release artifacts published successfully!*\n\n*Available on:*\n• GitHub Packages (Android)\n• Swift Package Manager (iOS)\n• TypeScript types in typescript/ folder' || '⚠️ *Release workflow encountered an error.*\n\nPlease check the workflow logs for details.' }}"
                   }
                 },
                 {

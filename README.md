@@ -151,7 +151,7 @@ Add the package as a git dependency in your `package.json`:
 ```json
 {
   "dependencies": {
-    "@therealreal/analytics-types": "github:therealreal/TRRAnalytics#main&path=types"
+    "@therealreal/analytics-types": "github:therealreal/trr-analytics#main"
   }
 }
 ```
@@ -363,6 +363,6 @@ make release
 After running `make generate`:
 
 - **Kotlin**: `shared/build/generated/source/analytics/commonMain/kotlin/`
-- **TypeScript**: `types/`
+- **TypeScript**: `typescript/`
 
 ------------------------------------------------------------------------

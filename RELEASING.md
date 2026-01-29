@@ -38,7 +38,7 @@ When you create a release (via any method), the workflow automatically:
 4. ✅ Publishes to GitHub Packages (Maven)
 5. ✅ Creates a GitHub Release with XCFramework
 6. ✅ Updates Package.swift for Swift Package Manager
-7. ✅ Updates TypeScript types in `types/` folder
+7. ✅ Updates TypeScript types in `typescript/` folder
 8. ✅ Generates changelog from git commits
 9. ✅ Sends Slack notification (if configured)
 
@@ -139,7 +139,7 @@ After a successful release, the following artifacts are available:
 - **Architectures**: `iosArm64` (device) + `iosSimulatorArm64` (simulator)
 
 ### Web (TypeScript)
-- **TypeScript types**: Committed to `types/` folder in the repository
+- **TypeScript types**: Committed to `typescript/` folder in the repository
 - **Package name**: `@therealreal/analytics-types`
 - **Installation**: Git dependency via npm/yarn
 
@@ -212,7 +212,7 @@ Add the package as a git dependency in your `package.json`:
 ```json
 {
   "dependencies": {
-    "@therealreal/analytics-types": "github:therealreal/TRRAnalytics#main&path=types"
+    "@therealreal/analytics-types": "github:therealreal/trr-analytics#main"
   }
 }
 ```

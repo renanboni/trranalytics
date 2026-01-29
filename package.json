@@ -1,0 +1,13 @@
+{
+  "name": "@therealreal/analytics-types",
+  "version": "2.1.1",
+  "description": "TypeScript type definitions for TRR analytics events",
+  "main": "typescript/index.ts",
+  "types": "typescript/index.ts",
+  "files": ["*.ts"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/therealreal/trr-analytics.git",
+    "directory": "types"
+  }
+}
