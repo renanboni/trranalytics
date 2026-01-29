@@ -1,9 +1,11 @@
 {
-  "eventName": "view_selling_options_clicked",
+  "eventName": "inquiry_updated",
   "type": "object",
   "required": [
     "category",
     "flow",
+    "inquiry_slug",
+    "method",
     "page"
   ],
   "properties": {
@@ -11,6 +13,12 @@
       "type": "string"
     },
     "flow": {
+      "type": "string"
+    },
+    "inquiry_slug": {
+      "type": "string"
+    },
+    "method": {
       "type": "string"
     },
     "page": {

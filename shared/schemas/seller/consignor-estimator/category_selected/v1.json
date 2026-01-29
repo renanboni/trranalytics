@@ -2,15 +2,19 @@
   "eventName": "consignor_estimator_category_selected",
   "type": "object",
   "required": [
-    "page",
     "category",
+    "flow",
+    "page",
     "selected_category"
   ],
   "properties": {
-    "page": {
+    "category": {
       "type": "string"
     },
-    "category": {
+    "flow": {
+      "type": "string"
+    },
+    "page": {
       "type": "string"
     },
     "selected_category": {
@@ -18,5 +22,3 @@
     }
   }
 }
-
-

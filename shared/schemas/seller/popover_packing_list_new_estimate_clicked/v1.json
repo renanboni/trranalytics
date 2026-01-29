@@ -1,5 +1,5 @@
 {
-  "eventName": "view_selling_options_clicked",
+  "eventName": "popover_packing_list_new_estimate_clicked",
   "type": "object",
   "required": [
     "category",

@@ -2,10 +2,14 @@
   "eventName": "consignor_estimator_item_details",
   "type": "object",
   "required": [
-    "category"
+    "category",
+    "name"
   ],
   "properties": {
     "category": {
+      "type": "string"
+    },
+    "name": {
       "type": "string"
     }
   }

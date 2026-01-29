@@ -3,8 +3,10 @@
   "type": "object",
   "required": [
     "category",
-    "estimate_result_min",
     "estimate_result_max",
+    "estimate_result_min",
+    "flow",
+    "page",
     "selected_category",
     "selected_designer",
     "selected_subcategory",
@@ -15,10 +17,16 @@
     "category": {
       "type": "string"
     },
+    "estimate_result_max": {
+      "type": "string"
+    },
     "estimate_result_min": {
       "type": "string"
     },
-    "estimate_result_max": {
+    "flow": {
+      "type": "string"
+    },
+    "page": {
       "type": "string"
     },
     "selected_category": {

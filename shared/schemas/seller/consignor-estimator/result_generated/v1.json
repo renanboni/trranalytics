@@ -1,9 +1,13 @@
 {
-  "eventName": "consignor_estimator_details_submitted",
+  "eventName": "consignor_estimator_result_generated",
   "type": "object",
   "required": [
-    "page",
     "category",
+    "estimate_result_max",
+    "estimate_result_min",
+    "estimate_result_percentage",
+    "flow",
+    "page",
     "selected_category",
     "selected_designer",
     "selected_subcategory",
@@ -11,10 +15,22 @@
     "selected_condition"
   ],
   "properties": {
-    "page": {
+    "category": {
       "type": "string"
     },
-    "category": {
+    "estimate_result_max": {
+      "type": "string"
+    },
+    "estimate_result_min": {
+      "type": "string"
+    },
+    "estimate_result_percentage": {
+      "type": "string"
+    },
+    "flow": {
+      "type": "string"
+    },
+    "page": {
       "type": "string"
     },
     "selected_category": {
@@ -37,5 +53,3 @@
     }
   }
 }
-
-
