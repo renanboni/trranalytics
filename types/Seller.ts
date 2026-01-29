@@ -7,6 +7,27 @@ export interface Seller extends AnalyticsEvent {}
 
 export namespace Seller {
   /**
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_funnel_consignment_options_viewed/v1.json)
+   * event="Consignment Funnel Consignment Options Viewed"
+   */
+  export interface ConsignmentFunnelConsignmentOptionsViewedV1 extends Seller {
+    readonly eventName: "Consignment Funnel Consignment Options Viewed";
+    readonly schemaVersion: 1;
+    category: string;
+    flow: string;
+    funnelPage: string;
+    inquiryId: string;
+    inquirySlug: string;
+    leadType: string;
+    methods: string[];
+    page: string;
+    utmCampaign?: string | null;
+    utmMedium?: string | null;
+    utmSource?: string | null;
+  }
+
+
+  /**
    * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_home/v1.json)
    * event="Consignment Home"
    */
@@ -22,100 +43,17 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_category_selected/v1.json)
-   * event="Consignor Estimator Category Selected"
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_details_selected/v1.json)
+   * event="Edit Details Selected"
    */
-  export interface ConsignorEstimatorCategorySelectedV1 extends Seller {
-    readonly eventName: "Consignor Estimator Category Selected";
-    readonly schemaVersion: 1;
-    category: string;
-    page: string;
-    selectedCategory: string;
-    utmCampaign?: string | null;
-    utmMedium?: string | null;
-    utmSource?: string | null;
-  }
-
-
-  /**
-   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_details_submitted/v1.json)
-   * event="Consignor Estimator Details Submitted"
-   */
-  export interface ConsignorEstimatorDetailsSubmittedV1 extends Seller {
-    readonly eventName: "Consignor Estimator Details Submitted";
-    readonly schemaVersion: 1;
-    category: string;
-    page: string;
-    selectedCategory: string;
-    selectedCondition: string;
-    selectedDesigner: string;
-    selectedItemType: string;
-    selectedSubcategory: string;
-    selectedOptionals?: Record<string, unknown> | null;
-    utmCampaign?: string | null;
-    utmMedium?: string | null;
-    utmSource?: string | null;
-  }
-
-
-  /**
-   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_details/v1.json)
-   * event="Consignor Estimator Item Details"
-   */
-  export interface ConsignorEstimatorItemDetailsV1 extends Seller {
-    readonly eventName: "Consignor Estimator Item Details";
-    readonly schemaVersion: 1;
-    category: string;
-    utmCampaign?: string | null;
-    utmMedium?: string | null;
-    utmSource?: string | null;
-  }
-
-
-  /**
-   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_item_saved/v1.json)
-   * event="Consignor Estimator Item Saved"
-   */
-  export interface ConsignorEstimatorItemSavedV1 extends Seller {
-    readonly eventName: "Consignor Estimator Item Saved";
+  export interface EditDetailsSelectedV1 extends Seller {
+    readonly eventName: "Edit Details Selected";
     readonly schemaVersion: 1;
     category: string;
     estimateResultMax: string;
     estimateResultMin: string;
-    selectedCategory: string;
-    selectedCondition: string;
-    selectedDesigner: string;
-    selectedItemType: string;
-    selectedSubcategory: string;
-    selectedOptionals?: Record<string, unknown> | null;
-    utmCampaign?: string | null;
-    utmMedium?: string | null;
-    utmSource?: string | null;
-  }
-
-
-  /**
-   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_landing/v1.json)
-   * event="Consignor Estimator Landing"
-   */
-  export interface ConsignorEstimatorLandingV1 extends Seller {
-    readonly eventName: "Consignor Estimator Landing";
-    readonly schemaVersion: 1;
-    category: string;
-    utmCampaign?: string | null;
-    utmMedium?: string | null;
-    utmSource?: string | null;
-  }
-
-
-  /**
-   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_result_generated/v1.json)
-   * event="Consignor Estimator Result Generated"
-   */
-  export interface ConsignorEstimatorResultGeneratedV1 extends Seller {
-    readonly eventName: "Consignor Estimator Result Generated";
-    readonly schemaVersion: 1;
-    category: string;
+    flow: string;
+    page: string;
     selectedCategory: string;
     selectedCondition: string;
     selectedDesigner: string;
@@ -129,27 +67,16 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor_estimator_results/v1.json)
-   * event="Consignor Estimator Results"
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_dismissed/v1.json)
+   * event="Feedback Dismissed"
    */
-  export interface ConsignorEstimatorResultsV1 extends Seller {
-    readonly eventName: "Consignor Estimator Results";
+  export interface FeedbackDismissedV1 extends Seller {
+    readonly eventName: "Feedback Dismissed";
     readonly schemaVersion: 1;
     category: string;
-    utmCampaign?: string | null;
-    utmMedium?: string | null;
-    utmSource?: string | null;
-  }
-
-
-  /**
-   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_details_selected/v1.json)
-   * event="Edit Details Selected"
-   */
-  export interface EditDetailsSelectedV1 extends Seller {
-    readonly eventName: "Edit Details Selected";
-    readonly schemaVersion: 1;
-    category: string;
+    featureName: string;
+    flow: string;
+    location: string;
     page: string;
     utmCampaign?: string | null;
     utmMedium?: string | null;
@@ -166,9 +93,12 @@ export namespace Seller {
     readonly schemaVersion: 1;
     featureName: string;
     location: string;
+    category?: string | null;
     comment?: string | null;
     feedbackType?: string | null;
+    flow?: string | null;
     optionsSelected?: string[] | null;
+    page?: string | null;
     utmCampaign?: string | null;
     utmMedium?: string | null;
     utmSource?: string | null;
@@ -221,8 +151,10 @@ export namespace Seller {
     readonly schemaVersion: 1;
     inquiryId: string;
     repeatConsignor: boolean;
+    category?: string | null;
     feature?: string | null;
     firstName?: string | null;
+    flow?: string | null;
     inquirySlug?: string | null;
     lastName?: string | null;
     leadEmail?: string | null;
@@ -230,11 +162,30 @@ export namespace Seller {
     leadSubSource?: string | null;
     loggedIn?: boolean | null;
     method?: string | null;
+    page?: string | null;
     path?: string | null;
     utmCampaign?: string | null;
     utmMedium?: string | null;
     utmSource?: string | null;
     zipCode?: string | null;
+  }
+
+
+  /**
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_updated/v1.json)
+   * event="Inquiry Updated"
+   */
+  export interface InquiryUpdatedV1 extends Seller {
+    readonly eventName: "Inquiry Updated";
+    readonly schemaVersion: 1;
+    category: string;
+    flow: string;
+    inquirySlug: string;
+    method: string;
+    page: string;
+    utmCampaign?: string | null;
+    utmMedium?: string | null;
+    utmSource?: string | null;
   }
 
 
@@ -254,6 +205,25 @@ export namespace Seller {
 
 
   /**
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/nav_packing_list_item_removed/v1.json)
+   * event="Nav Packing List Item Removed"
+   */
+  export interface NavPackingListItemRemovedV1 extends Seller {
+    readonly eventName: "Nav Packing List Item Removed";
+    readonly schemaVersion: 1;
+    category: string;
+    designer: string;
+    flow: string;
+    id: string;
+    page: string;
+    taxon: string;
+    utmCampaign?: string | null;
+    utmMedium?: string | null;
+    utmSource?: string | null;
+  }
+
+
+  /**
    * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/new_search_selected/v1.json)
    * event="New Search Selected"
    */
@@ -261,6 +231,38 @@ export namespace Seller {
     readonly eventName: "New Search Selected";
     readonly schemaVersion: 1;
     category: string;
+    page: string;
+    utmCampaign?: string | null;
+    utmMedium?: string | null;
+    utmSource?: string | null;
+  }
+
+
+  /**
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/popover_packing_list_new_estimate_clicked/v1.json)
+   * event="Popover Packing List New Estimate Clicked"
+   */
+  export interface PopoverPackingListNewEstimateClickedV1 extends Seller {
+    readonly eventName: "Popover Packing List New Estimate Clicked";
+    readonly schemaVersion: 1;
+    category: string;
+    flow: string;
+    page: string;
+    utmCampaign?: string | null;
+    utmMedium?: string | null;
+    utmSource?: string | null;
+  }
+
+
+  /**
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/popover_packing_list_sell_now_clicked/v1.json)
+   * event="Popover Packing List Sell Now Clicked"
+   */
+  export interface PopoverPackingListSellNowClickedV1 extends Seller {
+    readonly eventName: "Popover Packing List Sell Now Clicked";
+    readonly schemaVersion: 1;
+    category: string;
+    flow: string;
     page: string;
     utmCampaign?: string | null;
     utmMedium?: string | null;
@@ -293,6 +295,7 @@ export namespace Seller {
     readonly eventName: "View Selling Options Clicked";
     readonly schemaVersion: 1;
     category: string;
+    flow: string;
     page: string;
     utmCampaign?: string | null;
     utmMedium?: string | null;
