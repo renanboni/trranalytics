@@ -7,7 +7,7 @@ export interface Seller extends AnalyticsEvent {}
 
 export namespace Seller {
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/consignment_funnel_consignment_options_viewed/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_funnel_consignment_options_viewed/v1.json)
    * event="Consignment Funnel Consignment Options Viewed"
    */
   export interface ConsignmentFunnelConsignmentOptionsViewedV1 extends Seller {
@@ -27,7 +27,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/consignment_home/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignment_home/v1.json)
    * event="Consignment Home"
    */
   export interface ConsignmentHomeV1 extends Seller {
@@ -41,7 +41,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/edit_details_selected/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/edit_details_selected/v1.json)
    * event="Edit Details Selected"
    */
   export interface EditDetailsSelectedV1 extends Seller {
@@ -64,7 +64,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/feedback_dismissed/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_dismissed/v1.json)
    * event="Feedback Dismissed"
    */
   export interface FeedbackDismissedV1 extends Seller {
@@ -81,7 +81,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/feedback_submitted/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/feedback_submitted/v1.json)
    * event="Feedback Submitted"
    */
   export interface FeedbackSubmittedV1 extends Seller {
@@ -101,7 +101,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/form_started/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_started/v1.json)
    * event="Form Started"
    */
   export interface FormStartedV1 extends Seller {
@@ -116,7 +116,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/form_submitted/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/form_submitted/v1.json)
    * event="Form Submitted"
    */
   export interface FormSubmittedV1 extends Seller {
@@ -136,7 +136,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/inquiry_created/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_created/v1.json)
    * event="Inquiry Created"
    */
   export interface InquiryCreatedV1 extends Seller {
@@ -164,7 +164,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/inquiry_updated/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/inquiry_updated/v1.json)
    * event="Inquiry Updated"
    */
   export interface InquiryUpdatedV1 extends Seller {
@@ -181,7 +181,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/lead_form_viewed/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/lead_form_viewed/v1.json)
    * event="Lead Form Viewed"
    */
   export interface LeadFormViewedV1 extends Seller {
@@ -195,7 +195,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/nav_packing_list_item_removed/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/nav_packing_list_item_removed/v1.json)
    * event="Nav Packing List Item Removed"
    */
   export interface NavPackingListItemRemovedV1 extends Seller {
@@ -213,7 +213,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/new_search_selected/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/new_search_selected/v1.json)
    * event="New Search Selected"
    */
   export interface NewSearchSelectedV1 extends Seller {
@@ -227,7 +227,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/popover_packing_list_new_estimate_clicked/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/popover_packing_list_new_estimate_clicked/v1.json)
    * event="Popover Packing List New Estimate Clicked"
    */
   export interface PopoverPackingListNewEstimateClickedV1 extends Seller {
@@ -242,7 +242,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/popover_packing_list_sell_now_clicked/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/popover_packing_list_sell_now_clicked/v1.json)
    * event="Popover Packing List Sell Now Clicked"
    */
   export interface PopoverPackingListSellNowClickedV1 extends Seller {
@@ -257,7 +257,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/server_error/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/server_error/v1.json)
    * event="Server Error"
    */
   export interface ServerErrorV1 extends Seller {
@@ -273,7 +273,7 @@ export namespace Seller {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/view_selling_options_clicked/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/view_selling_options_clicked/v1.json)
    * event="View Selling Options Clicked"
    */
   export interface ViewSellingOptionsClickedV1 extends Seller {

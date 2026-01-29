@@ -7,7 +7,7 @@ export interface ConsignorEstimator extends AnalyticsEvent {}
 
 export namespace ConsignorEstimator {
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/consignor-estimator/category_selected/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor-estimator/category_selected/v1.json)
    * event="Consignor Estimator Category Selected"
    */
   export interface CategorySelectedV1 extends ConsignorEstimator {
@@ -23,7 +23,7 @@ export namespace ConsignorEstimator {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/consignor-estimator/details_submitted/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor-estimator/details_submitted/v1.json)
    * event="Consignor Estimator Details Submitted"
    */
   export interface DetailsSubmittedV1 extends ConsignorEstimator {
@@ -44,7 +44,7 @@ export namespace ConsignorEstimator {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/consignor-estimator/item_detail_selected/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor-estimator/item_detail_selected/v1.json)
    * event="Consignor Estimator Item Detail Selected"
    */
   export interface ItemDetailSelectedV1 extends ConsignorEstimator {
@@ -64,7 +64,7 @@ export namespace ConsignorEstimator {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/consignor-estimator/item_details/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor-estimator/item_details/v1.json)
    * event="Consignor Estimator Item Details"
    */
   export interface ItemDetailsV1 extends ConsignorEstimator {
@@ -78,7 +78,7 @@ export namespace ConsignorEstimator {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/consignor-estimator/item_saved/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor-estimator/item_saved/v1.json)
    * event="Consignor Estimator Item Saved"
    */
   export interface ItemSavedV1 extends ConsignorEstimator {
@@ -101,7 +101,7 @@ export namespace ConsignorEstimator {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/consignor-estimator/landing/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor-estimator/landing/v1.json)
    * event="Consignor Estimator Landing"
    */
   export interface LandingV1 extends ConsignorEstimator {
@@ -115,7 +115,7 @@ export namespace ConsignorEstimator {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/consignor-estimator/result_generated/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor-estimator/result_generated/v1.json)
    * event="Consignor Estimator Result Generated"
    */
   export interface ResultGeneratedV1 extends ConsignorEstimator {
@@ -139,7 +139,7 @@ export namespace ConsignorEstimator {
 
 
   /**
-   * Generated from JSON Schema (/Users/renan.boni/Downloads/TRRAnalytics/shared/schemas/seller/consignor-estimator/results/v1.json)
+   * Generated from JSON Schema (/Users/runner/work/trr-analytics/trr-analytics/shared/schemas/seller/consignor-estimator/results/v1.json)
    * event="Consignor Estimator Results"
    */
   export interface ResultsV1 extends ConsignorEstimator {
