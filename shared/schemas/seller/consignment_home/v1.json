@@ -3,13 +3,17 @@
   "type": "object",
   "required": [
     "logged_in",
-    "repeat_consignor"
+    "repeat_consignor",
+    "test"
   ],
   "properties": {
     "logged_in": {
       "type": "boolean"
     },
     "repeat_consignor": {
+      "type": "boolean"
+    },
+    "test": {
       "type": "boolean"
     }
   }
