@@ -1,0 +1,11 @@
+{
+  "description": "Common optional fields added to all events in the mysales family",
+  "properties": {
+    "is_repeat_consignor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
