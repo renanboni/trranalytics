@@ -1,18 +1,12 @@
 {
   "eventName": "consignment_home",
   "type": "object",
-  "required": [
-    "repeat_consignor"
-  ],
   "properties": {
     "logged_in": {
       "type": [
         "boolean",
         "null"
       ]
-    },
-    "repeat_consignor": {
-      "type": "boolean"
     }
   }
 }
