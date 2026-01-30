@@ -1,0 +1,12 @@
+{
+  "eventName": "consignment_home",
+  "type": "object",
+  "required": [
+    "logged_in"
+  ],
+  "properties": {
+    "logged_in": {
+      "type": "boolean"
+    }
+  }
+}
