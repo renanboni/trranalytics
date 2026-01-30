@@ -1,0 +1,15 @@
+{
+  "eventName": "button_clicked",
+  "type": "object",
+  "required": [
+    "is_logged_in"
+  ],
+  "properties": {
+    "is_logged_in": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  }
+}
