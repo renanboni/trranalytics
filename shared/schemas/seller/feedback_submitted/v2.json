@@ -1,0 +1,33 @@
+{
+  "eventName": "feedback_submitted",
+  "type": "object",
+  "required": [
+    "feature_name"
+  ],
+  "properties": {
+    "category": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "feature_name": {
+      "type": "string"
+    },
+    "feedback_type": {
+      "type": "string"
+    },
+    "flow": {
+      "type": "string"
+    },
+    "options_selected": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "page": {
+      "type": "string"
+    }
+  }
+}
