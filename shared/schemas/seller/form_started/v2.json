@@ -1,0 +1,24 @@
+{
+  "eventName": "form_started",
+  "type": "object",
+  "required": [
+    "page",
+    "category",
+    "type",
+    "test"
+  ],
+  "properties": {
+    "page": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "test": {
+      "type": "string"
+    }
+  }
+}
